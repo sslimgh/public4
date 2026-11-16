@@ -27,6 +27,7 @@
 if('serviceWorker' in navigator&&location.protocol==='https:')window.addEventListener('load',function(){navigator.serviceWorker.register('sw.js').catch(function(){})});
 </script>
 
+
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>수학 대륙 RPG</title>
@@ -655,6 +656,39 @@ body.ishake2 #app,body.ishake2 .modal{animation:ishake .6s linear}
 .eqrow{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
 .invgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(130px,1fr));gap:10px}
 .invit{display:flex;flex-direction:column;gap:6px}.invit .btn{padding:6px;font-size:15px;margin:0}.invit.on .icard{outline:3px solid #69db7c;outline-offset:2px}
+/* 선생님 상세 기록 */
+.tdet td,.tdet th{white-space:nowrap}.tclick{cursor:pointer}.tclick:hover td{background:rgba(255,255,255,.08)}.dim{color:#8f9bd6}
+.tdots{display:inline-flex;gap:2px}.tdot{width:9px;height:14px;border-radius:3px;background:#2c3577;display:inline-block}.tdot.on{background:#69db7c}.tdot.hi{background:#2f9e44}
+.tchips{display:grid;grid-template-columns:repeat(auto-fill,minmax(110px,1fr));gap:8px;margin:8px 0 12px}.tchips div{background:#151b4f;border:2px solid #34408f;border-radius:14px;padding:8px;text-align:center}.tchips b{display:block;font-size:20px;color:#ffe06a}.tchips span{font-size:14px;color:#aab6ee}
+.tcal{display:grid;grid-template-columns:repeat(7,1fr);gap:4px;max-width:520px;margin:6px 0 12px}.tcal>b{text-align:center;font-weight:normal;color:#aab6ee;font-size:14px}
+.tcal>div{background:#1b2163;border-radius:8px;min-height:52px;padding:3px 4px;font-size:12px;display:flex;flex-direction:column;align-items:center;line-height:1.25}.tcal>div em{font-style:normal;color:#8f9bd6;font-size:12px}
+.tcal>div.on{background:#2b8a3e;color:#fff}.tcal>div.on.hi{background:#237032;box-shadow:inset 0 0 0 2px #69db7c}.tcal>div.on em{color:#d3f9d8}.tcal>div.td{outline:2px solid #ffe06a}.tcal>div.fut{opacity:.35}
+.tcw{background:#151b4f;border:2px solid #34408f;border-radius:14px;padding:8px 10px;margin:6px 0}.tcw>b{display:block;color:#ffe06a;margin-bottom:4px}
+.tcb{display:grid;grid-template-columns:minmax(90px,1.4fr) 2fr 44px 60px;gap:6px;align-items:center;font-size:15px;margin:3px 0}.tcb i{display:block;height:12px;background:#2c3577;border-radius:6px;overflow:hidden}.tcb u{display:block;height:100%}.tcb em{font-style:normal;text-align:right}.tcb small{color:#8f9bd6;text-align:right}
+#tp h4{margin:14px 0 4px;color:#fff}
+/* 무기 차원 */
+@keyframes fadein{from{opacity:0}}.anvil.wdim{width:150px;height:150px;margin:6px auto}
+.dimtag{text-align:center;font-size:16px;color:#aab6ee;margin:-4px 0 6px}.dimtag.d1{color:#74c0fc}.dimtag.d2{color:#ff8787}.dimtag.d3{color:#d0bfff}.dimtag.d4{color:#ffe066}.dimtag.d5{color:#faa2c1}
+.wdim{position:relative;display:flex;align-items:center;justify-content:center}.wdim>span{position:relative;z-index:2;display:inline-block}
+.wdim.d1::before,.wdim.d2::before,.wdim.d3::before,.wdim.d4::before,.wdim.d5::before{content:'';position:absolute;inset:-6%;border-radius:50%;z-index:1;animation:dimspin 3s linear infinite}
+.wdim.d1::before{background:conic-gradient(transparent,#4dabf7,transparent 30%,#a5d8ff,transparent 60%,#4dabf7,transparent);filter:blur(6px);opacity:.75}
+.wdim.d2::before{background:radial-gradient(circle,rgba(255,146,43,.75),rgba(255,107,107,.35) 45%,transparent 70%);animation:dimfire 1.1s ease-in-out infinite alternate}
+.wdim.d3::before{background:conic-gradient(#5f3dc4,#b197fc,#15aabf,#5f3dc4,#e599f7,#5f3dc4);filter:blur(8px);opacity:.75}
+.wdim.d4::before{background:conic-gradient(#ffd43b,#fff3bf,#fab005,#fff,#ffd43b);filter:blur(7px);opacity:.85}
+.wdim.d5::before{background:conic-gradient(#ff6b6b,#ffd43b,#69db7c,#4dabf7,#b197fc,#f783ac,#ff6b6b);filter:blur(7px);opacity:.85;animation-duration:1.6s}
+.wdim.d3>span,.wdim.d4>span,.wdim.d5>span{animation:dimfloat 2s ease-in-out infinite}
+@keyframes dimspin{to{transform:rotate(360deg)}}@keyframes dimfire{from{transform:scale(.9);opacity:.6}to{transform:scale(1.12);opacity:1}}@keyframes dimfloat{50%{transform:translateY(-6px) scale(1.05)}}
+.dimbar{position:relative;height:22px;background:#151b4f;border:2px solid #34408f;border-radius:12px;overflow:hidden;margin:6px 0 10px}.dimbar span{position:absolute;inset:0;text-align:center;font-size:14px;line-height:18px;color:#fff;text-shadow:0 1px 2px #000}
+.dimfill{height:100%;background:linear-gradient(90deg,#4dabf7,#a5d8ff)}.dimfill.d2{background:linear-gradient(90deg,#ff922b,#ff6b6b)}.dimfill.d3{background:linear-gradient(90deg,#7048e8,#b197fc)}.dimfill.d4{background:linear-gradient(90deg,#fab005,#ffe066)}.dimfill.d5,.dimfill.d6{background:linear-gradient(90deg,#ff6b6b,#ffd43b,#69db7c,#4dabf7,#b197fc)}
+.gatebtn{background:linear-gradient(#b197fc,#7048e8)!important;box-shadow:0 4px 0 #4c2ba8,0 0 18px #b197fc!important;color:#fff!important;animation:gatepulse 1.4s ease-in-out infinite}@keyframes gatepulse{50%{box-shadow:0 4px 0 #4c2ba8,0 0 32px #e5dbff}}
+.gateq .gatehd{font-size:16px;color:#aab6ee}.gch2{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:8px}.gch2 .choice{font-size:18px}
+.dimcut{position:fixed;inset:0;z-index:9000;display:flex;flex-direction:column;align-items:center;justify-content:center;background:radial-gradient(circle,rgba(255,255,255,.25),rgba(10,10,40,.95) 65%);animation:fadein .3s}
+.dimcut .dimring{position:absolute;width:70vmin;height:70vmin;border-radius:50%;border:6px solid currentColor;opacity:.6;animation:dimring 1.6s ease-out infinite}
+.dimcut.d1{color:#4dabf7}.dimcut.d2{color:#ff6b6b}.dimcut.d3{color:#b197fc}.dimcut.d4{color:#ffd43b}.dimcut.d5{color:#f783ac}
+.dimcut .dimw{font-size:120px;width:200px;height:200px;animation:dimin 1s cubic-bezier(.2,1.6,.4,1)}
+.dimcut .dimtx{font-family:'Black Han Sans','Jua',sans-serif;font-size:clamp(34px,9vw,60px);color:#fff;text-shadow:0 0 18px currentColor,0 0 36px currentColor;margin-top:10px;animation:dimin .8s .3s both}
+.dimcut .dimsub{font-size:20px;color:#fff;opacity:.9;animation:dimin .8s .6s both}
+@keyframes dimring{0%{transform:scale(.3);opacity:.9}100%{transform:scale(1.4);opacity:0}}@keyframes dimin{0%{transform:scale(3);opacity:0}100%{transform:none;opacity:1}}
 /* 뽑기 */
 .gbtns{display:flex;gap:6px;justify-content:center}.gbtns .btn{margin:0;padding:6px 4px;line-height:1.2;flex:1;max-width:120px;white-space:nowrap;font-size:17px}.gbtns small{font-size:13px}
 .gbtns .g10b{background:linear-gradient(#ff8787,#e03131)!important;box-shadow:0 4px 0 #a61e1e!important;color:#fff}
@@ -672,6 +706,7 @@ body.ishake2 #app,body.ishake2 .modal{animation:ishake .6s linear}
 .gsp{position:fixed;z-index:10001;pointer-events:none;font-size:22px;transform:translate(-50%,-50%);animation:gsp .8s ease-out forwards}@keyframes gsp{to{transform:translate(calc(-50% + var(--dx)),calc(-50% + var(--dy))) scale(.4);opacity:0}}
 @keyframes gpop{0%{transform:scale(1.6)}60%{transform:scale(.92)}100%{transform:none}}
 @keyframes glow3{50%{box-shadow:0 0 36px #fcc419,0 0 0 3px #fcc419}}
+.g1 .gpet{width:70%;aspect-ratio:1}.g1 .gpet svg{width:100%;height:100%}
 .g1 .gic{font-size:clamp(22px,7vw,34px);line-height:1.1;visibility:hidden}.g1 .gnm{font-size:clamp(10px,2.8vw,13px);color:#212529;line-height:1.2;text-align:center;word-break:keep-all;visibility:hidden}
 .g1 .gtg{font-size:clamp(10px,2.6vw,12px);color:#e8590c;margin-top:2px;visibility:hidden}.g1 .gtg b{color:#2f9e44;font-weight:normal}
 .g1.on .gic,.g1.on .gnm,.g1.on .gtg{visibility:visible}
@@ -790,15 +825,18 @@ const CLASSES={
  mage:{n:'마법사',e:'🧙',w:'지팡이',we:'🪄',d:'치명타 피해 2배'},
  archer:{n:'궁수',e:'🧝',w:'활',we:'🏹',d:'제한시간 +5초, 골드 +20%'}
 };
-const WTIER=['나무','돌','철','강철','은빛','황금','미스릴','오리하르콘','전설의','신화의'];
+const WTIER=['나무','돌','철','강철','은빛','황금','미스릴','오리하르콘','전설의','신화의','천공의','성운의','용왕의','태양의','태초의','영원의','궁극의'];
+/* 무기 차원: 50강마다 완전히 다른 무기로 바뀌어요 */
+const WDIM=[{n:'',e:'',c:''},{n:'각성',e:'⚡',c:'#4dabf7',d:'번개가 흐르는 무기'},{n:'초월',e:'🔥',c:'#ff6b6b',d:'불꽃을 두른 무기'},{n:'차원',e:'🌌',c:'#b197fc',d:'우주를 담은 무기'},{n:'신화',e:'👑',c:'#ffd43b',d:'신들의 무기'},{n:'무한',e:'♾️',c:'#f783ac',d:'끝을 넘어선 무기'}];
+function wdim(){return Math.min(WDIM.length-1,Math.floor((S.wlv||0)/50))}
 const C=()=>CLASSES[S.cls]||CLASSES.warrior;
 const maxHp=()=>Math.round((120+(S.lv-1)*15)*(S.cls==='warrior'?1.3:1)*(1+pb('hp')));
-const atk=()=>Math.round((15+(S.lv-1)*4+S.wlv*6)*(1+pb('atk')));
+const atk=()=>Math.round((15+(S.lv-1)*4+S.wlv*6)*(1+pb('atk'))*(1+.1*wdim()));
 const need=()=>50+S.lv*30;
 const critMul=()=>S.cls==='mage'?2:1.6;
 const tlimit=()=>S.cls==='archer'?20:15;
 const goldMul=()=>(S.cls==='archer'?1.2:1)*(1+pb('gold'));
-const wname=()=>`+${S.wlv} ${WTIER[Math.min(WTIER.length-1,Math.floor(S.wlv/3))]} ${C().w}`;
+const wname=()=>{const d=wdim(),k=S.wlv%50,D=WDIM[d];return d?`+${S.wlv} ${D.e}${D.n}의 ${C().w} ${'★'.repeat(Math.floor(k/10)+1)}`:`+${S.wlv} ${WTIER[Math.min(WTIER.length-1,Math.floor(k/3))]} ${C().w}`};
 
 /* ================= 난이도 ================= */
 const DIFF=[
@@ -1179,21 +1217,41 @@ const eggSVG=(e,crack)=>`<svg viewBox="0 0 100 120" xmlns="http://www.w3.org/200
 function showPets(){
  const cur=PETS.find(p=>p.id===S.pet&&S.pets[p.id]);
  app.innerHTML=hud()+`<div class="panel"><h2>🐾 내 펫</h2>${cur?`<div class="petcur"><div class="petbig r${cur.r}">${petImg(cur)}</div><div><div class="rtag" style="background:${RAR[cur.r].c}">${RAR[cur.r].n}</div><div style="font-size:22px;color:#ffe06a">${cur.n} <span style="font-size:16px">Lv.${S.pets[cur.id]}</span></div><div class="sub">${bonusText(cur,S.pets[cur.id])}</div><div class="sub">맵에서 나를 따라다니고, 전투에서 도와줘요</div></div></div>`:'<div class="empty">아직 함께하는 펫이 없어요. 알을 부화시켜 봐요!</div>'}</div>
- <div class="panel"><h2>🥚 알 부화소</h2><div class="eggs">${EGGS.map(e=>`<button class="egg" onclick="hatch('${e.id}')"><div class="eggpic">${eggSVG(e)}</div><b>${e.n}</b><span class="odds">${RAR.map((r,i)=>`<i style="color:${r.c}">${r.n} ${e.odds[i]}%</i>`).join(' ')}</span><span class="btn" style="display:block;margin-top:8px;padding:8px">💰 ${e.cost}</span></button>`).join('')}</div><p class="sub" style="text-align:center">같은 펫이 또 나오면 레벨이 올라 능력이 세져요 (최대 Lv.5)</p></div>
+ <div class="panel"><h2>🥚 알 부화소</h2><div class="eggs">${EGGS.map(e=>`<div class="egg"><div class="eggpic">${eggSVG(e)}</div><b>${e.n}</b><span class="odds">${RAR.map((r,i)=>`<i style="color:${r.c}">${r.n} ${e.odds[i]}%</i>`).join(' ')}</span><div class="gbtns" style="margin-top:8px"><button class="btn" onclick="hatch('${e.id}')">1번<br><small>💰 ${e.cost}</small></button><button class="btn g10b" onclick="hatch10('${e.id}')">10번<br><small>💰 ${(e.cost*10).toLocaleString()}</small></button></div></div>`).join('')}</div><p class="sub" style="text-align:center">같은 펫이 또 나오면 레벨이 올라 능력이 세져요 (최대 Lv.5). Lv.5인 펫이 또 나오면 골드로 바꿔 줘요 (일반 30 · 희귀 80 · 영웅 200 · 전설 500)</p></div>
  <div class="panel"><h2>📖 펫 도감 (${Object.keys(S.pets).length}/${PETS.length})</h2><div class="dex">${PETS.map(p=>{const own=S.pets[p.id];return `<button class="dexc r${p.r} ${own?'':'no'} ${S.pet===p.id?'eq':''}" onclick="${own?`equipPet('${p.id}')`:`toast('아직 만나지 못한 펫이에요')`}"><div class="dexp">${petImg(p)}</div><div class="dn">${own?p.n:'???'}</div>${own?`<div class="dl">Lv.${own}${S.pet===p.id?' · 함께하는 중':''}</div>`:`<div class="dl" style="color:${RAR[p.r].c}">${RAR[p.r].n}</div>`}</button>`}).join('')}</div></div>`+menu('pets');
 }
 function equipPet(id){S.pet=S.pet===id?'':id;save();SFX.click();showPets();toast(S.pet?'🐾 '+PETS.find(p=>p.id===id).n+'와(과) 함께해요!':'펫을 쉬게 했어요')}
+/* 펫이 이미 Lv.5면 골드로 바꿔 줘요 */
+const PDUP=[30,80,200,500];
+/* 알 10개 한꺼번에 부화 */
+function hatch10(id){
+ const e=EGGS.find(x=>x.id===id);if(S.gold<e.cost*10){SFX.fail();return toast('골드가 부족해요! 10번 부화는 💰'+(e.cost*10).toLocaleString()+'이 필요해요')}
+ S.gold-=e.cost*10;const got=[];let mx=0,nw=0,up=0,gs=0;
+ for(let n=0;n<10;n++){let roll=Math.random()*100,r=0;for(let i=0;i<4;i++){if(roll<e.odds[i]){r=i;break}roll-=e.odds[i];r=i}
+  const p=pick(PETS.filter(x=>x.r===r)),had=S.pets[p.id]||0;let tag;
+  if(had>=5){S.gold+=PDUP[r];gs+=PDUP[r];tag='💰'+PDUP[r]}else{S.pets[p.id]=had+1;if(had)up++;else nw++;tag=had?'<b>Lv.'+(had+1)+'</b>':'<b>NEW</b>'}
+  if(!S.pet)S.pet=p.id;if(r===3)ach('legend');if(r>mx)mx=r;got.push({it:{r:r},p:p,tag:tag})}
+ save();try{showPets()}catch(err){}
+ window._g10=got;
+ const cards=got.map((x,i)=>`<div class="g1 r${x.it.r}" style="--rc:${RAR[x.it.r].c}" onclick="pPeek(${i})"><div class="gic gpet">${petImg(x.p)}</div><div class="gnm">${x.p.n}</div><div class="gtg">${x.tag}</div></div>`).join('');
+ modal(`<div class="gopen g10 r${mx}"><div class="grays"></div><div class="gch shake"><div class="eggpic wob" style="width:110px;margin:0 auto">${eggSVG(e)}</div></div><div class="g10grid">${cards}</div><div class="g10sum"><b>새 펫 ${nw}마리</b> · 레벨 업 ${up}번${gs?' · 최고 레벨 펫은 💰'+gs+'골드로 바꿨어요':''}<div class="sub">카드를 누르면 능력을 볼 수 있어요</div></div><div class="btns"><button class="btn gray g10skip" onclick="gShowAll()">모두 보기</button><button class="btn g10ok" onclick="closeModal();showPets()">확인</button></div></div>`);
+ [0,150,300,450,600,750].forEach(t=>setTimeout(()=>tone(500+t/3,.08,'square',.04),t));
+ setTimeout(()=>{const g=document.querySelector('.g10');if(!g)return;const ch=g.querySelector('.gch');if(ch)ch.innerHTML=`<div class="eggpic wob fast" style="width:110px;margin:0 auto">${eggSVG(e,true)}</div>`},600);
+ setTimeout(()=>{const g=document.querySelector('.g10');if(!g)return;g.classList.add('open');SFX.lvup();impactFlash(mx>=2?RAR[mx].c:'#ffffff',Math.max(1,mx));
+  let t=0;g.querySelectorAll('.g1').forEach((c,i)=>{const r=got[i].it.r;t+=r>=2?420:150;c._t=setTimeout(()=>window.gFlip(c,r),t)});g._end=setTimeout(window.gDone,t+400)},1200);
+}
+function pPeek(i){const x=(window._g10||[])[i];if(!x||!x.p)return;const c=document.querySelectorAll('.g10 .g1')[i];if(c&&!c.classList.contains('on'))return;const lv=S.pets[x.p.id]||1;toast(RAR[x.it.r].n+' '+x.p.n+' · '+bonusText(x.p,lv),2800)}
 function hatch(id){
  const e=EGGS.find(x=>x.id===id);if(S.gold<e.cost){SFX.fail();return toast('골드가 부족해요! 몬스터를 물리치고 동전을 모아 봐요')}
  S.gold-=e.cost;let roll=Math.random()*100,r=0;for(let i=0;i<4;i++){if(roll<e.odds[i]){r=i;break}roll-=e.odds[i];r=i}
- const p=pick(PETS.filter(x=>x.r===r)),dup=!!S.pets[p.id];S.pets[p.id]=Math.min(5,(S.pets[p.id]||0)+1);if(!S.pet)S.pet=p.id;save();
+ const p=pick(PETS.filter(x=>x.r===r)),dup=!!S.pets[p.id],mxd=S.pets[p.id]>=5;if(mxd)S.gold+=PDUP[r];S.pets[p.id]=Math.min(5,(S.pets[p.id]||0)+1);if(!S.pet)S.pet=p.id;save();
  if(r===3)ach('legend');
  modal(`<h3>${e.n}</h3><div class="hatch" id="hatchBox"><div class="eggpic wob">${eggSVG(e)}</div></div><p id="hatchTxt">두근두근…</p>`);
  [0,300,600,900].forEach(t=>setTimeout(()=>tone(500+t/3,.08,'square',.04),t));
  setTimeout(()=>{const hb=$('#hatchBox');if(hb)hb.innerHTML=`<div class="eggpic wob fast">${eggSVG(e,true)}</div>`},1000);
  setTimeout(()=>{const hb=$('#hatchBox');if(!hb)return;SFX.lvup();sparks(r>=2?26:14,r>=2?['✨','🌟','💫','⭐']:['✨','⭐']);if(r===3)confetti(50);
   hb.innerHTML=`<div class="reveal r${r}"><div class="rays" style="--rc:${RAR[r].c}"></div><div class="petbig">${petImg(p)}</div></div>`;
-  const ht=$('#hatchTxt');if(!ht)return;ht.outerHTML=`<div class="rtag big" style="background:${RAR[r].c}">${RAR[r].n}</div><p style="font-size:24px;color:#ffe06a;margin:6px 0">${p.n}${dup?` <span style="font-size:18px">Lv.${S.pets[p.id]}</span>`:''}</p><p>${dup?'이미 있는 펫이라 <b>레벨이 올랐어요!</b><br>':''}${bonusText(p,S.pets[p.id])}</p><div class="btns"><button class="btn gray" onclick="closeModal();showPets()">확인</button><button class="btn" onclick="closeModal();hatch('${id}')">한 번 더 💰${e.cost}</button></div>`},1900);
+  const ht=$('#hatchTxt');if(!ht)return;ht.outerHTML=`<div class="rtag big" style="background:${RAR[r].c}">${RAR[r].n}</div><p style="font-size:24px;color:#ffe06a;margin:6px 0">${p.n}${dup?` <span style="font-size:18px">Lv.${S.pets[p.id]}</span>`:''}</p><p>${mxd?'이미 최고 레벨(Lv.5)이라 <b>💰'+PDUP[r]+'골드</b>로 바꿨어요!<br>':dup?'이미 있는 펫이라 <b>레벨이 올랐어요!</b><br>':''}${bonusText(p,S.pets[p.id])}</p><div class="btns"><button class="btn gray" onclick="closeModal();showPets()">확인</button><button class="btn" onclick="closeModal();hatch('${id}')">한 번 더 💰${e.cost}</button></div>`},1900);
 }
 
 /* ================= 업적 ================= */
@@ -1605,7 +1663,7 @@ function subM(){
  }else{SFX.fail();save();$('#mfb').innerHTML=`<div class="fb no">❌ 자물쇠가 안 열렸어요. 정답은 <b>${q.ans}</b><br>${q.ex}<br><span style="font-size:15px">다시 다가가면 새 문제로 도전할 수 있어요.</span><button class="btn blue" id="mok" onclick="closeModal();F.mode='field';fhud()">알겠어요</button></div>`}
 }
 function record(q,ok){
- stat(q.c,ok);const cs=F.cs[q.c]||(F.cs[q.c]={r:0,w:0});
+ stat(q.c,ok);try{dLog(ok?1:0,ok?0:1,0)}catch(e){}const cs=F.cs[q.c]||(F.cs[q.c]={r:0,w:0});
  if(ok){cs.r++;F.right++;F.combo++;F.maxCombo=Math.max(F.maxCombo,F.combo);if(F.combo>=10)ach('combo10')}
  else{cs.w++;F.wrong++;F.combo=0;S.wrong.unshift({c:q.c,q:q.q,a:q.ans,x:q.ex,svg:q.svg});S.wrong=S.wrong.slice(0,40)}
 }
@@ -1647,7 +1705,7 @@ function showBattle(e){
  bars();window.scrollTo({top:0});setTimeout(nextQ,1100);
 }
 function rageCheck(){if(BT&&BT.boss&&!BT.rage&&BT.mon.hp>0&&BT.mon.hp<BT.mon.max/2){BT.rage=true;BT.mon.atk=Math.round(BT.mon.atk*1.3);$('#monU').classList.add('rage');setTimeout(()=>{banner('😡 보스가 화났다!','공격력이 올랐어요. 조심!','boss');SFX.ouch()},400)}}
-function wglow(){const c=S.wlv>=9?'#ffd23f':S.wlv>=6?'#cc5de8':S.wlv>=3?'#4dabf7':'';return c?`filter:drop-shadow(0 0 8px ${c}) drop-shadow(0 0 3px ${c})`:''}
+function wglow(){const d=wdim();if(d){const c=WDIM[d].c;return `filter:drop-shadow(0 0 ${8+d*3}px ${c}) drop-shadow(0 0 4px ${c}) drop-shadow(0 0 2px #fff)`}const c=S.wlv>=9?'#ffd23f':S.wlv>=6?'#cc5de8':S.wlv>=3?'#4dabf7':'';return c?`filter:drop-shadow(0 0 8px ${c}) drop-shadow(0 0 3px ${c})`:''}
 function bars(){
  if(!BT)return;const ar=$('#arena');if(ar)ar.classList.toggle('fever',F.combo>=5);const mh=maxHp();F.php=Math.min(F.php,mh);const e=id=>document.getElementById(id);if(!e('php'))return;
  e('php').style.width=Math.max(0,F.php/mh*100)+'%';e('phpt').textContent=Math.max(0,F.php)+'/'+mh;
@@ -1864,21 +1922,43 @@ function battleCoach(){
 }
 
 /* 대장간 */
-function forgeRate(){return S.wlv<3?100:Math.max(30,100-(S.wlv-2)*12)}
+function forgeRate(){const k=S.wlv%50,mn=[30,25,20,15,12,10][wdim()];return k<3?100:Math.max(mn,100-(k-2)*12)}
 function forgeCost(){return 50+S.wlv*40}
-function showForge(){
- app.innerHTML=hud()+`<div class="panel"><h2>🔨 대장간</h2><div class="anvil" id="anv">${C().we}</div><div class="wname">${wname()}</div>
- <div class="wstat">무기 공격력 +${S.wlv*6} → <b style="color:#5dff8f">+${(S.wlv+1)*6}</b><br>강화 성공 확률 <b style="color:#ffe06a">${forgeRate()}%</b> · 비용 💰 ${forgeCost()}</div>
- <button class="btn" style="width:100%;font-size:22px" id="fbtn" onclick="doForge()">강화하기!</button>
- <p style="color:#aab6ee;font-size:15px;text-align:center;margin:12px 0 0">실패해도 무기는 부서지지 않아요. 골드만 사라져요!</p></div>`+menu('forge');
+function isGate(){return S.wlv%50===49}
+function showForge(){const d=wdim(),D=WDIM[d],k=S.wlv%50,nx=WDIM[Math.min(WDIM.length-1,d+1)],gate=isGate();
+ app.innerHTML=hud()+`<div class="panel"><h2>🔨 대장간</h2>
+ <div class="dimtag d${d}">${d?D.e+' '+D.n+' 차원 · '+D.d:'일반 무기'}</div>
+ <div class="anvil wdim d${d}" id="anv"><span>${C().we}</span></div><div class="wname" style="${d?'color:'+D.c:''}">${wname()}</div>
+ <div class="dimbar"><div class="dimfill d${d+1}" style="width:${(k+1)/50*100}%"></div><span>${d+1<WDIM.length?'다음 차원 '+nx.e+' '+nx.n+'까지 '+(49-k)+'강':'끝없는 무한 차원'}</span></div>
+ <div class="wstat">무기 공격력 +${S.wlv*6}${d?' · 차원 보너스 +'+d*10+'%':''} → <b style="color:#5dff8f">+${(S.wlv+1)*6}</b><br>${gate?'<b style="color:#ffe06a">🌀 차원 돌파 시련!</b> 문제 5개 중 4개를 맞히면 돌파해요':'강화 성공 확률 <b style="color:#ffe06a">'+forgeRate()+'%</b>'} · 비용 💰 ${forgeCost()}</div>
+ <button class="btn${gate?' gatebtn':''}" style="width:100%;font-size:22px" id="fbtn" onclick="doForge()">${gate?'🌀 '+nx.e+' '+nx.n+' 돌파 도전!':'강화하기!'}</button>
+ <p style="color:#aab6ee;font-size:15px;text-align:center;margin:12px 0 0">${gate?'돌파하면 무기가 '+nx.e+' '+nx.n+' 무기로 바뀌고 공격력이 10% 더 세져요!':'실패해도 무기는 부서지지 않아요. 골드만 사라져요! 50강마다 새로운 차원의 무기로 돌파해요.'}</p></div>`+menu('forge');
 }
 function doForge(){
  const cost=forgeCost();if(S.gold<cost){SFX.fail();return toast('골드가 부족해요! 몬스터를 물리쳐서 모아 봐요')}
- S.gold-=cost;save();$('#fbtn').disabled=true;const a=$('#anv');a.textContent='🔨';a.classList.add('swing');
+ if(isGate())return gateStart();
+ S.gold-=cost;save();$('#fbtn').disabled=true;const a=$('#anv');a.innerHTML='<span>🔨</span>';a.classList.add('swing');
  [0,250,500,750].forEach(t=>setTimeout(SFX.clang,t));
  setTimeout(()=>{const ok=Math.random()*100<forgeRate();if(ok){S.wlv++;if(S.wlv>=10)ach('forge10');save();SFX.lvup();sparks(18)}else SFX.fail();
-  showForge();modal(ok?`<h3>✨ 강화 성공!</h3><div style="font-size:70px">${C().we}</div><p><b style="color:#ffe06a;font-size:24px">${wname()}</b><br>공격력이 올랐어요! (현재 ${atk()})</p><div class="btns"><button class="btn" onclick="closeModal()">좋아요!</button></div>`:`<h3>💥 강화 실패…</h3><div style="font-size:70px">😭</div><p>다음엔 꼭 성공할 거예요!</p><div class="btns"><button class="btn gray" onclick="closeModal()">다시 도전</button></div>`)},1100);
+  showForge();modal(ok?`<h3>✨ 강화 성공!</h3><div class="wdim d${wdim()}" style="font-size:70px;margin:10px auto;width:110px"><span>${C().we}</span></div><p><b style="color:#ffe06a;font-size:24px">${wname()}</b><br>공격력이 올랐어요! (현재 ${atk()})${isGate()?'<br><b style="color:#ffe06a">🌀 다음은 차원 돌파 시련이에요!</b>':''}</p><div class="btns"><button class="btn" onclick="closeModal()">좋아요!</button></div>`:`<h3>💥 강화 실패…</h3><div style="font-size:70px">😭</div><p>다음엔 꼭 성공할 거예요!</p><div class="btns"><button class="btn gray" onclick="closeModal()">다시 도전</button></div>`)},1000);
 }
+/* 🌀 차원 돌파 시련: 쉬운 문제 5개 중 4개 맞히기 */
+let GATE=null;
+function gateStart(){const cost=forgeCost();if(S.gold<cost){SFX.fail();return toast('골드가 부족해요!')}
+ const nx=WDIM[Math.min(WDIM.length-1,wdim()+1)];
+ modal(`<h3>🌀 ${nx.e} ${nx.n} 차원 돌파 시련</h3><p>문제 <b>5개</b> 중 <b>4개</b>를 맞히면 무기가<br><b style="color:${nx.c}">${nx.e} ${nx.n} 무기</b>로 다시 태어나요!</p><p class="sub">비용 💰 ${cost} (도전할 때 내요) · 시간 제한 없어요. 천천히 풀어요!</p><div class="btns"><button class="btn gray" onclick="closeModal()">다음에</button><button class="btn" onclick="gateGo()">시작!</button></div>`)}
+window.gateGo=function(){const cost=forgeCost();if(S.gold<cost)return;S.gold-=cost;save();GATE={n:0,ok:0,q:null};gateNext()};
+function gateNext(){if(!GATE)return;if(GATE.n>=5)return gateEnd();let q=null;for(let t=0;t<5&&!q;t++){try{q=genQ('mix',GATE.q,0)}catch(e){q=null}}if(!q){GATE.n=5;GATE.ok=5;return gateEnd()}GATE.q=q;GATE.n++;
+ modal(`<div class="gateq"><div class="gatehd">🌀 시련 ${GATE.n} / 5 · 맞힌 개수 <b>${GATE.ok}</b> ${'⭐'.repeat(GATE.ok)}</div><div class="qtext" style="font-size:20px;margin:8px 0">${q.q}</div>${q.svg?'<div class="fig">'+q.svg+'</div>':''}<div class="gch2">${q.choices.map((c,i)=>`<button class="choice" onclick="gateAns(${i})">${c}</button>`).join('')}</div></div>`)}
+window.gateAns=function(i){if(!GATE||!GATE.q||GATE.busy)return;GATE.busy=1;const q=GATE.q,ok=q.choices[i]===q.ans;const B=document.querySelectorAll('.gch2 .choice');B.forEach((b,k)=>{if(q.choices[k]===q.ans)b.classList.add('right');else if(k===i)b.classList.add('wrong')});
+ if(ok){GATE.ok++;SFX.ok&&SFX.ok()}else SFX.fail();try{record(q,ok)}catch(e){}
+ setTimeout(()=>{GATE.busy=0;if(GATE.ok>=4||GATE.n-GATE.ok>1){GATE.n=5}gateNext()},ok?700:1600)};
+function gateEnd(){const win=GATE&&GATE.ok>=4;GATE=null;closeModal();
+ if(!win){SFX.fail();showForge();return modal('<h3>💫 돌파 실패…</h3><div style="font-size:64px">🌀</div><p>아깝다! 문제 5개 중 4개를 맞혀야 해요.<br>기록 → 틀린 문제를 다시 보고 도전해 봐요!</p><div class="btns"><button class="btn gray" onclick="closeModal()">다음에</button><button class="btn" onclick="closeModal();gateStart()">다시 도전</button></div>')}
+ S.wlv++;save();const d=wdim(),D=WDIM[d];showForge();
+ const ov=document.createElement('div');ov.className='dimcut d'+d;ov.innerHTML=`<div class="dimring"></div><div class="dimw wdim d${d}"><span>${C().we}</span></div><div class="dimtx">${D.e} ${D.n} 돌파!</div><div class="dimsub">${D.d}</div>`;document.body.appendChild(ov);
+ [0,150,300,450,700].forEach((t,i)=>setTimeout(()=>tone([392,523,659,784,1047][i],.3,'triangle',.07),t));setTimeout(()=>{impactFlash(D.c,3);confetti(60)},500);
+ setTimeout(()=>{ov.remove();modal(`<h3>${D.e} ${D.n} 차원 돌파!</h3><div class="wdim d${d}" style="font-size:76px;margin:12px auto;width:120px"><span>${C().we}</span></div><p><b style="color:${D.c};font-size:22px">${wname()}</b><br>${D.d}로 다시 태어났어요!<br>공격력 차원 보너스 <b>+${d*10}%</b> (현재 ${atk()})</p><div class="btns"><button class="btn" onclick="closeModal()">최고예요!</button></div>`)},2600)}
 
 /* 상점 */
 const ITEMS=[['potion','🧪','회복 물약','전투 중 체력을 절반 회복해요',30],['hint','📜','힌트 두루마리','틀린 보기 2개를 지워 줘요',50]];
@@ -1898,6 +1978,7 @@ function clearNotes(){modal(`<h3>오답노트를 비울까요?</h3><p>틀린 문
 function showSettings(){app.innerHTML=hud()+`<div class="panel"><h2>⚙️ 설정</h2>
  <div class="row"><div class="big">${S.sound?'🔊':'🔇'}</div><div class="grow">효과음</div><button class="btn blue" onclick="S.sound=!S.sound;save();showSettings()">${S.sound?'끄기':'켜기'}</button></div>
  <div class="row"><div class="big">${C().e}</div><div class="grow">직업 바꾸기<div class="sub">레벨과 아이템은 그대로예요</div></div><button class="btn blue" onclick="changeCls()">바꾸기</button></div>
+ ${GAS&&S.name&&!isT()?`<div class="row"><div class="big">🔒</div><div class="grow">내 비밀번호<div class="sub" id="pwst">${MPW?'비밀번호가 있어요. 들어올 때마다 물어봐요':'아직 없어요. 정하면 친구가 내 이름으로 들어올 수 없어요'}</div></div><button class="btn blue" onclick="pwAsk()">${MPW?'바꾸기':'정하기'}</button></div>`:''}
  <div class="row"><div class="big">❓</div><div class="grow">게임 방법 다시 보기</div><button class="btn blue" onclick="showTut(0)">보기</button></div>
  <div class="row"><div class="big">🏆</div><div class="grow">우리 반 순위표 (선생님용)<div class="sub">학생 점수 코드를 붙여 넣어 순위를 만들어요</div></div><button class="btn blue" onclick="showRank()">열기</button></div>
  <div class="row"><div class="big">📱</div><div class="grow">접속 QR 코드<div class="sub">TV에 띄워서 아이들이 찍게 해요</div></div><button class="btn blue" onclick="showQR()">보기</button></div>
@@ -2694,7 +2775,7 @@ function mSetCls(c){window.MCLS=c||'';try{localStorage.setItem('mcls',window.MCL
 function mLoadKL(){return mRun('getClasses').then(function(L){if(L&&L.length){KL=L;try{localStorage.setItem('mclsL',JSON.stringify(L))}catch(e){}if(window.MCLS&&KL.indexOf(window.MCLS)<0)mSetCls(KL.length===1?KL[0]:'');if(!window.MCLS&&KL.length===1)mSetCls(KL[0])}return KL})}
 var CFGM={open:8,openT:6,openF:7,openD:GAS?0:9,rank:true,raid:1500,gmode:'teacher'};
 var PKEY=function(n){var c=window.MCLS||'',m=mMain();return KEY+'_p_'+(c&&m&&c!==m?c+'|':'')+n};
-function mRun(fn){var a=[].slice.call(arguments,1);return new Promise(function(res){if(!GAS)return res(null);var t=setTimeout(function(){res(null)},9000);try{google.script.run.withSuccessHandler(function(v){clearTimeout(t);res(v)}).withFailureHandler(function(){clearTimeout(t);res(null)}).C(window.MCLS||'',fn,a)}catch(e){clearTimeout(t);res(null)}})}
+function mRun(fn){var a=[].slice.call(arguments,1);return new Promise(function(res){if(!GAS)return res(null);var t=setTimeout(function(){res(null)},window.IS_APP?25000:9000);try{google.script.run.withSuccessHandler(function(v){clearTimeout(t);res(v)}).withFailureHandler(function(){clearTimeout(t);res(null)}).C(window.MCLS||'',fn,a)}catch(e){clearTimeout(t);res(null)}})}
 function ymd(d){d=d||new Date();var z=function(n){return String(n).padStart(2,'0')};return d.getFullYear()+'-'+z(d.getMonth()+1)+'-'+z(d.getDate())}
 function wkey(){var d=new Date(),day=(d.getDay()+6)%7;d.setDate(d.getDate()-day);return ymd(d)}
 function mNorm(){if(!S.W||S.W.k!==wkey())S.W={k:wkey(),right:0,clears:0};if(!S.T||S.T.d!==ymd())S.T={d:ymd(),right:0};if(!S.gm)S.gm={};if(typeof S.raidGot!=='number')S.raidGot=0;if(typeof S.days!=='number')S.days=0;if(!S.lastDay)S.lastDay=''}
@@ -2705,8 +2786,8 @@ var _save=window.save,syncT=0,lastSyncKey='',lastSyncAt=0;
 window.save=function(){S.ts=Date.now();_save();try{if(S.name)localStorage.setItem(PKEY(S.name),JSON.stringify(S))}catch(e){}if(!syncT)syncT=setTimeout(function(){syncT=0;mSync()},Math.max(5000,45000-(Date.now()-lastSyncAt)))};
 function mStateStr(){var c=JSON.parse(JSON.stringify(S));c.log=(c.log||[]).slice(0,25);var s=JSON.stringify(c);if(s.length>150000){(c.wrong||[]).forEach(function(w){delete w.svg});s=JSON.stringify(c)}return s}
 function mSummary(){var r=0,w=0;Object.keys(S.stat||{}).forEach(function(k){r+=S.stat[k].r||0;w+=S.stat[k].w||0});var stars=0,cl=0;Object.keys(S.clear||{}).forEach(function(k){if(S.clear[k]){cl++;stars+=S.clear[k]}});
-  var c=(typeof CLASSES!=='undefined'&&CLASSES[S.cls])?CLASSES[S.cls].n:'';return{name:S.name,cls:c,lv:S.lv,stars:stars,clears:cl,right:r,wrong:w,gold:S.gold,best:S.best||0,days:S.days,week:S.W.right,weekClears:S.W.clears,today:S.T.right}}
-function mSync(force){if(!GAS||!S.name||isT())return;var p=mSummary();var k=JSON.stringify(p);if(!force&&k===lastSyncKey)return;lastSyncKey=k;lastSyncAt=Date.now();p.state=mStateStr();mRun('saveProgress',p).then(function(r){if(r==='reset'&&S.name){toast('선생님이 기록을 새로 시작하게 했어요. 처음부터 시작해요!',3500);selCls='';mLogin(S.name)}})}
+  var c=(typeof CLASSES!=='undefined'&&CLASSES[S.cls])?CLASSES[S.cls].n:'';return{name:S.name,cls:c,lv:S.lv,stars:stars,clears:cl,right:r,wrong:w,gold:S.gold,best:S.best||0,days:S.days,week:S.W.right,weekClears:S.W.clears,today:S.T.right,pw:MPW,tm:Math.floor(((S.dl||{})[ymd()]||{m:0}).m/5)}}
+function mSync(force){if(!GAS||!S.name||isT())return;var p=mSummary();var k=JSON.stringify(p);if(!force&&k===lastSyncKey)return;lastSyncKey=k;lastSyncAt=Date.now();p.state=mStateStr();mRun('saveProgress',p).then(function(r){if(r==='pw'&&S.name){var n=S.name;MPW='';toast('🔒 비밀번호가 바뀌었어요. 비밀번호를 다시 넣어 주세요',3500);mLogin(n);return}if(r==='reset'&&S.name){toast('선생님이 기록을 새로 시작하게 했어요. 처음부터 시작해요!',3500);selCls='';mLogin(S.name)}})}
 setInterval(function(){mSync()},90000);
 document.addEventListener('visibilitychange',function(){if(document.visibilityState==='hidden'){try{_save()}catch(e){}mSync(true)}});
 
@@ -2751,15 +2832,32 @@ window.createGo=function(){var n=String($('#nnum').value).trim(),v=$('#nm').valu
 function mLogin(nm){
   app.innerHTML='<div class="create"><div class="castle">🏰</div><p style="font-size:22px">👋 '+esc(nm)+', 기록을 불러오고 있어요…</p></div>';
   var loc=null;try{loc=JSON.parse(localStorage.getItem(PKEY(nm))||'null')}catch(e){}if(!loc&&S.cls&&(S.name===nm||mNormName(S.name)===nm)&&(S.klass||mMain())===(window.MCLS||mMain()))loc=S;/* 예전 이름(7 김민지)으로 하던 기록도 이어서 */
-  Promise.all([isTN(nm)?null:mRun('loadState',nm),mLoadCfg()]).then(function(a){var rem=null;try{rem=a[0]?JSON.parse(a[0]):null}catch(e){}
+  Promise.all([isTN(nm)?null:mRun('loadState',nm,MPW),mLoadCfg()]).then(function(a){if(a[0]&&typeof a[0]==='object'&&a[0].pw){return pwLogin(nm,a[0].pw)}var rem=null;try{rem=a[0]?JSON.parse(a[0]):null}catch(e){}
     var pick=loc;if(rem&&rem.reset){if(!(loc&&(loc.rs||0)>=rem.ts))pick=null}else if(rem&&rem.cls&&(!pick||(rem.ts||0)>(pick.ts||0)))pick=rem;
     if(!pick||!pick.cls){var sel=selCls;if(!sel){S=JSON.parse(JSON.stringify(DEF));S.name='';showCreate(nm);toast('처음 왔군요! 직업을 고르고 「모험 시작!」을 눌러 주세요',3500);return}
       S=JSON.parse(JSON.stringify(DEF));S.name=nm;S.cls=sel;if(rem&&rem.reset)S.rs=rem.ts;if(isTN(nm)){S.gold=99999;S.potion=99;S.hint=99}S.klass=window.MCLS||'';mNorm();mDay();save();SFX.lvup();showMap();setTimeout(function(){showTut(0)},300);mSync(true);return}
     S=Object.assign(JSON.parse(JSON.stringify(DEF)),pick);S.name=nm;S.klass=window.MCLS||'';mNorm();mDay();save();SFX.lvup();showMap();if(!S.tut)setTimeout(function(){showTut(0)},400);mSync(true);
     if(isTN(nm))toast('👩‍🏫 선생님으로 들어왔어요'+(window.MCLS?' ('+window.MCLS+')':'')+'. 모든 스테이지가 열려 있어요.',3000)})}
+/* ===== 🔒 학생 비밀번호 ===== */
+var MPW='';
+function pwInput(id){return '<input id="'+id+'" type="password" inputmode="numeric" maxlength="4" autocomplete="off" placeholder="숫자 4자리" style="font-family:inherit;font-size:26px;letter-spacing:8px;padding:8px;border-radius:12px;width:170px;text-align:center">'}
+function pwLogin(nm,st){app.innerHTML='<div class="create"><div class="castle">🔒</div></div>';
+ modal('<h3>🔒 '+esc(nm)+'</h3><p>'+(st==='wrong'?'<b style="color:#ff8787">비밀번호가 맞지 않아요.</b><br>':'')+'비밀번호(숫자 4자리)를 넣어 주세요.</p>'+pwInput('pwin')+'<p class="sub" style="font-size:14px;margin-top:8px">비밀번호를 잊어버렸으면 선생님께 말씀드려요.</p><div class="btns"><button class="btn gray" onclick="closeModal();MPW=\'\';showCreate()">다른 이름</button><button class="btn" onclick="pwLoginGo(\''+esc(nm).replace(/'/g,"\\'")+'\')">들어가기</button></div>');
+ var i=$('#pwin');if(i){i.focus();i.onkeydown=function(e){if(e.key==='Enter')pwLoginGo(nm)}}}
+window.pwLoginGo=function(nm){var v=($('#pwin').value||'').trim();if(!/^\d{4}$/.test(v)){toast('숫자 4자리를 넣어 주세요');return}MPW=v;closeModal();mLogin(nm)};
+window.pwAsk=function(){modal('<h3>🔒 '+(MPW?'비밀번호 바꾸기':'비밀번호 정하기')+'</h3><p>숫자 4자리로 정해요. 친구에게 알려 주지 마세요!</p>'+pwInput('pw1')+'<div style="height:8px"></div>'+pwInput('pw2').replace('숫자 4자리','한 번 더')+'<p class="sub" style="font-size:14px;margin-top:8px">선생님은 비밀번호를 볼 수 있어서, 잊어버리면 선생님께 물어보면 돼요.</p><div class="btns">'+(MPW?'<button class="btn red" onclick="pwSave(\'\')">없애기</button>':'')+'<button class="btn gray" onclick="closeModal()">취소</button><button class="btn" onclick="pwSave()">저장</button></div>')};
+window.pwSave=function(clear){var a=clear===''?'':($('#pw1').value||'').trim(),b=clear===''?'':($('#pw2').value||'').trim();
+ if(clear!==''){if(!/^\d{4}$/.test(a)){toast('숫자 4자리로 정해 주세요');return}if(a!==b){toast('두 번 쓴 비밀번호가 달라요');return}}
+ mRun('setMyPw',S.name,MPW,a).then(function(r){if(r&&r.ok){MPW=a;SFX.ok&&SFX.ok();closeModal();showSettings();toast(a?'🔒 비밀번호를 저장했어요! 다음에 들어올 때 물어봐요':'비밀번호를 없앴어요')}else toast(r&&r.why==='old'?'비밀번호가 이미 바뀌었어요. 다시 들어와 주세요':'저장하지 못했어요. 다시 해 봐요')})};
 function mTeacherPin(nm){modal('<h3>👩‍🏫 선생님 확인</h3><p>'+(window.MCLS?esc(window.MCLS)+' ':'')+'선생님 비밀번호를 넣어 주세요.</p><input id="tpin0" type="password" inputmode="numeric" style="font-family:inherit;font-size:22px;padding:8px;border-radius:12px;width:160px;text-align:center"><p id="tpm" style="font-size:15px;color:#ffb3b3"></p><div class="btns"><button class="btn gray" onclick="closeModal()">취소</button><button class="btn" onclick="mTeacherGo(\''+esc(nm)+'\')">확인</button></div>')}
 window.mTeacherGo=function(nm){var p=$('#tpin0').value.trim();if(!p)return;$('#tpm').textContent='확인하고 있어요…';mRun('teacherCheck',p).then(function(r){if(!r||!r.ok){SFX.fail();$('#tpm').textContent='비밀번호가 맞지 않아요';return}TPIN=p;try{sessionStorage.setItem('mtpin',p)}catch(e){};closeModal();mLogin(nm)})};
-function mDay(){var t=ymd();if(S.lastDay!==t){S.lastDay=t;S.days=(S.days||0)+1}}
+function mDay(){var t=ymd();if(S.lastDay!==t){S.lastDay=t;S.days=(S.days||0)+1}dLog(0,0,0)}
+/* 날짜별 기록: S.dl['2026-11-13']={r:맞힌 수,w:틀린 수,m:접속 분} (최근 120일) */
+function dLog(r,w,m){if(!S.name||isT())return;var t=ymd();if(!S.dl||typeof S.dl!=='object')S.dl={};var d=S.dl[t]||(S.dl[t]={r:0,w:0,m:0});d.r+=r;d.w+=w;d.m+=m;
+ var ks=Object.keys(S.dl);if(ks.length>120){ks.sort();ks.slice(0,ks.length-120).forEach(function(k){delete S.dl[k]})}}
+/* 접속 시간: 화면을 보고 있고 2분 안에 누르거나 움직였을 때만 1분씩 더해요 */
+var lastAct=Date.now();['pointerdown','keydown','touchstart'].forEach(function(ev){document.addEventListener(ev,function(){lastAct=Date.now()},{passive:true})});
+setInterval(function(){try{if(S&&S.name&&!isT()&&document.visibilityState==='visible'&&Date.now()-lastAct<120000){dLog(0,0,1);_save()}}catch(e){}},60000);
 function mBoot(){var d=document.createElement('div');d.id='stars';for(var k=0;k<70;k++){var i=document.createElement('i');i.style.left=Math.random()*100+'%';i.style.top=Math.random()*100+'%';i.style.animationDelay=(Math.random()*3)+'s';if(Math.random()<.2){i.style.width=i.style.height='3px'}d.appendChild(i)}document.body.prepend(d);
   var ac='';try{ac=window.AUTO_C||new URLSearchParams(location.search).get('c')||''}catch(e){}if(ac)mSetCls(ac);
   var au=mAuto();if(au&&!isTN(au)){if(GAS&&!KL)mLoadKL();mLogin(au);return}showCreate()}
@@ -2854,13 +2952,79 @@ window.tClsAdd=function(){var v=$('#tcls').value.trim();if(!v)return;var L=(KL||
 window.tClsDel=function(i){var L=(KL||[]).slice(1);var k=L[i-1];if(!confirm(k+'을(를) 반 목록에서 뺄까요? 그 반의 기록 탭은 시트에 그대로 남아요.'))return;L.splice(i-1,1);tClsSave(L)};
 function tOpenRows(c){var R=[['t','openT',c.openT==null?6:c.openT],['f','openF',c.openF==null?7:c.openF],['q','open',c.open],['d','openD',c.openD==null?0:c.openD]];return R.map(function(r){var L=[];STAGES.forEach(function(s,i){if(s.w===r[0])L.push(s)});var n=r[0]==='q'?L.length+1:L.length;var bt='';if(r[0]==='d')bt+='<button class="btn '+(r[2]===0?'':'gray')+'" style="padding:6px 10px;font-size:15px" onclick="tSave({openD:0})">🔒 모두 닫기</button>';for(var k=1;k<=n;k++){var s2=k<=L.length?L[k-1]:STAGES[7];bt+='<button class="btn '+(r[2]===k?'':'gray')+'" style="padding:6px 10px;font-size:15px" onclick="tSave({'+r[1]+':'+k+'})">'+s2.ic+' ~'+k+'</button>'}return '<div class="row" style="flex-wrap:wrap;gap:6px"><span style="width:170px">'+WNAME[r[0]]+' ('+WUNIT[r[0]]+')</span>'+bt+'</div><p class="sub">'+L.map(function(s,j){return (j<r[2]?'🔓':'🔒')+s.name}).join('  ')+(r[0]==='q'?'  '+(r[2]>=8?'🔓':'🔒')+'무한의 탑':'')+'</p>'}).join('')}
 function tSave(x){mRun('adminSet',TPIN,x).then(function(r){if(r&&r.ok){TDATA.cfg=r.cfg;CFGM=r.cfg;SFX.ok();toast('저장했어요. 학생 화면에는 2분 안에 바뀌어요');drawT()}else toast('저장하지 못했어요')})}
+/* ===== 🔒 학생 비밀번호 관리 ===== */
+var TPW=null,TPWL=0,TPWSHOW=true;
+function tPwLoad(){if(TPWL)return;TPWL=1;mRun('adminPwList',TPIN).then(function(r){TPWL=0;TPW=(r&&r.ok)?r.list:[];if(TTAB==='pw')drawT()},function(){TPWL=0})}
+function tPwView(){if(!TPW){tPwLoad();return '<p style="padding:20px">비밀번호 목록을 불러오고 있어요…</p>'}
+ var n=TPW.filter(function(x){return x.pw}).length,q=function(s){return esc(s).replace(/'/g,"\\'")};
+ return '<p class="sub">학생이 설정 → 🔒 내 비밀번호에서 숫자 4자리를 정하면, 들어올 때마다 물어봐요. 비밀번호가 없는 학생은 지금처럼 이름만으로 들어와요. 선생님은 여기서 보고, 바꾸고, 없앨 수 있어요.</p>'+
+  '<div class="row" style="gap:8px;flex-wrap:wrap;margin:6px 0"><b>비밀번호 있는 학생 '+n+'명 / '+TPW.length+'명</b><button class="btn gray" style="padding:4px 12px;font-size:15px" onclick="TPWSHOW=!TPWSHOW;drawT()">'+(TPWSHOW?'🙈 숨기기':'👀 보이기')+'</button><button class="btn gray" style="padding:4px 12px;font-size:15px" onclick="TPW=null;drawT()">🔄 새로고침</button></div>'+
+  '<div class="tscroll"><table class="ttab"><tr><th>번호·이름</th><th>비밀번호</th><th>바꾼 때</th><th></th></tr>'+TPW.map(function(x){return '<tr><td><b>'+esc(x.name)+'</b></td><td style="font-size:20px;letter-spacing:3px">'+(x.pw?(TPWSHOW?esc(x.pw):'••••'):'<span class="dim" style="font-size:15px;letter-spacing:0">없음</span>')+'</td><td class="dim" style="font-size:14px">'+(x.at?esc(x.at)+(x.who?' ('+esc(x.who)+')':''):'')+'</td><td style="white-space:nowrap"><button class="btn blue" style="padding:4px 10px;font-size:15px" onclick="tPwEdit(\''+q(x.name)+'\')">'+(x.pw?'바꾸기':'정해 주기')+'</button>'+(x.pw?' <button class="btn red" style="padding:4px 10px;font-size:15px" onclick="tPwDel(\''+q(x.name)+'\')">없애기</button>':'')+'</td></tr>'}).join('')+'</table></div>'+
+  '<p class="sub">· 학생이 비밀번호를 잊었을 때: 여기서 알려 주거나 「없애기」를 누르면 다시 이름만으로 들어올 수 있어요.<br>· 비밀번호는 구글 시트 「비밀번호」 탭에도 저장돼요.</p>'}
+window.tPwEdit=function(nm){modal('<h3>🔒 '+esc(nm)+' 비밀번호</h3><p>새 비밀번호(숫자 4자리)를 넣어 주세요.</p>'+pwInput('tpw1').replace('type="password"','type="text"')+'<div class="btns"><button class="btn gray" onclick="closeModal()">취소</button><button class="btn" onclick="tPwSave(\''+esc(nm).replace(/'/g,"\\'")+'\')">저장</button></div>')};
+window.tPwSave=function(nm){var v=($('#tpw1').value||'').trim();if(!/^\d{4}$/.test(v)){toast('숫자 4자리로 넣어 주세요');return}mRun('adminPwSet',TPIN,nm,v).then(function(r){if(r&&r.ok){TPW=r.list;closeModal();drawT();toast(nm+' 비밀번호를 '+v+'(으)로 바꿨어요')}else toast('바꾸지 못했어요')})};
+window.tPwDel=function(nm){modal('<h3>비밀번호 없애기</h3><p><b>'+esc(nm)+'</b>의 비밀번호를 없앨까요?<br>다음부터 이름만으로 들어올 수 있어요.</p><div class="btns"><button class="btn gray" onclick="closeModal()">취소</button><button class="btn red" onclick="mRun(\'adminPwSet\',TPIN,\''+esc(nm).replace(/'/g,"\\'")+'\',\'\').then(function(r){if(r&&r.ok){TPW=r.list;closeModal();drawT();toast(\'비밀번호를 없앴어요\')}})">없애기</button></div>')};
+/* ===== 📈 학생 상세 기록 ===== */
+var TDET=null,TSEL='',TDL=0;
+function tDetLoad(){if(TDL)return;TDL=1;mRun('adminDetail',TPIN).then(function(r){TDL=0;if(r&&r.ok){TDET=r;if(TTAB==='det')drawT()}else{toast('상세 기록을 불러오지 못했어요');TDET={d:{},today:ymd()};drawT()}},function(){TDL=0})}
+function tCW(){var m={};STAGES.forEach(function(s){if(s.key&&s.w)m[s.key]=s.w});return m}
+function tWs(){return (window.WLIST||['t','f','q','d'])}
+function tWn(w){return w==='x'?'🗼 무한의 탑':(WNAME[w]||w).replace(' 왕국','')}
+function tMin(m){m=Math.round(m||0);return m<60?m+'분':Math.floor(m/60)+'시간 '+(m%60?m%60+'분':'')}
+function tPct(r,t){if(!t)return '<span class="dim">-</span>';var p=Math.round(r/t*100),c=p>=80?'#69db7c':p>=60?'#ffd43b':'#ff8787';return '<b style="color:'+c+'">'+p+'%</b>'}
+function tDay(d,k){var x=new Date(d+'T00:00:00');x.setDate(x.getDate()+k);return ymd(x)}
+function tInfo(name){var o=(TDET&&TDET.d[name])||{},cw=tCW(),W={},R=0,Wr=0;tWs().forEach(function(w){W[w]={r:0,w:0}});
+ Object.keys(o.stat||{}).forEach(function(c){var x=o.stat[c],w=cw[c];if(!W[w])return;W[w].r+=x.r||0;W[w].w+=x.w||0;R+=x.r||0;Wr+=x.w||0});
+ var days={};Object.keys(o.dl||{}).forEach(function(d){days[d]=1});Object.keys(o.days||{}).forEach(function(d){days[d]=1});
+ var mins=0;Object.keys(o.dl||{}).forEach(function(d){mins+=o.dl[d].m||0});var bs=0;Object.keys(o.rec||{}).forEach(function(w){bs+=o.rec[w].s||0});
+ return {o:o,W:W,R:R,Wr:Wr,days:days,att:Math.max(Object.keys(days).length,o.nd||0,(((TDATA&&TDATA.students)||[]).find(function(x){return x.name===name})||{}).days||0),mins:mins,bmin:bs/60,rec:o.rec||{},dl:o.dl||{},dd:o.days||{}}}
+function tDots(I,today){var h='';for(var k=13;k>=0;k--){var d=tDay(today,-k),on=I.days[d],m=(I.dl[d]||{}).m||0;h+='<i class="tdot'+(on?' on':'')+(m>=20?' hi':'')+'" title="'+d+(on?' 출석'+(m?' '+m+'분':''):'')+'"></i>'}return '<span class="tdots">'+h+'</span>'}
+function tDetAll(sorted){var today=TDET.today||ymd(),ws=tWs();
+ var h='<p class="sub">이름을 누르면 그 학생의 자세한 기록이 나와요. 정답률 색: <b style="color:#69db7c">80% 이상</b> · <b style="color:#ffd43b">60~79%</b> · <b style="color:#ff8787">60% 아래</b>. 최근 2주 칸은 출석한 날이 초록, 20분 넘게 한 날은 진한 초록이에요.</p>'+
+  '<div class="btns" style="justify-content:flex-start;margin:4px 0 8px"><button class="btn" style="padding:6px 14px;font-size:16px" onclick="tDetSheet()">📄 시트에 정리하기</button></div>'+
+  '<div class="tscroll"><table class="ttab tdet"><tr><th>번호·이름</th><th>출석</th><th>최근 2주</th><th>접속 시간</th><th>전투 시간</th><th>푼 문제</th><th>정답률</th>'+ws.map(function(w){return '<th>'+tWn(w)+'</th>'}).join('')+'</tr>'+
+  sorted.map(function(s){var I=tInfo(s.name),t=I.R+I.Wr;return '<tr class="tclick" onclick="TSEL=\''+esc(s.name).replace(/'/g,"\\'")+'\';drawT()"><td><b>'+esc(s.name)+'</b></td><td>'+I.att+'일</td><td>'+tDots(I,today)+'</td><td>'+tMin(I.mins)+'</td><td>'+tMin(I.bmin)+'</td><td>'+t+'</td><td>'+tPct(I.R,t)+'</td>'+
+   ws.map(function(w){var x=I.W[w],n=x.r+x.w;return '<td>'+tPct(x.r,n)+(n?' <small class="dim">('+n+')</small>':'')+'</td>'}).join('')+'</tr>'}).join('')+'</table></div>'+
+  '<p class="sub">· 접속 시간: 게임 화면을 보면서 누르고 있던 시간이에요(2분 넘게 가만히 있으면 세지 않아요). 이번 업데이트부터 쌓여요.<br>· 전투 시간: 스테이지를 끝까지 하거나 실패했을 때 걸린 시간을 더한 거예요. 중간에 마을로 돌아간 판은 들어가지 않아요.<br>· 왕국별 정답률은 무한의 탑에서 푼 문제도 그 문제의 왕국으로 나눠서 세요.</p>';
+ return h}
+function tDetOne(name,sorted){var I=tInfo(name),today=TDET.today||ymd(),ws=tWs(),t=I.R+I.Wr,st=(TDATA.students||[]).find(function(x){return x.name===name})||{};
+ var idx=sorted.findIndex(function(x){return x.name===name}),prev=sorted[idx-1],next=sorted[idx+1],q=function(n){return esc(n).replace(/'/g,"\\'")};
+ var h='<div class="row" style="gap:6px;flex-wrap:wrap;margin-bottom:8px"><button class="btn gray" style="padding:6px 12px;font-size:15px" onclick="TSEL=\'\';drawT()">← 전체 보기</button>'+(prev?'<button class="btn gray" style="padding:6px 12px;font-size:15px" onclick="TSEL=\''+q(prev.name)+'\';drawT()">◀ '+esc(prev.name)+'</button>':'')+(next?'<button class="btn gray" style="padding:6px 12px;font-size:15px" onclick="TSEL=\''+q(next.name)+'\';drawT()">'+esc(next.name)+' ▶</button>':'')+'</div>';
+ h+='<h3 style="margin:4px 0">'+esc(name)+' <span class="sub">'+esc(st.cls||'')+' Lv.'+(st.lv||1)+' · 마지막 접속 '+esc(st.last||'-')+'</span></h3>';
+ var bp=0,bc=0;Object.keys(I.rec).forEach(function(w){bp+=I.rec[w].p;bc+=I.rec[w].c});
+ h+='<div class="tchips"><div><b>'+I.att+'일</b><span>출석</span></div><div><b>'+tMin(I.mins)+'</b><span>접속 시간</span></div><div><b>'+tMin(I.bmin)+'</b><span>전투 시간</span></div><div><b>'+t+'</b><span>푼 문제</span></div><div><b>'+(t?Math.round(I.R/t*100)+'%':'-')+'</b><span>정답률</span></div><div><b>'+bc+' / '+bp+'</b><span>클리어 / 도전</span></div></div>';
+ // 출석 달력 (최근 5주)
+ var td=new Date(today+'T00:00:00'),mon=(td.getDay()+6)%7,start=tDay(today,-mon-28),cal='<div class="tcal"><b>월</b><b>화</b><b>수</b><b>목</b><b>금</b><b>토</b><b>일</b>';
+ for(var k=0;k<35;k++){var d=tDay(start,k),on=I.days[d],m=(I.dl[d]||{}).m||0,dl=I.dl[d]||{},fut=d>today;cal+='<div class="'+(on?'on':'')+(m>=20?' hi':'')+(d===today?' td':'')+(fut?' fut':'')+'" title="'+d+'"><em>'+(+d.slice(8))+'</em>'+(on?'<small>'+(m?m+'분':'✓')+'</small>'+((dl.r||0)+(dl.w||0)?'<small>'+(dl.r||0)+'/'+((dl.r||0)+(dl.w||0))+'</small>':''):'')+'</div>'}
+ h+='<h4>📅 출석 달력 (최근 5주)</h4><p class="sub" style="margin:2px 0">칸 안의 숫자: 접속 시간 · 맞힌 문제/푼 문제</p>'+cal+'</div>';
+ // 왕국별
+ var wl=ws.concat(I.rec.x?['x']:[]);
+ h+='<h4>🏰 왕국별 기록</h4><div class="tscroll"><table class="ttab"><tr><th>왕국</th><th>푼 문제</th><th>정답률</th><th>도전</th><th>클리어</th><th>전투 시간</th><th>최고 점수</th><th>마지막 플레이</th></tr>'+
+  wl.map(function(w){var x=I.W[w]||{r:0,w:0},n=x.r+x.w,rc=I.rec[w]||{p:0,c:0,s:0,b:0,l:'',r:0,n:0};if(w==='x'){n=rc.n;x={r:rc.r}}return '<tr><td><b>'+tWn(w)+'</b></td><td>'+n+'</td><td>'+tPct(x.r,n)+'</td><td>'+rc.p+'번</td><td>'+rc.c+'번</td><td>'+tMin(rc.s/60)+'</td><td>'+(rc.b?rc.b.toLocaleString():'-')+'</td><td>'+(rc.l?rc.l.slice(5).replace('-','/'):'-')+'</td></tr>'}).join('')+'</table></div>';
+ // 개념별
+ var cw=tCW();h+='<h4>📚 개념별 정답률</h4><p class="sub" style="margin:2px 0">60% 아래는 빨간색이에요. 다시 짚어 주면 좋아요.</p>';
+ ws.forEach(function(w){var L=Object.keys(I.o.stat||{}).filter(function(c){return cw[c]===w}).map(function(c){var x=I.o.stat[c];return {c:c,r:x.r||0,n:(x.r||0)+(x.w||0)}}).filter(function(x){return x.n>0});if(!L.length)return;
+  h+='<div class="tcw"><b>'+tWn(w)+'</b>'+L.map(function(x){var p=Math.round(x.r/x.n*100),col=p>=80?'#69db7c':p>=60?'#ffd43b':'#ff8787';return '<div class="tcb"><span>'+esc(CNAME[x.c]||x.c)+'</span><i><u style="width:'+p+'%;background:'+col+'"></u></i><em style="color:'+col+'">'+p+'%</em><small>'+x.r+'/'+x.n+'</small></div>'}).join('')+'</div>'});
+ // 날짜별
+ var ds=Object.keys(I.days).sort().reverse().slice(0,21);
+ h+='<h4>🗓 날짜별 기록 (최근 '+ds.length+'일)</h4>'+(ds.length?'<div class="tscroll"><table class="ttab"><tr><th>날짜</th><th>접속 시간</th><th>맞힌 문제 / 푼 문제</th><th>정답률</th><th>스테이지 도전</th><th>전투 시간</th></tr>'+ds.map(function(d){var x=I.dl[d]||{},y=I.dd[d]||{p:0,s:0},n=(x.r||0)+(x.w||0),wd='일월화수목금토'[new Date(d+'T00:00:00').getDay()];
+  return '<tr><td>'+d.slice(5).replace('-','/')+' ('+wd+')</td><td>'+(x.m?tMin(x.m):'-')+'</td><td>'+(n?(x.r||0)+' / '+n:'-')+'</td><td>'+tPct(x.r||0,n)+'</td><td>'+(y.p?y.p+'번':'-')+'</td><td>'+(y.s?tMin(y.s/60):'-')+'</td></tr>'}).join('')+'</table></div>':'<p class="sub">아직 기록이 없어요.</p>')+
+  '<p class="sub">이번 업데이트 전의 날짜는 스테이지 기록만 있어서 접속 시간과 날짜별 문제 수가 비어 있을 수 있어요.</p>';
+ return h}
+window.tDetSheet=function(){if(!TDET)return;var ws=tWs(),today=TDET.today||ymd(),sorted=(TDATA.students||[]).slice().sort(function(a,b){return (parseInt(a.name)||0)-(parseInt(b.name)||0)});
+ var head=['번호·이름','레벨','출석 일수','최근 2주 출석','접속 시간(분)','전투 시간(분)','푼 문제','맞힌 문제','정답률(%)'];ws.forEach(function(w){head.push(tWn(w)+' 푼 문제');head.push(tWn(w)+' 정답률(%)')});head.push('클리어','도전','마지막 접속');
+ var rows=sorted.map(function(s){var I=tInfo(s.name),t=I.R+I.Wr,a14=0;for(var k=0;k<14;k++)if(I.days[tDay(today,-k)])a14++;var bp=0,bc=0;Object.keys(I.rec).forEach(function(w){bp+=I.rec[w].p;bc+=I.rec[w].c});
+  var r=[s.name,s.lv||1,I.att,a14,Math.round(I.mins),Math.round(I.bmin),t,I.R,t?Math.round(I.R/t*100):''];ws.forEach(function(w){var x=I.W[w],n=x.r+x.w;r.push(n);r.push(n?Math.round(x.r/n*100):'')});r.push(bc,bp,s.last||'');return r});
+ toast('시트에 정리하고 있어요…');mRun('adminDetailSheet',TPIN,head,rows).then(function(r){if(r&&r.ok){SFX.ok();modal('<h3>📄 시트에 정리했어요</h3><p>구글 시트의 「학생 상세 기록」 탭에 학생 '+rows.length+'명의 기록을 정리했어요.<br>엑셀로 내려받거나 한글 문서에 붙여 넣어 쓸 수 있어요.</p><div class="btns">'+(r.url?'<a class="btn" href="'+r.url+'" target="_blank">시트 열기</a>':'')+'<button class="btn gray" onclick="closeModal()">닫기</button></div>')}else toast('시트에 정리하지 못했어요')})};
 function drawT(){var d=TDATA,P=$('#tp');if(!P)return;var joined={};d.students.forEach(function(s){joined[s.name]=1});var notYet=(d.roster||[]).filter(function(n){return !joined[n]});
-  var tabs=[['prog','📊 학생 진도'],['prob','📒 많이 틀린 개념'],['guild','🛡️ 길드 관리'],['set','⚙️ 설정'],['del','🗑 기록 지우기']];
-  var h='<h2>👩‍🏫 선생님 화면'+(window.MCLS?' · '+esc(window.MCLS):'')+'</h2><p class="sub">학생 '+d.students.length+'명 · 길드 방식: '+(d.cfg.gmode==='free'?'학생이 만들기':'선생님이 정하기')+(notYet.length?' · 아직 안 들어온 학생 '+notYet.length+'명':'')+'</p><div class="ttabs">'+tabs.map(function(t){return '<button class="'+(TTAB===t[0]?'on':'')+'" onclick="TTAB=\''+t[0]+'\';drawT()">'+t[1]+'</button>'}).join('')+'<button onclick="mRun(\'adminData\',TPIN).then(function(x){if(x&&x.ok){TDATA=x;drawT();toast(\'새로 불러왔어요\')}})">🔄 새로고침</button></div>';
+  var tabs=[['prog','📊 학생 진도'],['det','📈 상세 기록'],['pw','🔒 비밀번호'],['prob','📒 많이 틀린 개념'],['guild','🛡️ 길드 관리'],['set','⚙️ 설정'],['del','🗑 기록 지우기']];
+  var h='<h2>👩‍🏫 선생님 화면'+(window.MCLS?' · '+esc(window.MCLS):'')+'</h2><p class="sub">학생 '+d.students.length+'명 · 길드 방식: '+(d.cfg.gmode==='free'?'학생이 만들기':'선생님이 정하기')+(notYet.length?' · 아직 안 들어온 학생 '+notYet.length+'명':'')+'</p><div class="ttabs">'+tabs.map(function(t){return '<button class="'+(TTAB===t[0]?'on':'')+'" onclick="TTAB=\''+t[0]+'\';drawT()">'+t[1]+'</button>'}).join('')+'<button onclick="TDET=null;TPW=null;mRun(\'adminData\',TPIN).then(function(x){if(x&&x.ok){TDATA=x;drawT();toast(\'새로 불러왔어요\')}})">🔄 새로고침</button></div>';
   var sorted=d.students.slice().sort(function(a,b){return (parseInt(a.name)||0)-(parseInt(b.name)||0)});
   if(TTAB==='prog'){h+='<div class="tscroll"><table class="ttab"><tr><th>번호·이름</th><th>길드</th><th>마지막 접속</th><th>직업·Lv</th><th>깬 스테이지</th><th>⭐</th><th>정답</th><th>정답률</th><th>이번 주 정답</th><th>출석</th></tr>'+
     sorted.map(function(s){var t=s.right+s.wrong;return '<tr><td><b>'+esc(s.name)+'</b></td><td>'+esc(s.guild||'-')+'</td><td>'+esc(s.last)+'</td><td>'+esc(s.cls)+' Lv.'+s.lv+'</td><td>'+s.clears+'/'+STAGES.filter(function(x){return !x.endless}).length+'</td><td>'+s.stars+'</td><td>'+s.right+'</td><td>'+(t?Math.round(s.right/t*100)+'%':'-')+'</td><td>'+s.week+'</td><td>'+s.days+'일</td></tr>'}).join('')+
     notYet.map(function(n){return '<tr style="color:#ff8787"><td><b>'+esc(n)+'</b></td><td colspan="9">아직 한 번도 안 들어왔어요</td></tr>'}).join('')+'</table></div>'}
+  if(TTAB==='pw'){h+=tPwView()}
+  if(TTAB==='det'){if(!TDET){h+='<p style="padding:20px">상세 기록을 불러오고 있어요…</p>';tDetLoad()}else h+=TSEL?tDetOne(TSEL,sorted):tDetAll(sorted)}
   if(TTAB==='prob'){h+=d.concepts.length?d.concepts.map(function(c){var r=c.t?c.w/c.t:0;return '<div class="gmis" style="'+(r>=.3?'border-color:#ff8787':'')+'"><div style="width:70px;font-size:22px;color:'+(r>=.3?'#ff8787':'#fff')+'">'+Math.round(r*100)+'%</div><div style="flex:1"><div><b>'+esc(CNAME[c.c]||c.c)+'</b> · 틀린 답 '+c.w+' / 푼 문제 '+c.t+'</div><div class="sub">많이 틀린 학생: '+esc(c.who.slice(0,8).join(', ')||'-')+'</div>'+(c.qs.length?'<div class="sub">자주 틀린 문제: '+c.qs.slice(0,3).map(function(q){return esc(q.q.replace(/<[^>]+>/g,''))+' ('+q.n+'명)'}).join(' / ')+'</div>':'')+'</div></div>'}).join(''):'<p>아직 문제 기록이 없어요.</p>'}
   if(TTAB==='guild'){var G=d.guilds.map(function(g){return{name:g.name,flag:g.flag,members:g.members.slice()}});window._TG=G;
     var inG={};G.forEach(function(g){g.members.forEach(function(m){inG[m]=1})});var all=sorted.map(function(s){return s.name}).concat(notYet);var free=all.filter(function(n){return !inG[n]});
@@ -2890,7 +3054,7 @@ function tDel(n){modal('<h3>'+esc(n)+' 학생의 기록을 지울까요?</h3><p>
 
 /* ================= 🚩 영토 전쟁 (개인전) =================
    이번 주에 맞힌 문제 수 = 깃발 포인트. 빈 땅 3, 친구 땅 3+2×방어, 내 땅 방어 올리기 4.
-   첫 땅은 아무 빈 땅, 그다음부터는 내 땅 옆으로만 넓혀요. 매주 월요일에 새 시즌. */
+   내 땅이 없으면 아무 땅에서나 시작하고, 그다음부터는 내 땅 옆으로만 넓혀요. 매주 월요일에 새 시즌. */
 var LW=10,LH=7,LAND=null,LSEL=-1,LTIMER=0;
 function lColor(n){var h=0;for(var i=0;i<n.length;i++)h=(h*31+n.charCodeAt(i))>>>0;return 'hsl('+(h%360)+',70%,55%)'}
 function lNum(n){var m=String(n).match(/^(\d+)/);return m?m[1]:'?'}
@@ -2903,7 +3067,7 @@ function lLoad(){mRun('getLand',S.name,mSummary()).then(function(d){if(!d||!$('#
 function drawLand(){var d=LAND,P=$('#lp');if(!P)return;var mine={},cnt={};d.cells.forEach(function(c,i){if(c.o===S.name)mine[i]=1;if(c.o)cnt[c.o]=(cnt[c.o]||0)+1});var myN=Object.keys(mine).length;
   var h='<h2>🚩 영토 전쟁 <span style="font-size:14px;color:#aab6ee">'+esc(d.season)+' 주 시즌 · 월요일에 새로 시작</span></h2>'+
    (isT()?'<div class="lstat"><span>👩‍🏫 선생님 계정은 구경만 해요</span><span class="sub">선생님은 문제를 풀어도 깃발 포인트가 쌓이지 않아요. 학생 번호로 들어오면 맞힌 문제 수만큼 생겨요.</span></div>':'<div class="lstat"><span>🚩 깃발 포인트 <b>'+d.pts+'</b></span><span>내 땅 <b>'+myN+'</b>칸</span><span class="sub">이번 주 정답 '+d.earned+' − 사용 '+d.spent+'</span></div>')+
-   '<p class="sub">문제를 1개 맞힐 때마다 깃발 포인트 1점! 빈 땅 3점 · 친구 땅 3+방어×2점 · 내 땅 방어 올리기 4점. 첫 땅은 아무 빈 땅, 그다음은 <b>내 땅 바로 옆</b>으로만 넓힐 수 있어요.</p>';
+   '<p class="sub">문제를 1개 맞힐 때마다 깃발 포인트 1점! 빈 땅 3점 · 친구 땅 3+방어×2점 · 내 땅 방어 올리기 4점. 내 땅이 없을 때는 <b>아무 땅</b>에서나 시작할 수 있고(빈 땅도, 친구 땅도 OK), 그다음은 <b>내 땅 바로 옆</b>으로만 넓힐 수 있어요.</p>';
   h+='<div class="lgrid">'+d.cells.map(function(c,i){var y=Math.floor(i/LW),st=STAGES[Math.min(6,y)];var can=lCanAct(i,mine,myN);
     return '<button class="lc'+(c.o===S.name?' mine':'')+(i===LSEL?' sel':'')+(can?' can':'')+'" style="'+(c.o?'background:'+lColor(c.o):'background:'+st.bg)+'" onclick="lPick('+i+')">'+(c.o?'<b>'+lNum(c.o)+'</b>':'<span class="lic">'+(i%LW===0||i%LW===LW-1?st.ic:'')+'</span>')+(c.l?'<i>'+'🛡'.repeat(c.l)+'</i>':'')+'</button>'}).join('')+'</div>';
   h+='<div id="linfo" class="gmis">'+lInfo(mine,myN)+'</div>';
@@ -2912,10 +3076,10 @@ function drawLand(){var d=LAND,P=$('#lp');if(!P)return;var mine={},cnt={};d.cell
   else h+='<p class="sub">선생님이 순위를 쉬게 했어요. 내 땅을 넓혀 봐요!</p>';
   if(d.last&&d.last.length)h+='<p class="sub">🏅 지난주 영토왕: '+d.last.map(function(x,i){return ['🥇','🥈','🥉'][i]+' '+esc(x.n)+' ('+x.c+'칸)'}).join('  ')+'</p>';
   P.innerHTML=h}
-function lCanAct(i,mine,myN){var c=LAND.cells[i];if(c.o===S.name)return c.l<3&&LAND.pts>=4;var cost=lCost(c);if(LAND.pts<cost)return false;return myN===0?!c.o:lAdj(i,mine)}
+function lCanAct(i,mine,myN){var c=LAND.cells[i];if(c.o===S.name)return c.l<3&&LAND.pts>=4;var cost=lCost(c);if(LAND.pts<cost)return false;return myN===0?true:lAdj(i,mine)}
 function lInfo(mine,myN){if(LSEL<0)return '<div class="sub" style="flex:1">땅을 눌러 보세요. 반짝이는 땅은 지금 바로 차지할 수 있어요!</div>';var c=LAND.cells[LSEL],cost=lCost(c),act='',why='';
   if(c.o===S.name){if(c.l>=3)why='방어가 가장 높아요 (🛡🛡🛡)';else act='🛡 방어 올리기 ('+cost+'점)'}
-  else{if(myN>0&&!lAdj(LSEL,mine))why='내 땅 바로 옆 땅만 차지할 수 있어요';else if(myN===0&&c.o)why='첫 땅은 빈 땅에 꽂아요';act=c.o?'⚔️ 빼앗기 ('+cost+'점)':'🚩 깃발 꽂기 ('+cost+'점)'}
+  else{if(myN>0&&!lAdj(LSEL,mine))why='내 땅 바로 옆 땅만 차지할 수 있어요';act=c.o?'⚔️ 빼앗기 ('+cost+'점)':'🚩 깃발 꽂기 ('+cost+'점)'}
   if(act&&isT())why='선생님은 구경만 할 수 있어요. 학생 번호로 들어와야 깃발을 꽂을 수 있어요.';
   if(act&&!why&&LAND.pts<cost)why='깃발 포인트가 '+(cost-LAND.pts)+'점 모자라요. 모험에서 문제를 맞혀 봐요!';
   return '<div style="flex:1"><b>'+(c.o?esc(c.o)+'의 땅':'빈 땅')+'</b>'+(c.l?' · 방어 '+'🛡'.repeat(c.l):'')+(why?'<div class="sub">'+why+'</div>':'')+'</div>'+(act?'<button class="btn" '+(why?'disabled':'')+' onclick="lAct()">'+act+'</button>':'')}
@@ -3072,6 +3236,7 @@ window.gacha10=function(k){fN();var free=k==='free',b=free?BOX.gold:BOX[k],n=fre
 function gFlip(c,r){if(c.classList.contains('on'))return;c.classList.add('on');tone([520,660,880,1100][r],.12,r>=2?'triangle':'sine',.05);if(r>=2){var b=c.getBoundingClientRect();gSpark(b.left+b.width/2,b.top+b.height/2,r===3?['🌟','✨','💛']:['✨','💜'],r===3?10:6)}if(r===3){impactFlash('#fff3bf',3);gLegendBanner()}else if(r===2)impactFlash(RC[2],2)}
 function gSpark(x,y,emo,n){for(var k=0;k<n;k++){var d=document.createElement('div');d.className='gsp';d.textContent=pick(emo);d.style.left=x+'px';d.style.top=y+'px';d.style.setProperty('--dx',R(-80,80)+'px');d.style.setProperty('--dy',R(-90,50)+'px');document.body.appendChild(d);(function(d){setTimeout(function(){d.remove()},800)})(d)}}
 function gDone(){var g=document.querySelector('.g10');if(!g)return;g.classList.add('done');var got=window._g10||[],mx=got.reduce(function(a,x){return Math.max(a,x.it.r)},0);if(mx>=2)confetti(mx===3?60:30)}
+window.gFlip=gFlip;window.gDone=gDone;window.gSpark=gSpark;window.gLegendBanner=gLegendBanner;
 window.gShowAll=function(){var g=document.querySelector('.g10');if(!g)return;if(!g.classList.contains('open')){g.classList.add('open')}var got=window._g10||[];g.querySelectorAll('.g1').forEach(function(c,i){clearTimeout(c._t);if(!c.classList.contains('on')){c.classList.add('on')}});clearTimeout(g._end);var mx=got.reduce(function(a,x){return Math.max(a,x.it.r)},0);if(mx===3)gLegendBanner();if(mx>=1)impactFlash(RC[mx],mx);gDone()};
 window.gPeek=function(i){var x=(window._g10||[])[i];if(!x)return;var c=document.querySelectorAll('.g10 .g1')[i];if(c&&!c.classList.contains('on'))return;toast(x.it.ic+' '+RN[x.it.r]+' '+x.it.n+' · '+btxt(x.it.b)+(x.res.dup?' (이미 있어서 💰'+x.res.g+')':''),2800)};
 
