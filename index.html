@@ -645,6 +645,11 @@ body.ishake2 #app,body.ishake2 .modal{animation:ishake .6s linear}
 .icard{position:relative;border-radius:14px;padding:8px 8px 10px;text-align:center;background:linear-gradient(#2e3793,#1b2163);border:2px solid #ced4da;box-shadow:inset 0 2px 0 rgba(255,255,255,.15),0 4px 0 #0b0e2e}
 .icard.r1{border-color:#4dabf7;box-shadow:inset 0 2px 0 rgba(255,255,255,.15),0 4px 0 #0b0e2e,0 0 12px rgba(77,171,247,.45)}
 .icard.r2{border-color:#cc5de8;box-shadow:inset 0 2px 0 rgba(255,255,255,.15),0 4px 0 #0b0e2e,0 0 14px rgba(204,93,232,.55)}
+.icard.r4{border-color:#b388ff;background:linear-gradient(135deg,#0d0221,#2b1055 45%,#0d0221);box-shadow:inset 0 2px 0 rgba(255,255,255,.15),0 4px 0 #0b0e2e,0 0 20px rgba(179,136,255,.8);animation:myst 2.6s ease-in-out infinite;position:relative;overflow:hidden}
+.icard.r4::after{content:'';position:absolute;inset:0;background:linear-gradient(115deg,transparent 30%,rgba(229,219,255,.35) 45%,transparent 60%);background-size:250% 100%;animation:myshine 2.4s linear infinite;pointer-events:none}
+.icard.r4 .irt{color:#fff}
+@keyframes myst{0%,100%{box-shadow:inset 0 2px 0 rgba(255,255,255,.15),0 4px 0 #0b0e2e,0 0 18px rgba(179,136,255,.7)}50%{box-shadow:inset 0 2px 0 rgba(255,255,255,.15),0 4px 0 #0b0e2e,0 0 32px rgba(112,72,232,1),0 0 6px #fff}}
+@keyframes myshine{from{background-position:150% 0}to{background-position:-100% 0}}
 .icard.r3{border-color:#fcc419;background:linear-gradient(#4a3a10,#2a1f5c);box-shadow:inset 0 2px 0 rgba(255,255,255,.2),0 4px 0 #0b0e2e,0 0 18px rgba(252,196,25,.7);animation:legend 2s ease-in-out infinite}
 @keyframes legend{50%{box-shadow:inset 0 2px 0 rgba(255,255,255,.2),0 4px 0 #0b0e2e,0 0 28px rgba(252,196,25,.95)}}
 .icard.empty{border-style:dashed;opacity:.6}
@@ -656,6 +661,9 @@ body.ishake2 #app,body.ishake2 .modal{animation:ishake .6s linear}
 .eqrow{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
 .invgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(130px,1fr));gap:10px}
 .invit{display:flex;flex-direction:column;gap:6px}.invit .btn{padding:6px;font-size:15px;margin:0}.invit.on .icard{outline:3px solid #69db7c;outline-offset:2px}
+/* 출처 */
+.srcbox{font-size:16px;line-height:1.6}.srcsec{background:#151b4f;border:2px solid #34408f;border-radius:14px;padding:8px 12px;margin:10px 0}.srcsec h4{margin:2px 0 6px;color:#ffe06a}
+.srcsec ul{margin:4px 0;padding-left:20px}.srcsec li{margin:3px 0}.srcsec ul ul{padding-left:16px}.srcw{white-space:nowrap;color:#fff}.srct td{white-space:normal;vertical-align:top}.srct td:first-child{white-space:nowrap}
 /* 선생님 상세 기록 */
 .tdet td,.tdet th{white-space:nowrap}.tclick{cursor:pointer}.tclick:hover td{background:rgba(255,255,255,.08)}.dim{color:#8f9bd6}
 .tdots{display:inline-flex;gap:2px}.tdot{width:9px;height:14px;border-radius:3px;background:#2c3577;display:inline-block}.tdot.on{background:#69db7c}.tdot.hi{background:#2f9e44}
@@ -666,6 +674,38 @@ body.ishake2 #app,body.ishake2 .modal{animation:ishake .6s linear}
 .tcw{background:#151b4f;border:2px solid #34408f;border-radius:14px;padding:8px 10px;margin:6px 0}.tcw>b{display:block;color:#ffe06a;margin-bottom:4px}
 .tcb{display:grid;grid-template-columns:minmax(90px,1.4fr) 2fr 44px 60px;gap:6px;align-items:center;font-size:15px;margin:3px 0}.tcb i{display:block;height:12px;background:#2c3577;border-radius:6px;overflow:hidden}.tcb u{display:block;height:100%}.tcb em{font-style:normal;text-align:right}.tcb small{color:#8f9bd6;text-align:right}
 #tp h4{margin:14px 0 4px;color:#fff}
+/* 출처 */
+.credlink{background:none;border:0;color:#aab6ee;font-family:inherit;font-size:16px;text-decoration:underline;cursor:pointer}
+.crtabs{display:flex;flex-wrap:wrap;gap:6px;margin:6px 0 10px}.crtabs button{flex:1 1 calc(33.3% - 6px);white-space:nowrap;font-family:inherit;font-size:15px;padding:8px 2px;border-radius:12px;border:2px solid #34408f;background:#151b4f;color:#cfe0ff;cursor:pointer}.crtabs button.on{background:#ffe06a;color:#3a2a00;border-color:#ffe06a}
+.crpanel h3{margin:14px 0 6px;font-size:19px;color:#ffe06a}.crbox{background:#151b4f;border:2px solid #34408f;border-radius:14px;padding:10px 12px;margin:6px 0;font-size:16px;line-height:1.6;word-break:keep-all}
+.crstd{margin-top:6px;font-size:15px;line-height:1.55}.crstd code{color:#74c0fc;font-family:inherit;white-space:nowrap}.crnote{font-size:15px;color:#aab6ee;line-height:1.6;margin:8px 2px;word-break:keep-all}
+@media(min-width:760px){.crtabs button{flex:1 1 0}}
+@media(max-width:560px){.srct,.srct tbody,.srct tr,.srct td{display:block;width:auto!important}.srct tr:first-child{display:none}.srct td:first-child{background:rgba(255,255,255,.06);border-radius:8px;padding:4px 8px;margin-top:6px}.srct td{border:0!important}}
+/* 미스터리 */
+.petbig.r4,.dexc.r4:not(.no) .dexp,.g1.on.r4 .gpet{filter:drop-shadow(0 0 8px #b388ff) drop-shadow(0 0 2px #fff)}
+.petbig.r4{position:relative}.petbig.r4::after{content:'✦ ❓ ✦';position:absolute;left:0;right:0;top:-6px;text-align:center;color:#e5dbff;font-size:14px;letter-spacing:6px;animation:mywob 2s ease-in-out infinite}
+.dexc.r4.no .dexp{filter:brightness(0) drop-shadow(0 0 6px #7048e8) opacity(.7);animation:mywob 3s ease-in-out infinite}
+.dexc.r4{background:linear-gradient(135deg,#0d0221,#2b1055)}
+.myshelf{margin:12px 0 4px;padding:10px;border-radius:14px;background:linear-gradient(135deg,#0d0221,#1f0b47);border:2px solid #7048e8;box-shadow:0 0 14px rgba(112,72,232,.5)}
+.mytitle{color:#d0bfff;font-size:18px;text-align:center;margin-bottom:6px}.mytitle small{color:#9775fa}
+.myrow{display:flex;gap:8px;justify-content:center}.mycard{flex:1;max-width:110px;aspect-ratio:3/4;border-radius:12px;border:2px dashed #5f3dc4;background:#12052e;display:flex;flex-direction:column;align-items:center;justify-content:center;color:#7950f2;animation:mywob 3s ease-in-out infinite}
+.mycard .iic{font-size:34px;filter:blur(.5px)}.mycard .inm{font-size:14px;letter-spacing:2px}
+.mycard.on{border:2px solid #b388ff;color:#e5dbff;background:linear-gradient(135deg,#0d0221,#2b1055);box-shadow:0 0 16px #7048e8;cursor:pointer;animation:myst 2.6s infinite}.mycard.on .iic{filter:none}.mycard.on .inm{letter-spacing:0;text-align:center}
+@keyframes mywob{50%{transform:translateY(-3px);opacity:.75}}
+.gmyst{color:#e5dbff!important;-webkit-text-stroke:2px #1a0b3d!important;text-shadow:0 0 24px #7048e8,0 0 48px #b388ff,2px 0 #ff6bd5,-2px 0 #4dabf7!important;animation:glegend 2.3s cubic-bezier(.2,1.4,.4,1) forwards,glitch .25s steps(2) 4}
+@keyframes glitch{50%{transform:translateX(calc(-50% + 4px)) skewX(8deg)}}
+.mydark{position:fixed;inset:0;z-index:9998;background:#05000f;pointer-events:none;animation:mydark .9s ease-out forwards}@keyframes mydark{0%{opacity:0}30%{opacity:.92}100%{opacity:0}}
+.myeye{animation:myfloat 2.4s ease-in-out infinite}@keyframes myfloat{50%{transform:translateY(-3px)}}
+/* 선물 */
+.tbox{background:#151b4f;border:2px dashed #ffe066;border-radius:14px;padding:10px;margin:12px 0}.tboxb{display:grid;grid-template-columns:repeat(auto-fill,minmax(130px,1fr));gap:6px}.tboxb .btn{margin:0;padding:8px 4px;font-size:15px}
+.tgto{display:grid;grid-template-columns:repeat(auto-fill,minmax(120px,1fr));gap:4px;max-height:200px;overflow:auto}.tgto label{background:#1b2163;border-radius:10px;padding:6px 8px;font-size:15px;cursor:pointer;border:2px solid transparent}.tgto label.on{border-color:#ffe066;background:#2b3590}
+.giftbtn{background:linear-gradient(#ffa8a8,#f03e3e)!important;box-shadow:0 4px 0 #a61e1e!important;color:#fff!important}
+.gstep{margin:10px 0 6px;color:#ffe06a;font-size:17px}.gitems{display:grid;grid-template-columns:repeat(auto-fill,minmax(84px,1fr));gap:6px;max-height:240px;overflow:auto;padding:2px}
+.gitem{display:flex;flex-direction:column;align-items:center;gap:1px;padding:6px 2px;border-radius:12px;border:2px solid #34408f;background:#151b4f;color:#fff;font-family:inherit;cursor:pointer}.gitem.on{border-color:var(--rc);box-shadow:0 0 0 2px var(--rc),0 0 12px var(--rc);background:#26307a}
+.gitem .gic{font-size:28px}.gitem .gnm{font-size:13px;line-height:1.2;text-align:center;word-break:keep-all}.gitem small{font-size:12px;color:#aab6ee}
+.gsel{font-family:inherit;font-size:18px;padding:8px;border-radius:12px;width:100%;max-width:280px}
+.gsent{display:flex;align-items:center;justify-content:space-between;gap:6px;background:#151b4f;border-radius:10px;padding:6px 8px;margin:4px 0;font-size:15px;text-align:left}
+.gin .ginbox{font-size:72px;animation:gbounce 1s ease-in-out infinite}@keyframes gbounce{50%{transform:translateY(-10px) rotate(-6deg)}}
 /* 무기 차원 */
 @keyframes fadein{from{opacity:0}}.anvil.wdim{width:150px;height:150px;margin:6px auto}
 .dimtag{text-align:center;font-size:16px;color:#aab6ee;margin:-4px 0 6px}.dimtag.d1{color:#74c0fc}.dimtag.d2{color:#ff8787}.dimtag.d3{color:#d0bfff}.dimtag.d4{color:#ffe066}.dimtag.d5{color:#faa2c1}
@@ -730,6 +770,9 @@ body.ishake2 #app,body.ishake2 .modal{animation:ishake .6s linear}
 .gopen.open .grays{opacity:.6;animation:spin 6s linear infinite}
 .gopen.r1.open .grays{background:repeating-conic-gradient(rgba(77,171,247,.55) 0 8deg,transparent 8deg 20deg)}
 .gopen.r2.open .grays{background:repeating-conic-gradient(rgba(204,93,232,.6) 0 8deg,transparent 8deg 20deg)}
+.gopen.r4.open .grays{background:repeating-conic-gradient(rgba(179,136,255,.8) 0 6deg,rgba(13,2,33,.9) 6deg 12deg,transparent 12deg 20deg);opacity:.95;animation-duration:3s}
+.g1.on.r4{background:linear-gradient(135deg,#0d0221,#2b1055);box-shadow:0 0 28px #b388ff,0 0 0 3px #b388ff;animation:gpop .7s,myst 2s .7s infinite}.g1.on.r4 .gnm{color:#e5dbff}
+.dexc.r4{border-color:#b388ff;box-shadow:0 0 14px rgba(179,136,255,.7)}
 .gopen.r3.open .grays{background:repeating-conic-gradient(rgba(252,196,25,.75) 0 8deg,transparent 8deg 20deg);opacity:.85}
 /* 도감 */
 .dexbar{position:relative;height:22px;border-radius:12px;background:#0d1036;border:2px solid rgba(231,185,74,.6);overflow:hidden;margin:6px 0 10px}
@@ -1193,7 +1236,7 @@ function showMap(){
 
 
 /* ================= 펫 ================= */
-const RAR=[{n:'일반',c:'#adb5bd'},{n:'희귀',c:'#4dabf7'},{n:'영웅',c:'#be4bdb'},{n:'전설',c:'#fab005'}];
+const RAR=[{n:'일반',c:'#adb5bd'},{n:'희귀',c:'#4dabf7'},{n:'영웅',c:'#be4bdb'},{n:'전설',c:'#fab005'},{n:'미스터리',c:'#b388ff'}];
 const BN={atk:'공격력',hp:'체력',gold:'골드',time:'제한시간',heal:'전투 후 회복'};
 const PETS=[
  {id:'p1',n:'분홍 슬라임',k:'slime',c:'#ff8fc7',r:0,b:{gold:.1}},
@@ -1207,49 +1250,53 @@ const PETS=[
  {id:'p9',n:'꼬마 도깨비',k:'imp',c:'#ffa8a8',r:2,b:{atk:.2}},
  {id:'p10',n:'별빛 유령',k:'ghost',c:'#fff3bf',r:2,b:{time:5}},
  {id:'p11',n:'아기 황금드래곤',k:'dragon',c:'#ffd43b',r:3,b:{atk:.35}},
- {id:'p12',n:'무지개 슬라임',k:'slime',c:'#e599f7',r:3,b:{gold:.5,atk:.15}}
+ {id:'p12',n:'무지개 슬라임',k:'slime',c:'#e599f7',r:3,b:{gold:.5,atk:.15}},
+ /* ❓ 미스터리 펫: 전설보다 높은 등급 */
+ {id:'p13',n:'블랙홀 슬라임',k:'slime',c:'#3b1f7a',r:4,b:{gold:.6,atk:.2}},
+ {id:'p14',n:'그림자 유령',k:'ghost',c:'#5f3dc4',r:4,b:{time:6,heal:.12}},
+ {id:'p15',n:'아기 우주드래곤',k:'dragon',c:'#7048e8',r:4,b:{atk:.45}}
 ];
 function pb(t){const id=S&&S.pet;if(!id||!S.pets[id])return 0;const p=PETS.find(x=>x.id===id);if(!p||!p.b[t])return 0;const v=p.b[t]*(1+.2*(S.pets[id]-1));return t==='time'?Math.round(v):v}
 const petImg=p=>svgW(monSVG(p.k,p.c,false).replace(/^<svg[^>]*>|<\/svg>$/g,''));
 function bonusText(p,lv=1){return Object.entries(p.b).map(([k,v])=>`${BN[k]} +${k==='time'?Math.round(v*(1+.2*(lv-1)))+'초':Math.round(v*(1+.2*(lv-1))*100)+'%'}`).join(', ')}
-const EGGS=[{id:'e1',n:'모험가의 알',cost:150,odds:[62,28,8.5,1.5],col:'#f1e3c8',sp:'#c9a36b'},{id:'e2',n:'반짝이는 알',cost:400,odds:[30,40,24,6],col:'#d0bfff',sp:'#fab005'}];
+const EGGS=[{id:'e1',n:'모험가의 알',cost:150,odds:[62,28,8.5,1.4,0.1],col:'#f1e3c8',sp:'#c9a36b'},{id:'e2',n:'반짝이는 알',cost:400,odds:[30,40,24,5.5,0.5],col:'#d0bfff',sp:'#fab005'}];
 const eggSVG=(e,crack)=>`<svg viewBox="0 0 100 120" xmlns="http://www.w3.org/2000/svg"><ellipse cx="50" cy="112" rx="28" ry="6" fill="rgba(0,0,0,.25)"/><path d="M50,8 C78,8 90,58 90,76 C90,98 72,112 50,112 C28,112 10,98 10,76 C10,58 22,8 50,8Z" fill="${e.col}" stroke="${OUT}" stroke-width="3"/><circle cx="34" cy="50" r="6" fill="${e.sp}"/><circle cx="62" cy="36" r="5" fill="${e.sp}"/><circle cx="66" cy="74" r="7" fill="${e.sp}"/><circle cx="38" cy="88" r="5" fill="${e.sp}"/><path d="M30,28 Q36,18 44,16" stroke="#fff" stroke-width="5" fill="none" stroke-linecap="round" opacity=".7"/>${crack?`<path d="M14,66 L28,58 36,70 48,56 58,70 70,58 86,66" fill="none" stroke="${OUT}" stroke-width="3"/>`:''}</svg>`;
 function showPets(){
  const cur=PETS.find(p=>p.id===S.pet&&S.pets[p.id]);
  app.innerHTML=hud()+`<div class="panel"><h2>🐾 내 펫</h2>${cur?`<div class="petcur"><div class="petbig r${cur.r}">${petImg(cur)}</div><div><div class="rtag" style="background:${RAR[cur.r].c}">${RAR[cur.r].n}</div><div style="font-size:22px;color:#ffe06a">${cur.n} <span style="font-size:16px">Lv.${S.pets[cur.id]}</span></div><div class="sub">${bonusText(cur,S.pets[cur.id])}</div><div class="sub">맵에서 나를 따라다니고, 전투에서 도와줘요</div></div></div>`:'<div class="empty">아직 함께하는 펫이 없어요. 알을 부화시켜 봐요!</div>'}</div>
- <div class="panel"><h2>🥚 알 부화소</h2><div class="eggs">${EGGS.map(e=>`<div class="egg"><div class="eggpic">${eggSVG(e)}</div><b>${e.n}</b><span class="odds">${RAR.map((r,i)=>`<i style="color:${r.c}">${r.n} ${e.odds[i]}%</i>`).join(' ')}</span><div class="gbtns" style="margin-top:8px"><button class="btn" onclick="hatch('${e.id}')">1번<br><small>💰 ${e.cost}</small></button><button class="btn g10b" onclick="hatch10('${e.id}')">10번<br><small>💰 ${(e.cost*10).toLocaleString()}</small></button></div></div>`).join('')}</div><p class="sub" style="text-align:center">같은 펫이 또 나오면 레벨이 올라 능력이 세져요 (최대 Lv.5). Lv.5인 펫이 또 나오면 골드로 바꿔 줘요 (일반 30 · 희귀 80 · 영웅 200 · 전설 500)</p></div>
- <div class="panel"><h2>📖 펫 도감 (${Object.keys(S.pets).length}/${PETS.length})</h2><div class="dex">${PETS.map(p=>{const own=S.pets[p.id];return `<button class="dexc r${p.r} ${own?'':'no'} ${S.pet===p.id?'eq':''}" onclick="${own?`equipPet('${p.id}')`:`toast('아직 만나지 못한 펫이에요')`}"><div class="dexp">${petImg(p)}</div><div class="dn">${own?p.n:'???'}</div>${own?`<div class="dl">Lv.${own}${S.pet===p.id?' · 함께하는 중':''}</div>`:`<div class="dl" style="color:${RAR[p.r].c}">${RAR[p.r].n}</div>`}</button>`}).join('')}</div></div>`+menu('pets');
+ <div class="panel"><h2>🥚 알 부화소</h2><div class="eggs">${EGGS.map(e=>`<div class="egg"><div class="eggpic">${eggSVG(e)}</div><b>${e.n}</b><span class="odds">${RAR.map((r,i)=>`<i style="color:${r.c}">${r.n} ${e.odds[i]}%</i>`).join(' ')}</span><div class="gbtns" style="margin-top:8px"><button class="btn" onclick="hatch('${e.id}')">1번<br><small>💰 ${e.cost}</small></button><button class="btn g10b" onclick="hatch10('${e.id}')">10번<br><small>💰 ${(e.cost*10).toLocaleString()}</small></button></div></div>`).join('')}</div><p class="sub" style="text-align:center">같은 펫이 또 나오면 레벨이 올라 능력이 세져요 (최대 Lv.5). Lv.5인 펫이 또 나오면 골드로 바꿔 줘요 (일반 30 · 희귀 80 · 영웅 200 · 전설 500 · 미스터리 1200)</p></div>
+ <div class="panel"><h2>📖 펫 도감 (${Object.keys(S.pets).length}/${PETS.length})</h2><div class="dex">${PETS.map(p=>{const own=S.pets[p.id];return `<button class="dexc r${p.r} ${own?'':'no'} ${S.pet===p.id?'eq':''}" onclick="${own?`equipPet('${p.id}')`:`toast('아직 만나지 못한 펫이에요')`}"><div class="dexp">${petImg(p)}</div><div class="dn">${own?p.n:'???'}</div>${own?`<div class="dl">Lv.${own}${S.pet===p.id?' · 함께하는 중':''}</div>`:`<div class="dl" style="color:${RAR[p.r].c}">${p.r===4?'❓ 미스터리':RAR[p.r].n}</div>`}</button>`}).join('')}</div>${PETS.some(p=>p.r===4&&!S.pets[p.id])?'<p class="sub" style="text-align:center;margin:8px 0 0">❓ 미스터리 펫은 반짝이는 알에서 아주 가끔 태어나요. 만나기 전까지는 모습도 이름도 비밀이에요.</p>':''}</div>`+menu('pets');
 }
 function equipPet(id){S.pet=S.pet===id?'':id;save();SFX.click();showPets();toast(S.pet?'🐾 '+PETS.find(p=>p.id===id).n+'와(과) 함께해요!':'펫을 쉬게 했어요')}
 /* 펫이 이미 Lv.5면 골드로 바꿔 줘요 */
-const PDUP=[30,80,200,500];
+const PDUP=[30,80,200,500,1200];
 /* 알 10개 한꺼번에 부화 */
 function hatch10(id){
- const e=EGGS.find(x=>x.id===id);if(S.gold<e.cost*10){SFX.fail();return toast('골드가 부족해요! 10번 부화는 💰'+(e.cost*10).toLocaleString()+'이 필요해요')}
+ window._gKind='pet';const e=EGGS.find(x=>x.id===id);if(S.gold<e.cost*10){SFX.fail();return toast('골드가 부족해요! 10번 부화는 💰'+(e.cost*10).toLocaleString()+'이 필요해요')}
  S.gold-=e.cost*10;const got=[];let mx=0,nw=0,up=0,gs=0;
- for(let n=0;n<10;n++){let roll=Math.random()*100,r=0;for(let i=0;i<4;i++){if(roll<e.odds[i]){r=i;break}roll-=e.odds[i];r=i}
+ for(let n=0;n<10;n++){let roll=Math.random()*100,r=0;for(let i=0;i<e.odds.length;i++){if(roll<e.odds[i]){r=i;break}roll-=e.odds[i];r=i}
   const p=pick(PETS.filter(x=>x.r===r)),had=S.pets[p.id]||0;let tag;
   if(had>=5){S.gold+=PDUP[r];gs+=PDUP[r];tag='💰'+PDUP[r]}else{S.pets[p.id]=had+1;if(had)up++;else nw++;tag=had?'<b>Lv.'+(had+1)+'</b>':'<b>NEW</b>'}
-  if(!S.pet)S.pet=p.id;if(r===3)ach('legend');if(r>mx)mx=r;got.push({it:{r:r},p:p,tag:tag})}
+  if(!S.pet)S.pet=p.id;if(r>=3)ach('legend');if(r>mx)mx=r;got.push({it:{r:r},p:p,tag:tag})}
  save();try{showPets()}catch(err){}
  window._g10=got;
  const cards=got.map((x,i)=>`<div class="g1 r${x.it.r}" style="--rc:${RAR[x.it.r].c}" onclick="pPeek(${i})"><div class="gic gpet">${petImg(x.p)}</div><div class="gnm">${x.p.n}</div><div class="gtg">${x.tag}</div></div>`).join('');
  modal(`<div class="gopen g10 r${mx}"><div class="grays"></div><div class="gch shake"><div class="eggpic wob" style="width:110px;margin:0 auto">${eggSVG(e)}</div></div><div class="g10grid">${cards}</div><div class="g10sum"><b>새 펫 ${nw}마리</b> · 레벨 업 ${up}번${gs?' · 최고 레벨 펫은 💰'+gs+'골드로 바꿨어요':''}<div class="sub">카드를 누르면 능력을 볼 수 있어요</div></div><div class="btns"><button class="btn gray g10skip" onclick="gShowAll()">모두 보기</button><button class="btn g10ok" onclick="closeModal();showPets()">확인</button></div></div>`);
  [0,150,300,450,600,750].forEach(t=>setTimeout(()=>tone(500+t/3,.08,'square',.04),t));
  setTimeout(()=>{const g=document.querySelector('.g10');if(!g)return;const ch=g.querySelector('.gch');if(ch)ch.innerHTML=`<div class="eggpic wob fast" style="width:110px;margin:0 auto">${eggSVG(e,true)}</div>`},600);
- setTimeout(()=>{const g=document.querySelector('.g10');if(!g)return;g.classList.add('open');SFX.lvup();impactFlash(mx>=2?RAR[mx].c:'#ffffff',Math.max(1,mx));
-  let t=0;g.querySelectorAll('.g1').forEach((c,i)=>{const r=got[i].it.r;t+=r>=2?420:150;c._t=setTimeout(()=>window.gFlip(c,r),t)});g._end=setTimeout(window.gDone,t+400)},1200);
+ setTimeout(()=>{const g=document.querySelector('.g10');if(!g)return;g.classList.add('open');SFX.lvup();impactFlash(mx>=2?RAR[mx].c:'#ffffff',Math.max(1,Math.min(3,mx)));
+  let t=0;g.querySelectorAll('.g1').forEach((c,i)=>{const r=got[i].it.r;t+=r===4?1400:r>=2?420:150;c._t=setTimeout(()=>window.gFlip(c,r),t)});g._end=setTimeout(window.gDone,t+400)},1200);
 }
 function pPeek(i){const x=(window._g10||[])[i];if(!x||!x.p)return;const c=document.querySelectorAll('.g10 .g1')[i];if(c&&!c.classList.contains('on'))return;const lv=S.pets[x.p.id]||1;toast(RAR[x.it.r].n+' '+x.p.n+' · '+bonusText(x.p,lv),2800)}
 function hatch(id){
- const e=EGGS.find(x=>x.id===id);if(S.gold<e.cost){SFX.fail();return toast('골드가 부족해요! 몬스터를 물리치고 동전을 모아 봐요')}
- S.gold-=e.cost;let roll=Math.random()*100,r=0;for(let i=0;i<4;i++){if(roll<e.odds[i]){r=i;break}roll-=e.odds[i];r=i}
+ window._gKind='pet';const e=EGGS.find(x=>x.id===id);if(S.gold<e.cost){SFX.fail();return toast('골드가 부족해요! 몬스터를 물리치고 동전을 모아 봐요')}
+ S.gold-=e.cost;let roll=Math.random()*100,r=0;for(let i=0;i<e.odds.length;i++){if(roll<e.odds[i]){r=i;break}roll-=e.odds[i];r=i}
  const p=pick(PETS.filter(x=>x.r===r)),dup=!!S.pets[p.id],mxd=S.pets[p.id]>=5;if(mxd)S.gold+=PDUP[r];S.pets[p.id]=Math.min(5,(S.pets[p.id]||0)+1);if(!S.pet)S.pet=p.id;save();
- if(r===3)ach('legend');
+ if(r>=3)ach('legend');
  modal(`<h3>${e.n}</h3><div class="hatch" id="hatchBox"><div class="eggpic wob">${eggSVG(e)}</div></div><p id="hatchTxt">두근두근…</p>`);
  [0,300,600,900].forEach(t=>setTimeout(()=>tone(500+t/3,.08,'square',.04),t));
  setTimeout(()=>{const hb=$('#hatchBox');if(hb)hb.innerHTML=`<div class="eggpic wob fast">${eggSVG(e,true)}</div>`},1000);
- setTimeout(()=>{const hb=$('#hatchBox');if(!hb)return;SFX.lvup();sparks(r>=2?26:14,r>=2?['✨','🌟','💫','⭐']:['✨','⭐']);if(r===3)confetti(50);
+ setTimeout(()=>{const hb=$('#hatchBox');if(!hb)return;SFX.lvup();sparks(r>=2?26:14,r===4?['❓','✦','💜','🌑']:r>=2?['✨','🌟','💫','⭐']:['✨','⭐']);if(r===3)confetti(50);if(r===4){try{gMysteryBanner();setTimeout(()=>impactFlash('#b388ff',3),800)}catch(err){}}
   hb.innerHTML=`<div class="reveal r${r}"><div class="rays" style="--rc:${RAR[r].c}"></div><div class="petbig">${petImg(p)}</div></div>`;
   const ht=$('#hatchTxt');if(!ht)return;ht.outerHTML=`<div class="rtag big" style="background:${RAR[r].c}">${RAR[r].n}</div><p style="font-size:24px;color:#ffe06a;margin:6px 0">${p.n}${dup?` <span style="font-size:18px">Lv.${S.pets[p.id]}</span>`:''}</p><p>${mxd?'이미 최고 레벨(Lv.5)이라 <b>💰'+PDUP[r]+'골드</b>로 바꿨어요!<br>':dup?'이미 있는 펫이라 <b>레벨이 올랐어요!</b><br>':''}${bonusText(p,S.pets[p.id])}</p><div class="btns"><button class="btn gray" onclick="closeModal();showPets()">확인</button><button class="btn" onclick="closeModal();hatch('${id}')">한 번 더 💰${e.cost}</button></div>`},1900);
 }
@@ -1979,6 +2026,7 @@ function showSettings(){app.innerHTML=hud()+`<div class="panel"><h2>⚙️ 설�
  <div class="row"><div class="big">${S.sound?'🔊':'🔇'}</div><div class="grow">효과음</div><button class="btn blue" onclick="S.sound=!S.sound;save();showSettings()">${S.sound?'끄기':'켜기'}</button></div>
  <div class="row"><div class="big">${C().e}</div><div class="grow">직업 바꾸기<div class="sub">레벨과 아이템은 그대로예요</div></div><button class="btn blue" onclick="changeCls()">바꾸기</button></div>
  ${GAS&&S.name&&!isT()?`<div class="row"><div class="big">🔒</div><div class="grow">내 비밀번호<div class="sub" id="pwst">${MPW?'비밀번호가 있어요. 들어올 때마다 물어봐요':'아직 없어요. 정하면 친구가 내 이름으로 들어올 수 없어요'}</div></div><button class="btn blue" onclick="pwAsk()">${MPW?'바꾸기':'정하기'}</button></div>`:''}
+ <div class="row"><div class="big">📚</div><div class="grow">출처<div class="sub">문제를 만든 교과서와 그림·소리·글꼴의 출처</div></div><button class="btn blue" onclick="showSources()">보기</button></div>
  <div class="row"><div class="big">❓</div><div class="grow">게임 방법 다시 보기</div><button class="btn blue" onclick="showTut(0)">보기</button></div>
  <div class="row"><div class="big">🏆</div><div class="grow">우리 반 순위표 (선생님용)<div class="sub">학생 점수 코드를 붙여 넣어 순위를 만들어요</div></div><button class="btn blue" onclick="showRank()">열기</button></div>
  <div class="row"><div class="big">📱</div><div class="grow">접속 QR 코드<div class="sub">TV에 띄워서 아이들이 찍게 해요</div></div><button class="btn blue" onclick="showQR()">보기</button></div>
@@ -2816,9 +2864,17 @@ window.showCreate=function(prefill){
   '<div style="display:flex;gap:8px;justify-content:center;align-items:center"><input id="nnum" type="number" min="0" max="40" placeholder="22" style="width:96px" value="'+(pm?pm[1]:'')+'"><span style="font-size:22px">번</span><input id="nm" maxlength="8" placeholder="김혜화" style="width:200px" value="'+(pm?esc(pm[2]):'')+'"></div>'+
   '<p style="color:#cfe0ff;font-size:16px;margin:16px 0 4px">처음 하는 친구는 직업을 골라 주세요</p>'+
   '<div class="classes">'+Object.entries(CLASSES).map(function(e){var k=e[0],c=e[1];return '<button class="cls '+(selCls===k?'sel':'')+'" onclick="selectCls(\''+k+'\')"><span class="e">'+heroSVG(k)+'</span><span><b>'+c.n+'</b>'+c.d+'</span></button>'}).join('')+'</div>'+
-  '<button class="btn" style="font-size:22px;padding:14px 40px" onclick="createGo()">⚔️ 모험 시작!</button></div>';
+  '<button class="btn" style="font-size:22px;padding:14px 40px" onclick="createGo()">⚔️ 모험 시작!</button><p style="margin:18px 0 0"><button class="credlink" onclick="showCredits()">📚 출처</button></p></div>';
   if(GAS&&!mKLdone){mKLdone=1;var was=JSON.stringify(KL);mLoadKL().then(function(L){if(!L){var w=document.getElementById('kwarn');if(w)w.innerHTML='⚠️ 반 목록을 불러오지 못했어요. 선생님: Apps Script에 새 Code.gs를 붙여 넣고 「새 버전」으로 배포했는지 확인해 주세요.';return}if(JSON.stringify(L)!==was&&document.getElementById('nnum'))keepCreate()})}
   if(GAS&&!ROSTER&&(!KL||KL.length<2||window.MCLS))mRun('getRoster').then(function(r){ROSTER=r||[]})};
+/* ===== 📚 출처 ===== */
+window.showCredits=function(tab){if(tab)CRT=tab;var inGame=!!(S&&S.name&&S.cls);
+ var T=[['edu','📖 교과서',['book']],['std','📏 성취기준',['std']],['prob','✏️ 문제',['prob']],['art','🎨 그림·소리',['art']],['made','👩‍🏫 만든 이',['made']],['all','📚 전체',null]];
+ var cur=T.find(function(t){return t[0]===CRT})||T[0];
+ var h='<div class="panel crpanel"><h2>📚 출처</h2><div class="crtabs">'+T.map(function(t){return '<button class="'+(cur[0]===t[0]?'on':'')+'" onclick="showCredits(\''+t[0]+'\')">'+t[1]+'</button>'}).join('')+'</div>'+srcHTML(false,cur[2])+
+  '<div class="btns" style="margin-top:12px"><button class="btn gray" onclick="'+(inGame?'showSettings()':'showCreate()')+'">← 돌아가기</button></div></div>';
+ app.innerHTML=(inGame?hud():'')+h+(inGame?menu('settings'):'');try{window.scrollTo(0,0)}catch(e){}};
+var CRT='edu';
 function keepCreate(){var a=$('#nnum')?$('#nnum').value:'',b=$('#nm')?$('#nm').value:'';showCreate();if($('#nnum')){$('#nnum').value=a;$('#nm').value=b}}
 window.mPickK=function(k){SFX.click();mSetCls(k);keepCreate()};
 window.selectCls=function(k){selCls=k;var a=$('#nnum')?$('#nnum').value:'',b=$('#nm')?$('#nm').value:'';showCreate();$('#nnum').value=a;$('#nm').value=b};
@@ -2952,6 +3008,54 @@ window.tClsAdd=function(){var v=$('#tcls').value.trim();if(!v)return;var L=(KL||
 window.tClsDel=function(i){var L=(KL||[]).slice(1);var k=L[i-1];if(!confirm(k+'을(를) 반 목록에서 뺄까요? 그 반의 기록 탭은 시트에 그대로 남아요.'))return;L.splice(i-1,1);tClsSave(L)};
 function tOpenRows(c){var R=[['t','openT',c.openT==null?6:c.openT],['f','openF',c.openF==null?7:c.openF],['q','open',c.open],['d','openD',c.openD==null?0:c.openD]];return R.map(function(r){var L=[];STAGES.forEach(function(s,i){if(s.w===r[0])L.push(s)});var n=r[0]==='q'?L.length+1:L.length;var bt='';if(r[0]==='d')bt+='<button class="btn '+(r[2]===0?'':'gray')+'" style="padding:6px 10px;font-size:15px" onclick="tSave({openD:0})">🔒 모두 닫기</button>';for(var k=1;k<=n;k++){var s2=k<=L.length?L[k-1]:STAGES[7];bt+='<button class="btn '+(r[2]===k?'':'gray')+'" style="padding:6px 10px;font-size:15px" onclick="tSave({'+r[1]+':'+k+'})">'+s2.ic+' ~'+k+'</button>'}return '<div class="row" style="flex-wrap:wrap;gap:6px"><span style="width:170px">'+WNAME[r[0]]+' ('+WUNIT[r[0]]+')</span>'+bt+'</div><p class="sub">'+L.map(function(s,j){return (j<r[2]?'🔓':'🔒')+s.name}).join('  ')+(r[0]==='q'?'  '+(r[2]>=8?'🔓':'🔒')+'무한의 탑':'')+'</p>'}).join('')}
 function tSave(x){mRun('adminSet',TPIN,x).then(function(r){if(r&&r.ok){TDATA.cfg=r.cfg;CFGM=r.cfg;SFX.ok();toast('저장했어요. 학생 화면에는 2분 안에 바뀌어요');drawT()}else toast('저장하지 못했어요')})}
+/* ===== 📚 출처 ===== */
+function srcHTML(forT,only){
+ var W=window.WLIST||['t','f','q','d'],tb=function(k){return '<span class="srcw">'+(WNAME[k]||'')+'</span>'};
+ var sec=function(t,b,k){return (!only||only.indexOf(k)>=0)?'<div class="srcsec"><h4>'+t+'</h4>'+b+'</div>':''};
+ return '<div class="srcbox">'+
+  ((!only||only.indexOf('book')>=0)?'<p class="sub">이 게임의 문제와 그림, 소리, 글꼴을 어디에서 가져왔는지 밝혀 둔 곳이에요. 게임에 나오는 문제는 아래 교과서의 내용을 바탕으로 <b>새로 만든 문제</b>이고, 숫자는 게임이 풀 때마다 새로 정해요.</p>':'')+
+  sec('📖 교과서 · 교사용 자료',
+   '<ul><li><b>천재교과서, 『초등학교 수학 4-2』</b> (대표 저자 박만구, 2022 개정 교육과정 검정 교과서)<ul>'+
+   '<li>'+tb('t')+' ← 1단원 삼각형</li><li>'+tb('f')+' ← 2단원 분수의 덧셈과 뺄셈</li><li>'+tb('q')+' ← 3단원 사각형</li><li>'+tb('d')+' ← 4단원 소수의 덧셈과 뺄셈 (83~110쪽)</li></ul></li>'+
+   '<li><b>천재교과서, 『초등학교 수학익힘 4-2』</b> (대표 저자 박만구) — 4단원 58~77쪽, 1~3단원 익힘 문제 유형</li>'+
+   '<li><b>천재교과서, 『초등학교 수학 4-2 교사용 지도서』</b> (대표 저자 박만구) — 4단원 319~376쪽: 단원 개관, 성취기준, 학생들이 자주 틀리는 점(오개념)</li>'+
+   '<li><b>「4. 소수의 덧셈과 뺄셈」 수학과 교수·학습 지도안</b> (한글 문서) — 단원 흐름과 차시 구성 참고</li></ul>'+
+   '<p class="sub">점콕 왕국의 운동 경기 배경(멀리뛰기, 마라톤, 수영장 등)은 4단원 도입의 「운동 경기 기록」 장면과 익힘책 이야기에서 착안했어요. 교과서 그림과 문제 글은 그대로 옮기지 않았어요. 교과서·익힘책·지도서 내용의 저작권은 천재교과서와 저자에게 있어요.</p>','book')+
+  sec('📏 교육과정 성취기준',
+   '<p>교육부(2022). 「수학과 교육과정」. 교육부 고시 제2022-33호 [별책 8]. 초등학교 3~4학년 성취기준 <span class="sub">(3·4학년은 2025년 3월 1일부터 적용)</span></p><table class="ttab srct"><tr><th>왕국</th><th>성취기준 (원문)</th></tr>'+
+   '<tr><td>'+tb('t')+'<br><small>1단원 삼각형</small></td><td><b>[4수03-08]</b> 여러 가지 모양의 삼각형에 대한 분류 활동을 통하여 이등변삼각형, 정삼각형을 이해하고, 그 성질을 탐구하고 설명할 수 있다.<br><b>[4수03-09]</b> 여러 가지 모양의 삼각형에 대한 분류 활동을 통하여 직각삼각형, 예각삼각형, 둔각삼각형을 이해한다.</td></tr>'+
+   '<tr><td>'+tb('f')+'<br><small>2단원 분수의 덧셈과 뺄셈</small></td><td><b>[4수01-15]</b> 분모가 같은 분수의 덧셈과 뺄셈의 계산 원리를 이해하고 그 계산을 할 수 있다.</td></tr>'+
+   '<tr><td>'+tb('q')+'<br><small>3단원 사각형</small></td><td><b>[4수03-03]</b> 직선의 수직 관계와 평행 관계를 이해한다.<br><b>[4수03-10]</b> 여러 가지 모양의 사각형에 대한 분류 활동을 통하여 직사각형, 정사각형, 사다리꼴, 평행사변형, 마름모를 이해하고, 그 성질을 탐구하고 설명할 수 있다.</td></tr>'+
+   '<tr><td>'+tb('d')+'<br><small>4단원 소수의 덧셈과 뺄셈</small></td><td><b>[4수01-13]</b> 자릿값의 원리를 바탕으로 소수 두 자리 수와 소수 세 자리 수를 이해하고 읽고 쓸 수 있다.<br><b>[4수01-14]</b> 소수의 크기를 비교하고 그 방법을 설명할 수 있다.<br><b>[4수01-16]</b> 소수 두 자리 수의 범위에서 소수의 덧셈과 뺄셈의 계산 원리를 이해하고 그 계산을 할 수 있다.</td></tr></table>','std')+
+  sec('✏️ 문제와 해설',
+   '<ul><li>문제, 보기, 해설, 개념 도움말은 위 교과서·익힘책·지도서의 내용과 문제 유형을 바탕으로 새로 만들었어요.</li>'+
+   '<li>틀린 보기는 지도서에 나온 「학생들이 자주 하는 실수」(받아올림을 빠뜨리기, 소수점 자리를 잘못 맞추기 등)를 참고했어요.</li>'+
+   '<li>담임 선생님이 기획하고 검토했으며, 문제를 만드는 프로그램과 해설 글은 AI 도우미 Claude(Anthropic)의 도움을 받아 만들었어요.</li></ul>','prob')+
+  sec('🎨 그림 · 소리 · 글꼴',
+   '<ul><li><b>캐릭터, 몬스터, 장비, 펫, 도형 그림</b>: 이 게임 안에서 코드(SVG)로 직접 그렸어요.</li>'+
+   '<li><b>이모지</b>(🔺 🌙 🏰 ⚔️ 등): 쓰고 있는 기기에 들어 있는 이모지 글꼴로 보여서 기기마다 모양이 조금 달라요.</li>'+
+   '<li><b>효과음</b>: 소리 파일 없이 브라우저의 Web Audio 기능으로 게임이 직접 만들어 내는 소리예요.</li>'+
+   '<li><b>글꼴</b>: 「주아(Jua)」 — 우아한형제들, 「검은고딕(Black Han Sans)」 — Zess Type. 두 글꼴 모두 Google Fonts에서 SIL Open Font License 1.1로 받아 써요.</li>'+
+   '<li><b>기본 글꼴</b>: 기기에 들어 있는 맑은 고딕(윈도우), Apple SD 산돌고딕 Neo(아이폰·맥) 등</li>'+
+   '<li><b>QR 코드 만들기</b>: QRCode.js 1.0.0 (davidshimjs, MIT 라이선스) — cdnjs(cdnjs.cloudflare.com)에서 불러와요.</li></ul>','art')+
+  sec('🛠 만든 곳',
+   '<ul><li>Google Apps Script(웹 앱)와 Google 스프레드시트(기록 저장)로 만들었어요.</li><li>학교 수업과 복습을 위해 만든 게임이라 광고가 없고, 학생 기록은 우리 반 구글 시트에만 저장돼요.</li></ul>','made')+
+  sec('👩‍🏫 만든 사람','<ul><li><b>기획 · 문제 검토 · 운영</b>: 해남서초등학교 4학년 2반 담임 임근홍</li><li><b>프로그램 만들기 도움</b>: Anthropic Claude (생성형 인공지능)</li></ul>','made')+
+  (forT?sec('ℹ️ 선생님께','<ul><li>교과서·익힘책·지도서 내용의 저작권은 천재교과서와 저자에게 있어요. 학교 수업 목적 안에서만 사용하고 학교 밖으로 공개하거나 배포하지 말아 주세요.</li><li>1~3단원 쪽수는 이번 자료에 들어 있지 않아 단원명만 적었어요. 시트 「문구」 탭의 문구 고치기로 쪽수를 덧붙일 수 있어요.</li></ul>','tnote'):'')+
+ '</div>'}
+function showSources(){showCredits()}
+/* ===== 🎁 선물 관리 ===== */
+var TGF=null,TGFL=0;
+function tGiftLoad(){if(TGFL)return;TGFL=1;mRun('adminGift',TPIN).then(function(r){TGFL=0;TGF=(r&&r.ok)?r:{on:true,limit:1,list:[]};if(TTAB==='gift')drawT()},function(){TGFL=0})}
+window.tGiftSet=function(o){mRun('adminGiftSet',TPIN,o).then(function(r){if(r&&r.ok){TGF=r;SFX.ok&&SFX.ok();toast(o.on!=null?(o.on?'🎁 선물 주기를 켰어요':'선물 주기를 껐어요'):'하루 '+o.limit+'번으로 바꿨어요');drawT()}else toast('바꾸지 못했어요')})};
+function tGiftView(){if(!TGF){tGiftLoad();return '<p style="padding:20px">선물 기록을 불러오고 있어요…</p>'}var tgf='<div class="tbox"><h3 style="margin:2px 0 4px;color:#ffe066">🎁 선생님이 선물 보내기</h3>'+tGiftForm()+'</div>';
+ var L=TGF.list||[],stc={'대기':'#ffd43b','받음':'#69db7c','거절':'#ff8787','취소':'#adb5bd'},cnt={};L.forEach(function(g){cnt[g.st]=(cnt[g.st]||0)+1});
+ return '<p class="sub">학생은 대장간 → 내 장비 아래 「🎁 친구에게 선물하기」로 장비·물약·힌트를 친구에게 보낼 수 있어요. 받는 친구가 「받기」를 눌러야 들어가고, 거절하거나 보낸 학생이 취소하면 보낸 학생에게 돌아가요.</p>'+
+  tgf+'<div class="row" style="gap:8px;flex-wrap:wrap;align-items:center;margin:8px 0"><b>학생끼리 선물 주기</b><button class="btn '+(TGF.on?'':'gray')+'" style="padding:6px 14px;font-size:16px;margin:0" onclick="tGiftSet({on:true})">🎁 켜기</button><button class="btn '+(TGF.on?'gray':'red')+'" style="padding:6px 14px;font-size:16px;margin:0" onclick="tGiftSet({on:false})">끄기</button><span class="sub">지금: <b style="color:'+(TGF.on?'#69db7c':'#ff8787')+'">'+(TGF.on?'켜짐':'꺼짐')+'</b></span></div>'+
+  '<div class="row" style="gap:6px;flex-wrap:wrap;align-items:center;margin:8px 0"><b>하루에 보낼 수 있는 횟수</b>'+[1,2,3,5].map(function(n){return '<button class="btn '+(TGF.limit===n?'':'gray')+'" style="padding:6px 12px;font-size:16px;margin:0" onclick="tGiftSet({limit:'+n+'})">'+n+'번</button>'}).join('')+'</div>'+
+  '<div class="row" style="gap:10px;flex-wrap:wrap;margin:8px 0"><b>선물 기록 '+L.length+'건</b>'+Object.keys(stc).map(function(k){return '<span style="color:'+stc[k]+'">'+k+' '+(cnt[k]||0)+'</span>'}).join('')+'<button class="btn gray" style="padding:4px 12px;font-size:15px;margin:0" onclick="TGF=null;drawT()">🔄 새로고침</button></div>'+
+  (L.length?'<div class="tscroll"><table class="ttab"><tr><th>보낸 때</th><th>보낸 사람</th><th></th><th>받는 사람</th><th>아이템</th><th>상태</th><th>처리한 때</th></tr>'+L.map(function(g){return '<tr><td>'+esc(g.at)+'</td><td>'+esc(g.from)+'</td><td>→</td><td>'+esc(g.to)+'</td><td>'+esc(g.label)+'</td><td><b style="color:'+(stc[g.st]||'#fff')+'">'+esc(g.st)+'</b></td><td class="dim">'+esc(g.done||'')+'</td></tr>'}).join('')+'</table></div>':'<p class="sub">아직 선물 기록이 없어요.</p>')+
+  '<p class="sub">· 기록은 시트 「선물」 탭에도 남아요. 최근 300건까지 여기에 보여요.<br>· 선물 주기를 꺼도 이미 보낸 선물은 받기·거절·취소할 수 있어요.</p>'}
 /* ===== 🔒 학생 비밀번호 관리 ===== */
 var TPW=null,TPWL=0,TPWSHOW=true;
 function tPwLoad(){if(TPWL)return;TPWL=1;mRun('adminPwList',TPIN).then(function(r){TPWL=0;TPW=(r&&r.ok)?r.list:[];if(TTAB==='pw')drawT()},function(){TPWL=0})}
@@ -3017,13 +3121,15 @@ window.tDetSheet=function(){if(!TDET)return;var ws=tWs(),today=TDET.today||ymd()
   var r=[s.name,s.lv||1,I.att,a14,Math.round(I.mins),Math.round(I.bmin),t,I.R,t?Math.round(I.R/t*100):''];ws.forEach(function(w){var x=I.W[w],n=x.r+x.w;r.push(n);r.push(n?Math.round(x.r/n*100):'')});r.push(bc,bp,s.last||'');return r});
  toast('시트에 정리하고 있어요…');mRun('adminDetailSheet',TPIN,head,rows).then(function(r){if(r&&r.ok){SFX.ok();modal('<h3>📄 시트에 정리했어요</h3><p>구글 시트의 「학생 상세 기록」 탭에 학생 '+rows.length+'명의 기록을 정리했어요.<br>엑셀로 내려받거나 한글 문서에 붙여 넣어 쓸 수 있어요.</p><div class="btns">'+(r.url?'<a class="btn" href="'+r.url+'" target="_blank">시트 열기</a>':'')+'<button class="btn gray" onclick="closeModal()">닫기</button></div>')}else toast('시트에 정리하지 못했어요')})};
 function drawT(){var d=TDATA,P=$('#tp');if(!P)return;var joined={};d.students.forEach(function(s){joined[s.name]=1});var notYet=(d.roster||[]).filter(function(n){return !joined[n]});
-  var tabs=[['prog','📊 학생 진도'],['det','📈 상세 기록'],['pw','🔒 비밀번호'],['prob','📒 많이 틀린 개념'],['guild','🛡️ 길드 관리'],['set','⚙️ 설정'],['del','🗑 기록 지우기']];
-  var h='<h2>👩‍🏫 선생님 화면'+(window.MCLS?' · '+esc(window.MCLS):'')+'</h2><p class="sub">학생 '+d.students.length+'명 · 길드 방식: '+(d.cfg.gmode==='free'?'학생이 만들기':'선생님이 정하기')+(notYet.length?' · 아직 안 들어온 학생 '+notYet.length+'명':'')+'</p><div class="ttabs">'+tabs.map(function(t){return '<button class="'+(TTAB===t[0]?'on':'')+'" onclick="TTAB=\''+t[0]+'\';drawT()">'+t[1]+'</button>'}).join('')+'<button onclick="TDET=null;TPW=null;mRun(\'adminData\',TPIN).then(function(x){if(x&&x.ok){TDATA=x;drawT();toast(\'새로 불러왔어요\')}})">🔄 새로고침</button></div>';
+  var tabs=[['prog','📊 학생 진도'],['det','📈 상세 기록'],['pw','🔒 비밀번호'],['gift','🎁 선물'],['src','📚 출처'],['prob','📒 많이 틀린 개념'],['guild','🛡️ 길드 관리'],['set','⚙️ 설정'],['del','🗑 기록 지우기']];
+  var h='<h2>👩‍🏫 선생님 화면'+(window.MCLS?' · '+esc(window.MCLS):'')+'</h2><p class="sub">학생 '+d.students.length+'명 · 길드 방식: '+(d.cfg.gmode==='free'?'학생이 만들기':'선생님이 정하기')+(notYet.length?' · 아직 안 들어온 학생 '+notYet.length+'명':'')+'</p><div class="ttabs">'+tabs.map(function(t){return '<button class="'+(TTAB===t[0]?'on':'')+'" onclick="TTAB=\''+t[0]+'\';drawT()">'+t[1]+'</button>'}).join('')+'<button onclick="TDET=null;TPW=null;TGF=null;mRun(\'adminData\',TPIN).then(function(x){if(x&&x.ok){TDATA=x;drawT();toast(\'새로 불러왔어요\')}})">🔄 새로고침</button></div>';
   var sorted=d.students.slice().sort(function(a,b){return (parseInt(a.name)||0)-(parseInt(b.name)||0)});
   if(TTAB==='prog'){h+='<div class="tscroll"><table class="ttab"><tr><th>번호·이름</th><th>길드</th><th>마지막 접속</th><th>직업·Lv</th><th>깬 스테이지</th><th>⭐</th><th>정답</th><th>정답률</th><th>이번 주 정답</th><th>출석</th></tr>'+
     sorted.map(function(s){var t=s.right+s.wrong;return '<tr><td><b>'+esc(s.name)+'</b></td><td>'+esc(s.guild||'-')+'</td><td>'+esc(s.last)+'</td><td>'+esc(s.cls)+' Lv.'+s.lv+'</td><td>'+s.clears+'/'+STAGES.filter(function(x){return !x.endless}).length+'</td><td>'+s.stars+'</td><td>'+s.right+'</td><td>'+(t?Math.round(s.right/t*100)+'%':'-')+'</td><td>'+s.week+'</td><td>'+s.days+'일</td></tr>'}).join('')+
     notYet.map(function(n){return '<tr style="color:#ff8787"><td><b>'+esc(n)+'</b></td><td colspan="9">아직 한 번도 안 들어왔어요</td></tr>'}).join('')+'</table></div>'}
   if(TTAB==='pw'){h+=tPwView()}
+  if(TTAB==='gift'){h+=tGiftView()}
+  if(TTAB==='src'){h+=srcHTML(true)}
   if(TTAB==='det'){if(!TDET){h+='<p style="padding:20px">상세 기록을 불러오고 있어요…</p>';tDetLoad()}else h+=TSEL?tDetOne(TSEL,sorted):tDetAll(sorted)}
   if(TTAB==='prob'){h+=d.concepts.length?d.concepts.map(function(c){var r=c.t?c.w/c.t:0;return '<div class="gmis" style="'+(r>=.3?'border-color:#ff8787':'')+'"><div style="width:70px;font-size:22px;color:'+(r>=.3?'#ff8787':'#fff')+'">'+Math.round(r*100)+'%</div><div style="flex:1"><div><b>'+esc(CNAME[c.c]||c.c)+'</b> · 틀린 답 '+c.w+' / 푼 문제 '+c.t+'</div><div class="sub">많이 틀린 학생: '+esc(c.who.slice(0,8).join(', ')||'-')+'</div>'+(c.qs.length?'<div class="sub">자주 틀린 문제: '+c.qs.slice(0,3).map(function(q){return esc(q.q.replace(/<[^>]+>/g,''))+' ('+q.n+'명)'}).join(' / ')+'</div>':'')+'</div></div>'}).join(''):'<p>아직 문제 기록이 없어요.</p>'}
   if(TTAB==='guild'){var G=d.guilds.map(function(g){return{name:g.name,flag:g.flag,members:g.members.slice()}});window._TG=G;
@@ -3112,7 +3218,7 @@ window.mRecGo=function(nm,t){mRun('adminRecDel',TPIN,nm,t||0).then(function(r){i
 <script>
 /* ===== 장비 · 뽑기 상자 · 몬스터 도감 · 랜덤 이벤트 ===== */
 (function(){
-var RN=['일반','희귀','영웅','전설'],RC=['#ced4da','#4dabf7','#cc5de8','#fcc419'];
+var RN=['일반','희귀','영웅','전설','미스터리'],RC=['#ced4da','#4dabf7','#cc5de8','#fcc419','#b388ff'];
 var SLOT={helm:'투구',armor:'갑옷',acc:'장신구'},SLOTS=['helm','armor','acc'];
 var EQ=[
  {id:'h1',s:'helm',n:'가죽 머리띠',r:0,ic:'🎗️',b:{hp:.05},v:'band'},
@@ -3134,7 +3240,11 @@ var EQ=[
  {id:'c5',s:'acc',n:'천사 날개',r:3,ic:'😇',b:{atk:.1,time:2,gold:.15},v:'angel'},
  {id:'c6',s:'acc',n:'용의 날개',r:3,ic:'🐉',b:{atk:.2,hp:.05},v:'dragon'},
  {id:'cx',s:'acc',n:'조각달 목걸이',r:3,ic:'🌙',b:{atk:.1,gold:.2,time:1},v:'moon',dex:'f'},
- {id:'dx',s:'acc',n:'점콕 금메달',r:3,ic:'🏅',b:{atk:.1,hp:.1,time:1},v:'medal',dex:'d'}
+ {id:'dx',s:'acc',n:'점콕 금메달',r:3,ic:'🏅',b:{atk:.1,hp:.1,time:1},v:'medal',dex:'d'},
+ /* ❓ 미스터리: 전설보다 높은 등급. 가진 사람만 정체를 알 수 있어요 */
+ {id:'mh',s:'helm',n:'수수께끼 후광',r:4,ic:'🌀',b:{atk:.2,hp:.2,time:1},v:'halo'},
+ {id:'ma',s:'armor',n:'그림자 망토',r:4,ic:'🌑',b:{hp:.35,atk:.12,gold:.1},v:'cloak'},
+ {id:'mc',s:'acc',n:'미지의 눈',r:4,ic:'👁️',b:{atk:.25,gold:.2,time:2},v:'eye'}
 ];
 var EQM={};EQ.forEach(function(e){EQM[e.id]=e});window.EQ=EQ;window.EQM=EQM;
 function fN(){if(!S.eq)S.eq={helm:'',armor:'',acc:''};if(!S.inv)S.inv={};if(!S.dex)S.dex={};if(!S.dexR)S.dexR={};if(typeof S.freeBox!=='number')S.freeBox=0}
@@ -3157,13 +3267,14 @@ function overlay(cls){var b='',f='',hy=HY[cls]||16,h=HAND[cls]||[70,70],e;
   else if(e.v==='hour')f+='<path d="M41,57 Q50,63 59,57" fill="none" stroke="#ffd43b" stroke-width="1.6"/><path d="M47,61 L53,61 L50,65 L53,69 L47,69 L50,65Z" fill="#fff3bf" '+ST.replace('2"','1.2"')+'/>';
   else if(e.v==='moon')f+='<path d="M41,57 Q50,63 59,57" fill="none" stroke="#ffd43b" stroke-width="1.6"/><path d="M52,60 A5,5 0 1 0 52,70 A4,4 0 1 1 52,60Z" fill="url(#eqG)" '+ST.replace('2"','1.2"')+'/><circle cx="50" cy="65" r="9" fill="#ffe066" opacity=".25"/>';
   else if(e.v==='medal')f+='<path d="M44,57 L50,64 L56,57" fill="none" stroke="#e03131" stroke-width="2.4"/><circle cx="50" cy="66" r="4.2" fill="url(#eqG)" '+ST.replace('2"','1.2"')+'/><circle cx="50" cy="66" r="1.2" fill="#c99400"/>';
+  else if(e.v==='eye')b+='<g class="myeye"><circle cx="84" cy="34" r="11" fill="#7048e8" opacity=".25"/><circle cx="84" cy="34" r="7" fill="#1a0b3d" '+ST.replace('2"','1.4"')+'/><ellipse cx="84" cy="34" rx="5" ry="3.2" fill="#e5dbff"/><circle cx="84" cy="34" r="2" fill="#7048e8"/><circle cx="84.8" cy="33.2" r=".7" fill="#fff"/></g>';
   else if(e.v==='fire')f+='<circle cx="'+h[0]+'" cy="'+h[1]+'" r="8" fill="#ff922b" opacity=".35"/><circle cx="'+h[0]+'" cy="'+(h[1]+1)+'" r="2.4" fill="#ff6b1a" '+ST.replace('2"','1"')+'/>'}
- e=EQM[S.eq.armor];if(e){if(e.v==='vest')f+='<path d="M39,58 L44,58 L50,66 L56,58 L61,58 L61,71 L39,71Z" fill="#e9ecef" opacity=".92" '+ST+'/>';
+ e=EQM[S.eq.armor];if(e){if(e.v==='cloak')b+='<path d="M35,55 Q22,74 20,96 Q35,92 50,96 Q65,92 80,96 Q78,74 65,55Z" fill="#1a0b3d" '+ST+'/><path d="M35,55 Q28,74 27,92 M65,55 Q72,74 73,92" stroke="#7048e8" stroke-width="1.4" fill="none" opacity=".8"/><circle cx="36" cy="80" r="1" fill="#e5dbff"/><circle cx="62" cy="86" r="1.2" fill="#e5dbff"/><circle cx="48" cy="90" r=".8" fill="#e5dbff"/>';else if(e.v==='vest')f+='<path d="M39,58 L44,58 L50,66 L56,58 L61,58 L61,71 L39,71Z" fill="#e9ecef" opacity=".92" '+ST+'/>';
   else if(e.v==='leather')f+=paulds('url(#eqL)');else if(e.v==='steel')f+=paulds('url(#eqS)','<path d="M31,60 L38,60 M62,60 L69,60" stroke="#495057" stroke-width="1.2"/>');
   else if(e.v==='crystal')f+=paulds('url(#eqP)','<path d="M31,54 L34,46 37,54Z M63,54 L66,46 69,54Z" fill="#e599f7" '+ST.replace('2"','1.4"')+'/>');
   else if(e.v==='gold')f+=paulds('url(#eqG)','<path d="M40,60 Q50,57 60,60 L59,70 Q50,73 41,70Z" fill="url(#eqG)" '+ST+'/><path d="M50,61 L50,70" stroke="#c99400" stroke-width="1.4"/>');
   else if(e.v==='nemo')f+=paulds('url(#eqB)','<rect x="44" y="60" width="12" height="10" rx="2" fill="url(#eqB)" '+ST+'/><rect x="47" y="63" width="6" height="4" fill="#ffd43b"/>')}
- e=EQM[S.eq.helm];if(e){if(e.v==='band')f+='<path d="M31,32 Q50,24 69,32" fill="none" stroke="#a0602d" stroke-width="4"/><path d="M66,31 L74,36 M67,30 L73,30" stroke="#a0602d" stroke-width="2.4" stroke-linecap="round"/>';
+ e=EQM[S.eq.helm];if(e){if(e.v==='halo')f+='<g transform="translate(50,'+(hy-2)+')"><ellipse cx="0" cy="0" rx="15" ry="4.5" fill="none" stroke="#7048e8" stroke-width="5" opacity=".35"/><ellipse cx="0" cy="0" rx="14" ry="4" fill="none" stroke="#b388ff" stroke-width="2.4"/><text x="0" y="2.6" text-anchor="middle" font-size="7" font-weight="bold" fill="#e5dbff" stroke="#1a0b3d" stroke-width=".6">?</text></g>';else if(e.v==='band')f+='<path d="M31,32 Q50,24 69,32" fill="none" stroke="#a0602d" stroke-width="4"/><path d="M66,31 L74,36 M67,30 L73,30" stroke="#a0602d" stroke-width="2.4" stroke-linecap="round"/>';
   else if(e.v==='iron')f+='<path d="M31,32 Q50,22 69,32 L68,27 Q50,17 32,27Z" fill="url(#eqS)" '+ST+'/><circle cx="50" cy="24" r="2" fill="#495057"/>';
   else if(e.v==='wing')f+='<path d="M31,30 Q20,22 18,14 Q26,18 33,26Z M69,30 Q80,22 82,14 Q74,18 67,26Z" fill="#ffffff" '+ST+'/>';
   else if(e.v==='tiara')f+='<path d="M33,29 Q50,22 67,29" fill="none" stroke="url(#eqG)" stroke-width="3.4"/><path d="M50,18 L53,24 50,28 47,24Z" fill="#74c0fc" '+ST.replace('2"','1.4"')+'/>';
@@ -3175,7 +3286,7 @@ var _hs=heroSVG;window.heroSVG=function(c,f){var s=_hs(c,f);try{if(!S||!S.eq||c!
 /* ---------- 장비 얻기 ---------- */
 function rollR(w){var t=w.reduce(function(a,b){return a+b},0),x=Math.random()*t;for(var i=0;i<w.length;i++){x-=w[i];if(x<0)return i}return 0}
 function randItem(r){var L=EQ.filter(function(e){return e.r===r&&!e.dex});return pick(L)}
-var DUPG=[40,100,250,600];
+var DUPG=[40,100,250,600,1500];
 function giveItem(e,why){fN();if(S.inv[e.id]){var g=DUPG[e.r];S.gold+=g;save();return {dup:true,g:g}}S.inv[e.id]=1;if(!S.eq[e.s]||EQM[S.eq[e.s]].r<e.r){S.eq[e.s]=e.id;clearHeroCache()}save();return {dup:false}}
 window.itemCard=function(e,big){return '<div class="icard r'+e.r+(big?' big':'')+'"><div class="iic">'+e.ic+'</div><div class="irt" style="background:'+RC[e.r]+'">'+RN[e.r]+' · '+SLOT[e.s]+'</div><div class="inm">'+e.n+'</div><div class="ib">'+btxt(e.b)+'</div></div>'};
 function dropToast(e,res){if(res.dup)toast(e.ic+' '+e.n+'(이미 있어요) → 💰'+res.g+'골드',2600);else{toast('🎁 '+RN[e.r]+' 장비 획득! '+e.ic+' '+e.n,2800);if(e.r>=2)setTimeout(function(){if(typeof confetti==='function')confetti(e.r===3?40:20)},200)}}
@@ -3206,38 +3317,116 @@ var _forge=showForge;window.showForge=function(){_forge.apply(this,arguments);fN
  var own=EQ.filter(function(e){return S.inv[e.id]});
  d.innerHTML='<h2>🛡️ 내 장비</h2><div class="eqrow">'+SLOTS.map(function(s){var e=EQM[S.eq[s]];return '<div class="eqslot">'+(e?itemCard(e):'<div class="icard empty"><div class="iic">➕</div><div class="inm">'+SLOT[s]+' 없음</div></div>')+'</div>'}).join('')+'</div>'+
   '<p class="sub" style="text-align:center">'+(tot?'장비 효과: '+tot:'몬스터를 물리치거나 상점의 보물상자를 열면 장비를 얻어요')+'</p>'+
-  (own.length?'<h3 style="margin:14px 0 6px;font-weight:normal;color:#ffe066">가방 ('+own.length+'/'+EQ.length+')</h3><div class="invgrid">'+own.map(function(e){var on=S.eq[e.s]===e.id;return '<div class="invit '+(on?'on':'')+'">'+itemCard(e)+'<button class="btn '+(on?'gray':'')+'" onclick="eqToggle(\''+e.id+'\')">'+(on?'빼기':'끼기')+'</button></div>'}).join('')+'</div>':'');
+  (own.length?'<h3 style="margin:14px 0 6px;font-weight:normal;color:#ffe066">가방 ('+own.length+'/'+EQ.length+')</h3><div class="invgrid">'+own.map(function(e){var on=S.eq[e.s]===e.id;return '<div class="invit '+(on?'on':'')+'">'+itemCard(e)+'<button class="btn '+(on?'gray':'')+'" onclick="eqToggle(\''+e.id+'\')">'+(on?'빼기':'끼기')+'</button></div>'}).join('')+'</div>':'')+
+  (GAS&&S.name&&!isT()?'<div class="btns" style="margin-top:12px"><button class="btn giftbtn" onclick="giftOpen()">🎁 친구에게 선물하기</button></div>':'')+
+  (S.name&&isT()?'<div class="tbox"><h3 style="margin:4px 0 6px;color:#ffe066">✨ 선생님 아이템 상자 <small class="sub">(선생님 계정만 · 무한)</small></h3><div class="tboxb">'+
+   '<button class="btn" onclick="tMake(\'all\')">🛡️ 모든 장비 받기</button><button class="btn" onclick="tMake(\'pick\')">🔍 장비 골라 받기</button><button class="btn" onclick="tMake(\'potion\')">🧪 물약 +10</button><button class="btn" onclick="tMake(\'hint\')">📜 힌트 +10</button><button class="btn" onclick="tMake(\'gold\')">💰 골드 +10만</button><button class="btn" onclick="tMake(\'pet\')">🐾 모든 펫 Lv.5</button><button class="btn" onclick="tMake(\'wlv\')">🔨 무기 +10강</button><button class="btn" onclick="tMake(\'lv\')">⭐ 레벨 +5</button>'+
+   '</div>'+(GAS?'<div class="btns" style="margin-top:10px"><button class="btn giftbtn" onclick="tGiftOpen()">🎁 학생에게 선물 보내기</button></div>':'')+'</div>':'');
  m.parentNode.insertBefore(d,m)};
 window.eqToggle=function(id){fN();var e=EQM[id];if(!e||!S.inv[id])return;S.eq[e.s]=S.eq[e.s]===id?'':id;clearHeroCache();SFX.ok();save();showForge();setTimeout(function(){var p=document.querySelectorAll('#app .panel');if(p[1])p[1].scrollIntoView({block:'start'})},30)};
+/* ===== 🎁 친구에게 선물 ===== */
+var GB=null,GSEL='',GTO='',GQ=[],GCHK=0;
+window.gPick=function(it){GSEL=it;var t=$('#gto');if(t)GTO=t.value;giftDraw()};window.gTo=function(v){GTO=v};
+function gItemInfo(it){if(it==='potion')return {ic:'🧪',n:'회복 물약',have:S.potion>0};if(it==='hint')return {ic:'📜',n:'힌트 두루마리',have:S.hint>0};var e=EQM[String(it).slice(3)];return e?{ic:e.ic,n:e.n,e:e,have:!!S.inv[e.id]}:{ic:'🎁',n:'아이템',have:false}}
+function gTake(it){if(it==='potion'){S.potion=Math.max(0,S.potion-1)}else if(it==='hint'){S.hint=Math.max(0,S.hint-1)}else{var id=String(it).slice(3);delete S.inv[id];Object.keys(S.eq).forEach(function(k){if(S.eq[k]===id)S.eq[k]=''});clearHeroCache()}save()}
+function gGive(it){if(it==='potion'){S.potion++;save();return ''}if(it==='hint'){S.hint++;save();return ''}var e=EQM[String(it).slice(3)];if(!e)return '';var r=giveItem(e);return r.dup?'이미 있는 장비라 💰'+r.g+'골드로 바꿨어요.':''}
+window.giftOpen=function(){fN();modal('<h3>🎁 친구에게 선물하기</h3><p>불러오고 있어요…</p>');
+ Promise.all([mRun('giftBox',S.name,MPW),ROSTER&&ROSTER.length?Promise.resolve(ROSTER):mRun('getRoster').then(function(R){return R&&R.length?R:mRun('getTowerBoard',S.name).then(function(t){return ((t&&t.list)||[]).map(function(x){return x.name})})})]).then(function(a){GB=a[0];var R=a[1]||[];if(R.length)ROSTER=R;
+  if(!GB||!GB.ok){$('#mbg')&&closeModal();return toast(GB&&GB.why==='pw'?'비밀번호를 다시 확인해 주세요':'선물함을 열지 못했어요. 다시 해 봐요')}gBack(GB.back);GSEL='';GTO='';giftDraw()})};
+function giftDraw(){var items=[];if(S.potion>0)items.push('potion');if(S.hint>0)items.push('hint');EQ.forEach(function(e){if(S.inv[e.id])items.push('eq:'+e.id)});
+ var fr=(ROSTER||[]).filter(function(n){return n!==S.name&&!/^0번 /.test(n)});
+ var sent=(GB.sent||[]).map(function(g){var I=gItemInfo(g.item);return '<div class="gsent"><span>'+esc(g.label||(I.ic+' '+I.n))+' → <b>'+esc(g.to)+'</b> <small class="dim">'+esc(g.at)+' · 기다리는 중</small></span><button class="btn gray" style="padding:2px 10px;font-size:14px;margin:0" onclick="giftCancel('+g.id+')">취소</button></div>'}).join('');
+ var h='<h3>🎁 친구에게 선물하기</h3>';
+ if(!GB.on)h+='<p>지금은 선생님이 선물 주기를 닫아 두었어요.</p>';
+ else if(GB.left<=0)h+='<p>오늘은 선물을 다 보냈어요. (하루 '+GB.limit+'번)<br>내일 다시 보낼 수 있어요!</p>';
+ else{h+='<p class="sub" style="margin:2px 0 6px">오늘 보낼 수 있는 선물: <b>'+GB.left+'번</b> / 하루 '+GB.limit+'번 · 친구가 「받기」를 눌러야 들어가고, 거절하면 나에게 돌아와요.</p>';
+  h+='<div class="gstep">① 선물할 아이템</div>'+(items.length?'<div class="gitems">'+items.map(function(it){var I=gItemInfo(it),c=I.e?RC[I.e.r]:'#8ce99a';return '<button class="gitem'+(GSEL===it?' on':'')+'" style="--rc:'+c+'" onclick="gPick(\''+it+'\')"><span class="gic">'+I.ic+'</span><span class="gnm">'+esc(I.n)+'</span>'+(it==='potion'?'<small>'+S.potion+'개</small>':it==='hint'?'<small>'+S.hint+'개</small>':(I.e&&Object.values(S.eq).indexOf(I.e.id)>=0?'<small>끼고 있음</small>':''))+'</button>'}).join('')+'</div>':'<p class="sub">선물할 아이템이 없어요.</p>');
+  h+='<div class="gstep">② 받을 친구</div><select id="gto" class="gsel" onchange="gTo(this.value)"><option value="">친구를 골라요</option>'+fr.map(function(n){return '<option'+(GTO===n?' selected':'')+'>'+esc(n)+'</option>'}).join('')+'</select>';
+  h+='<div class="btns"><button class="btn gray" onclick="closeModal()">닫기</button><button class="btn" onclick="giftGo()">🎁 보내기</button></div>'}
+ if(sent)h+='<div class="gstep">📮 보낸 선물 (친구가 아직 안 받았어요)</div>'+sent;
+ if(!GB.on||GB.left<=0)h+='<div class="btns"><button class="btn gray" onclick="closeModal()">닫기</button></div>';
+ closeModal();modal(h)}
+window.giftGo=function(){var to=GTO||($('#gto')&&$('#gto').value)||'';if(!GSEL)return toast('선물할 아이템을 골라 주세요');if(!to)return toast('받을 친구를 골라 주세요');var I=gItemInfo(GSEL);if(!I.have)return toast('그 아이템이 없어요');
+ closeModal();modal('<h3>🎁 정말 보낼까요?</h3><div style="font-size:56px">'+I.ic+'</div><p><b>'+esc(I.n)+'</b>을(를)<br><b>'+esc(to)+'</b>에게 보내요.</p><p class="sub">보내면 내 가방에서 빠져요. 친구가 거절하거나 내가 취소하면 돌아와요.</p><div class="btns"><button class="btn gray" onclick="giftDraw()">다시 고르기</button><button class="btn" id="gsend" onclick="giftSendGo(\''+esc(to).replace(/'/g,"\\'")+'\')">보내기</button></div>')};
+window.giftSendGo=function(to){var it=GSEL,I=gItemInfo(it);if(!I.have)return;var b=$('#gsend');if(b)b.disabled=true;
+ mRun('giftSend',S.name,MPW,to,it,I.ic+' '+I.n).then(function(r){if(!r||!r.ok){var m={off:'선생님이 선물 주기를 닫아 두었어요',limit:'오늘은 선물을 다 보냈어요',who:'명단에 없는 친구예요',pw:'비밀번호를 다시 확인해 주세요'}[r&&r.why]||'보내지 못했어요. 다시 해 봐요';closeModal();SFX.fail();return toast(m)}
+  gTake(it);mSync(true);SFX.coin&&SFX.coin();closeModal();modal('<h3>🎁 선물을 보냈어요!</h3><div style="font-size:56px">'+I.ic+'</div><p><b>'+esc(to)+'</b>이(가) 「받기」를 누르면 전달돼요.<br>오늘 남은 선물: '+r.left+'번</p><div class="btns"><button class="btn" onclick="closeModal();showForge()">좋아요</button></div>')})};
+window.giftDraw=function(){giftDraw()};window.giftCheck=function(f){giftCheck(f)};
+window.giftCancel=function(id){mRun('giftCancel',S.name,MPW,id).then(function(r){if(r&&r.ok){var m=gGive(r.item);mSync(true);toast('선물을 취소했어요. '+(r.label||'')+' 돌려받았어요. '+m,2800);mRun('giftBox',S.name,MPW).then(function(b){if(b&&b.ok){GB=b;giftDraw()}})}else toast('이미 친구가 받았거나 처리된 선물이에요')})};
+function gBack(L){(L||[]).forEach(function(g){var m=gGive(g.item);toast('↩️ '+esc(g.to)+'에게 보낸 '+(g.label||'선물')+'이(가) '+(g.st==='거절'?'거절돼서':'취소돼서')+' 돌아왔어요. '+m,3200)});if(L&&L.length)mSync(true)}
+/* 받은 선물 확인: 들어올 때와 지도 화면에서 (1분에 한 번) */
+function giftCheck(force){if(!GAS||!S.name||isT()||$('#mbg'))return;if(!force&&Date.now()-GCHK<60000)return;GCHK=Date.now();
+ mRun('giftBox',S.name,MPW).then(function(b){if(!b||!b.ok)return;GB=b;gBack(b.back);GQ=(b.inbox||[]).slice();giftNext()})}
+function giftNext(){if(!GQ.length||$('#mbg'))return;var g=GQ[0],I=gItemInfo(g.item);SFX.lvup&&SFX.lvup();
+ modal('<div class="gin"><div class="ginbox">🎁</div><h3>선물이 왔어요!</h3><p><b>'+esc(g.from)+'</b>이(가)<br><span style="font-size:34px">'+I.ic+'</span><br><b style="font-size:20px;color:#ffe06a">'+esc(g.label?g.label.replace(/^\S+\s/,''):I.n)+'</b>을(를) 보냈어요.</p><p class="sub">'+esc(g.at)+(GQ.length>1?' · 선물이 '+GQ.length+'개 와 있어요':'')+'</p><div class="btns"><button class="btn gray" onclick="giftAns('+g.id+',0)">거절하기</button><button class="btn" onclick="giftAns('+g.id+',1)">받기!</button></div></div>')}
+window.giftAns=function(id,ok){var bs=document.querySelectorAll('#mbg .btn');bs.forEach(function(b){b.disabled=true});
+ mRun('giftAnswer',S.name,MPW,id,!!ok).then(function(r){closeModal();GQ.shift();if(!r||!r.ok){toast('이미 처리된 선물이에요');return setTimeout(giftNext,300)}
+  if(ok){var m=gGive(r.item);mSync(true);SFX.coin&&SFX.coin();toast('🎁 '+(r.label||'선물')+'을(를) 받았어요! '+m,2800);try{if(typeof showForge==='function'&&document.querySelector('.anvil'))showForge()}catch(e){}}
+  else toast('선물을 거절했어요. '+esc(r.from)+'에게 돌아가요',2500);setTimeout(giftNext,500)})};
+/* ===== ✨ 선생님 계정: 아이템 무한 만들기 ===== */
+window.tMake=function(k){fN();if(!isT())return;
+ if(k==='all'){EQ.forEach(function(e){S.inv[e.id]=1});toast('🛡️ 모든 장비('+EQ.length+'개)를 넣었어요')}
+ else if(k==='potion'){S.potion+=10;toast('🧪 물약 +10')}else if(k==='hint'){S.hint+=10;toast('📜 힌트 +10')}
+ else if(k==='gold'){S.gold+=100000;toast('💰 골드 +100,000')}
+ else if(k==='pet'){S.pets=S.pets||{};PETS.forEach(function(p){S.pets[p.id]=5});if(!S.pet&&PETS[0])S.pet=PETS[0].id;toast('🐾 모든 펫을 Lv.5로 만들었어요')}
+ else if(k==='wlv'){S.wlv=(S.wlv||0)+10;toast('🔨 무기 +10강 → '+wname())}
+ else if(k==='lv'){S.lv=(S.lv||1)+5;toast('⭐ 레벨 +5 → Lv.'+S.lv)}
+ else if(k==='pick'){return modal('<h3>🔍 장비 골라 받기</h3><div class="gitems" style="max-height:52vh">'+EQ.map(function(e){return '<button class="gitem'+(S.inv[e.id]?' on':'')+'" style="--rc:'+RC[e.r]+'" onclick="tMakeOne(\''+e.id+'\',this)"><span class="gic">'+e.ic+'</span><span class="gnm">'+esc(e.n)+'</span><small>'+RN[e.r]+'</small></button>'}).join('')+'</div><div class="btns"><button class="btn" onclick="closeModal();showForge()">다 했어요</button></div>')}
+ clearHeroCache();save();SFX.coin&&SFX.coin();showForge();setTimeout(function(){var p=document.querySelector('.tbox');if(p)p.scrollIntoView({block:'center'})},30)};
+window.tMakeOne=function(id,b){S.inv[id]=1;save();if(b)b.classList.add('on');SFX.ok&&SFX.ok()};
+/* ===== 🎁 선생님이 학생에게 선물 (장비 아무거나, 횟수 제한 없음) ===== */
+var TGI='',TGQ=1,TGTO={};
+function tGiftItems(){return ['potion','hint'].concat(EQ.slice().sort(function(a,b){return b.r-a.r}).map(function(e){return 'eq:'+e.id}))}
+window.tGiftForm=function(){var R=(ROSTER&&ROSTER.length?ROSTER:((window.TDATA&&TDATA.students)||[]).map(function(x){return x.name})).filter(function(n){return !/^0번 /.test(n)});
+ var nSel=R.filter(function(n){return TGTO[n]}).length;
+ return '<div class="tgform"><div class="gstep">① 보낼 아이템</div><div class="gitems" style="max-height:220px">'+tGiftItems().map(function(it){var I=gItemInfo(it),c=I.e?RC[I.e.r]:'#8ce99a';return '<button class="gitem'+(TGI===it?' on':'')+'" style="--rc:'+c+'" onclick="tgPick(\''+it+'\')"><span class="gic">'+I.ic+'</span><span class="gnm">'+esc(I.n)+'</span>'+(I.e?'<small>'+RN[I.e.r]+'</small>':'')+'</button>'}).join('')+'</div>'+
+  '<div class="gstep">② 몇 개씩 <span class="sub">(학생 한 명에게)</span></div><div class="row" style="gap:6px;flex-wrap:wrap">'+[1,2,3,5,10].map(function(q){return '<button class="btn '+(TGQ===q?'':'gray')+'" style="padding:4px 12px;font-size:16px;margin:0" onclick="tgQty('+q+')">'+q+'개</button>'}).join('')+'</div>'+
+  '<div class="gstep">③ 받을 학생 <span class="sub">('+nSel+'명 골랐어요)</span> <button class="btn gray" style="padding:2px 10px;font-size:14px;margin:0 4px" onclick="tgAll(1)">전체 고르기</button><button class="btn gray" style="padding:2px 10px;font-size:14px;margin:0" onclick="tgAll(0)">모두 빼기</button></div>'+
+  '<div class="tgto">'+(R.length?R.map(function(n){return '<label class="'+(TGTO[n]?'on':'')+'"><input type="checkbox" '+(TGTO[n]?'checked':'')+' onchange="tgTo(\''+esc(n).replace(/'/g,"\\'")+'\',this.checked)"> '+esc(n)+'</label>'}).join(''):'<p class="sub">학생 명단이 없어요. 시트 「학생 명단」을 채우거나 학생이 한 번 들어오면 보여요.</p>')+'</div>'+
+  '<div class="btns"><button class="btn giftbtn" id="tgsend" onclick="tgSend()">🎁 선물 보내기</button></div><p class="sub">학생이 들어오면 「선물이 왔어요!」 창이 떠요. 학생이 받기·거절을 고를 수 있고, 선생님 선물은 거절해도 돌아오지 않아요. 선물 끄기와 하루 횟수 제한은 선생님 선물에는 적용되지 않아요.</p></div>'};
+function tgRedraw(){var m=document.querySelector('#mbg .tgwrap');if(m){m.innerHTML=tGiftForm();return}if(typeof drawT==='function'&&document.getElementById('tp'))drawT()}
+window.tgPick=function(it){TGI=it;tgRedraw()};window.tgQty=function(q){TGQ=q;tgRedraw()};window.tgTo=function(n,v){if(v)TGTO[n]=1;else delete TGTO[n];tgRedraw()};
+window.tgAll=function(v){var R=(ROSTER&&ROSTER.length?ROSTER:((window.TDATA&&TDATA.students)||[]).map(function(x){return x.name})).filter(function(n){return !/^0번 /.test(n)});TGTO={};if(v)R.forEach(function(n){TGTO[n]=1});tgRedraw()};
+window.tgSend=function(){var to=Object.keys(TGTO);if(!TGI)return toast('보낼 아이템을 골라 주세요');if(!to.length)return toast('받을 학생을 골라 주세요');if(!TPIN)return toast('선생님 비밀번호로 다시 들어와 주세요');
+ var I=gItemInfo(TGI),b=$('#tgsend');if(b)b.disabled=true;
+ mRun('adminGiftSend',TPIN,to,TGI,I.ic+' '+I.n,TGQ).then(function(r){if(b)b.disabled=false;if(r&&r.ok){SFX.ok&&SFX.ok();toast('🎁 '+I.n+' '+TGQ+'개씩 '+r.to+'명에게 보냈어요 (선물 '+r.n+'개)',3000);TGTO={};if(window.TGF!==undefined)window.TGF=null;tgRedraw()}else toast('보내지 못했어요')})};
+window.tGiftOpen=function(){var go=function(){modal('<h3>🎁 학생에게 선물 보내기</h3><div class="tgwrap">'+tGiftForm()+'</div><div class="btns"><button class="btn gray" onclick="closeModal()">닫기</button></div>')};
+ if(ROSTER&&ROSTER.length)return go();mRun('getRoster').then(function(R){if(R&&R.length)ROSTER=R;go()})};
+var _gMap=window.showMap;window.showMap=function(){_gMap.apply(this,arguments);setTimeout(function(){giftCheck(false)},800)};
 
 /* ---------- 상점: 뽑기 상자 ---------- */
-var BOX={box:{n:'보물상자',p:300,w:[60,30,9,1],ic:'🧰'},gold:{n:'황금 상자',p:900,w:[20,45,28,7],ic:'💛'}};
+var BOX={box:{n:'보물상자',p:300,w:[60,30,9,0.9,0.1],ic:'🧰'},gold:{n:'황금 상자',p:900,w:[20,45,28,6.5,0.5],ic:'💛'}};
 var _shop=showShop;window.showShop=function(){_shop.apply(this,arguments);fN();var m=document.querySelector('#app .menu');if(!m)return;var d=document.createElement('div');d.className='panel';
- d.innerHTML='<h2>🎁 장비 뽑기</h2>'+(S.freeBox?'<div class="freebox">🌈 무지개 상자가 <b>'+S.freeBox+'개</b> 있어요! <button class="btn" onclick="gacha(\'free\')">1개 열기</button>'+(S.freeBox>1?'<button class="btn" onclick="gacha10(\'free\')">'+Math.min(10,S.freeBox)+'개 한꺼번에</button>':'')+'</div>':'')+'<div class="gboxes">'+Object.keys(BOX).map(function(k){var b=BOX[k];return '<div class="gbx '+k+'"><div class="gch">'+chestSVG(k==='gold')+'</div><b>'+b.n+'</b><div class="godds">'+b.w.map(function(x,i){return '<span style="color:'+RC[i]+'">'+RN[i]+' '+x+'%</span>'}).join(' ')+'</div><div class="gbtns"><button class="btn" onclick="gacha(\''+k+'\')">1번<br><small>💰 '+b.p+'</small></button><button class="btn g10b" onclick="gacha10(\''+k+'\')">10번<br><small>💰 '+(b.p*10).toLocaleString()+'</small></button></div></div>'}).join('')+'</div><p class="sub" style="text-align:center">이미 가진 장비가 나오면 골드로 바꿔 줘요 (일반 40 · 희귀 100 · 영웅 250 · 전설 600)</p>';
+ d.innerHTML='<h2>🎁 장비 뽑기</h2>'+(S.freeBox?'<div class="freebox">🌈 무지개 상자가 <b>'+S.freeBox+'개</b> 있어요! <button class="btn" onclick="gacha(\'free\')">1개 열기</button>'+(S.freeBox>1?'<button class="btn" onclick="gacha10(\'free\')">'+Math.min(10,S.freeBox)+'개 한꺼번에</button>':'')+'</div>':'')+'<div class="gboxes">'+Object.keys(BOX).map(function(k){var b=BOX[k];return '<div class="gbx '+k+'"><div class="gch">'+chestSVG(k==='gold')+'</div><b>'+b.n+'</b><div class="godds">'+b.w.map(function(x,i){return '<span style="color:'+RC[i]+'">'+(i===4?'❓':'')+RN[i]+' '+x+'%</span>'}).join(' ')+'</div><div class="gbtns"><button class="btn" onclick="gacha(\''+k+'\')">1번<br><small>💰 '+b.p+'</small></button><button class="btn g10b" onclick="gacha10(\''+k+'\')">10번<br><small>💰 '+(b.p*10).toLocaleString()+'</small></button></div></div>'}).join('')+'</div><p class="sub" style="text-align:center">이미 가진 장비가 나오면 골드로 바꿔 줘요 (일반 40 · 희귀 100 · 영웅 250 · 전설 600 · 미스터리 1500)</p>'+myShelf();
  m.parentNode.insertBefore(d,m)};
+/* ❓ 미스터리 진열장: 가진 것만 정체가 보여요 */
+function myShelf(){var L=EQ.filter(function(e){return e.r===4});var got=L.filter(function(e){return S.inv[e.id]}).length;
+ return '<div class="myshelf"><div class="mytitle">❓ 미스터리 장비 <small>'+got+' / '+L.length+'</small></div><div class="myrow">'+L.map(function(e){return S.inv[e.id]?'<div class="mycard on" onclick="toast(\''+e.ic+' '+e.n+' · '+btxt(e.b)+'\',2600)"><div class="iic">'+e.ic+'</div><div class="inm">'+e.n+'</div></div>':'<div class="mycard"><div class="iic">❔</div><div class="inm">???</div></div>'}).join('')+'</div><p class="sub" style="margin:4px 0 0">전설보다 높은 등급이에요. 황금 상자에서 아주 가끔 나와요. 손에 넣기 전까지는 이름도 능력도 비밀이에요.</p></div>'}
+window.gMysteryBanner=function(){var d=document.createElement('div');d.className='glegend gmyst';d.innerHTML=window._gKind==='pet'?'❓ 미스터리 펫…?!':'❓ 미스터리 장비…?!';document.body.appendChild(d);var dk=document.createElement('div');dk.className='mydark';document.body.appendChild(dk);setTimeout(function(){d.remove()},2300);setTimeout(function(){dk.remove()},900);
+ [0,180,360,540,800,1000].forEach(function(t,i){setTimeout(function(){tone([220,207,196,185,880,1320][i],i<4?.22:.35,i<4?'sawtooth':'triangle',.06)},t)})};
 function chestSVG(gold){var c1=gold?'#ffe066':'#e0a96d',c2=gold?'#f59f00':'#a0602d',c3=gold?'#b8860b':'#6b3a15';return '<svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="cb'+(gold?1:0)+'" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="'+c1+'"/><stop offset=".5" stop-color="'+c2+'"/><stop offset="1" stop-color="'+c3+'"/></linearGradient></defs><ellipse cx="50" cy="90" rx="34" ry="5" fill="rgba(0,0,0,.25)"/><path d="M14,52 L86,52 L84,86 Q50,90 16,86Z" fill="url(#cb'+(gold?1:0)+')" '+ST+'/><path d="M12,50 Q12,18 50,16 Q88,18 88,50Z" fill="url(#cb'+(gold?1:0)+')" '+ST+'/><path d="M12,50 L88,50" stroke="'+(gold?'#fff3bf':'#ffd43b')+'" stroke-width="5"/><path d="M26,50 Q26,24 34,20 M74,50 Q74,24 66,20 M26,54 L26,86 M74,54 L74,86" stroke="'+(gold?'#fff3bf':'#ffd43b')+'" stroke-width="4" fill="none"/><rect x="43" y="44" width="14" height="16" rx="3" fill="#ffd43b" '+ST+'/><circle cx="50" cy="51" r="2.4" fill="'+O+'"/><path d="M22,30 Q30,22 40,20" stroke="#fff" stroke-width="2.4" opacity=".55" fill="none" stroke-linecap="round"/></svg>'}
-window.gacha=function(k){fN();var b=k==='free'?BOX.gold:BOX[k];if(k==='free'){if(S.freeBox<1)return;S.freeBox--}else{if(S.gold<b.p){SFX.fail();return toast('골드가 부족해요!')}S.gold-=b.p}
+window.gacha=function(k){fN();window._gKind='eq';var b=k==='free'?BOX.gold:BOX[k];if(k==='free'){if(S.freeBox<1)return;S.freeBox--}else{if(S.gold<b.p){SFX.fail();return toast('골드가 부족해요!')}S.gold-=b.p}
  var r=rollR(b.w),it=randItem(r),res=giveItem(it);save();try{showShop()}catch(e){}
  modal('<div class="gopen r'+r+'"><div class="grays"></div><div class="gch shake">'+chestSVG(k!=='box')+'</div><div class="greveal">'+itemCard(it,true)+'<p>'+(res.dup?'이미 가진 장비라서 <b>💰 '+res.g+'골드</b>로 바꿨어요':(S.eq[it.s]===it.id?'바로 장착했어요!':'대장간 「내 장비」에서 낄 수 있어요'))+'</p><div class="btns"><button class="btn" onclick="closeModal();showShop()">확인</button></div></div></div>');
  [0,150,300,450,600].forEach(function(t){setTimeout(function(){tone(300+t,.08,'square',.04)},t)});
- setTimeout(function(){var g=document.querySelector('.gopen');if(!g)return;g.classList.add('open');tone(r>=2?880:660,.35,'sine',.07);if(r>=1)impactFlash(RC[r],r);if(r===3)gLegendBanner();if(r>=2)confetti(r===3?50:25)},900)};
+ setTimeout(function(){var g=document.querySelector('.gopen');if(!g)return;g.classList.add('open');tone(r>=2?880:660,.35,'sine',.07);if(r>=1)impactFlash(RC[r],Math.min(3,r));if(r===3)gLegendBanner();if(r===4)gMysteryBanner();if(r>=2)confetti(r===3?50:25)},900)};
 /* 10번 뽑기: 10개가 한꺼번에 나와요 */
-function gLegendBanner(){const d=document.createElement('div');d.className='glegend';d.innerHTML='🌟 전설 장비 등장! 🌟';document.body.appendChild(d);setTimeout(()=>d.remove(),1900);[0,120,240,360,520].forEach((t,i)=>setTimeout(()=>tone([523,659,784,1047,1319][i],.25,'triangle',.07),t))}
-window.gacha10=function(k){fN();var free=k==='free',b=free?BOX.gold:BOX[k],n=free?Math.min(10,S.freeBox):10;if(n<1)return;
+function gLegendBanner(){const d=document.createElement('div');d.className='glegend';d.innerHTML=window._gKind==='pet'?'🌟 전설 펫 등장! 🌟':'🌟 전설 장비 등장! 🌟';document.body.appendChild(d);setTimeout(()=>d.remove(),1900);[0,120,240,360,520].forEach((t,i)=>setTimeout(()=>tone([523,659,784,1047,1319][i],.25,'triangle',.07),t))}
+window.gacha10=function(k){fN();window._gKind='eq';var free=k==='free',b=free?BOX.gold:BOX[k],n=free?Math.min(10,S.freeBox):10;if(n<1)return;
  if(free)S.freeBox-=n;else{if(S.gold<b.p*10){SFX.fail();return toast('골드가 부족해요! 10번 뽑기는 💰'+(b.p*10).toLocaleString()+'이 필요해요')}S.gold-=b.p*10}
  var got=[],gs=0,nw=0,mx=0;for(var i=0;i<n;i++){var r=rollR(b.w),it=randItem(r),res=giveItem(it);got.push({it:it,res:res});if(res.dup)gs+=res.g;else nw++;if(r>mx)mx=r}save();try{showShop()}catch(e){}
  var cards=got.map(function(x,i){var e=x.it;return '<div class="g1 r'+e.r+'" style="--rc:'+RC[e.r]+'" onclick="gPeek('+i+')"><div class="gic">'+e.ic+'</div><div class="gnm">'+e.n+'</div><div class="gtg">'+(x.res.dup?'💰'+x.res.g:'<b>NEW</b>')+'</div></div>'}).join('');
  window._g10=got;
  modal('<div class="gopen g10 r'+mx+'"><div class="grays"></div><div class="gch shake">'+chestSVG(k!=='box')+'</div><div class="g10grid">'+cards+'</div><div class="g10sum"><b>새 장비 '+nw+'개</b>'+(gs?' · 이미 있던 장비는 💰'+gs.toLocaleString()+'골드로 바꿨어요':'')+'<div class="sub">카드를 누르면 능력을 볼 수 있어요</div></div><div class="btns"><button class="btn gray g10skip" onclick="gShowAll()">모두 보기</button><button class="btn g10ok" onclick="closeModal();showShop()">확인</button></div></div>');
  [0,150,300,450,600,750].forEach(function(t){setTimeout(function(){tone(300+t,.08,'square',.04)},t)});
- setTimeout(function(){var g=document.querySelector('.g10');if(!g)return;g.classList.add('open');impactFlash(mx>=2?RC[mx]:'#ffffff',Math.max(1,mx));tone(660,.3,'sine',.06);
-  var L=g.querySelectorAll('.g1'),t=0;L.forEach(function(c,i){var r=got[i].it.r;t+=r>=2?420:150;c._t=setTimeout(function(){gFlip(c,r)},t)});
+ setTimeout(function(){var g=document.querySelector('.g10');if(!g)return;g.classList.add('open');impactFlash(mx>=2?RC[Math.min(3,mx)]:'#ffffff',Math.max(1,Math.min(3,mx)));tone(660,.3,'sine',.06);
+  var L=g.querySelectorAll('.g1'),t=0;L.forEach(function(c,i){var r=got[i].it.r;t+=r===4?1400:r>=2?420:150;c._t=setTimeout(function(){gFlip(c,r)},t)});
   g._end=setTimeout(gDone,t+400)},1000)};
-function gFlip(c,r){if(c.classList.contains('on'))return;c.classList.add('on');tone([520,660,880,1100][r],.12,r>=2?'triangle':'sine',.05);if(r>=2){var b=c.getBoundingClientRect();gSpark(b.left+b.width/2,b.top+b.height/2,r===3?['🌟','✨','💛']:['✨','💜'],r===3?10:6)}if(r===3){impactFlash('#fff3bf',3);gLegendBanner()}else if(r===2)impactFlash(RC[2],2)}
+function gFlip(c,r){if(c.classList.contains('on'))return;c.classList.add('on');if(r===4){gMysteryBanner();setTimeout(function(){impactFlash('#b388ff',3)},800)}tone([520,660,880,1100,1400][r],.12,r>=2?'triangle':'sine',.05);if(r>=2){var b=c.getBoundingClientRect();gSpark(b.left+b.width/2,b.top+b.height/2,r===3?['🌟','✨','💛']:['✨','💜'],r===3?10:6)}if(r===3){impactFlash('#fff3bf',3);gLegendBanner()}else if(r===2)impactFlash(RC[2],2)}
 function gSpark(x,y,emo,n){for(var k=0;k<n;k++){var d=document.createElement('div');d.className='gsp';d.textContent=pick(emo);d.style.left=x+'px';d.style.top=y+'px';d.style.setProperty('--dx',R(-80,80)+'px');d.style.setProperty('--dy',R(-90,50)+'px');document.body.appendChild(d);(function(d){setTimeout(function(){d.remove()},800)})(d)}}
 function gDone(){var g=document.querySelector('.g10');if(!g)return;g.classList.add('done');var got=window._g10||[],mx=got.reduce(function(a,x){return Math.max(a,x.it.r)},0);if(mx>=2)confetti(mx===3?60:30)}
 window.gFlip=gFlip;window.gDone=gDone;window.gSpark=gSpark;window.gLegendBanner=gLegendBanner;
-window.gShowAll=function(){var g=document.querySelector('.g10');if(!g)return;if(!g.classList.contains('open')){g.classList.add('open')}var got=window._g10||[];g.querySelectorAll('.g1').forEach(function(c,i){clearTimeout(c._t);if(!c.classList.contains('on')){c.classList.add('on')}});clearTimeout(g._end);var mx=got.reduce(function(a,x){return Math.max(a,x.it.r)},0);if(mx===3)gLegendBanner();if(mx>=1)impactFlash(RC[mx],mx);gDone()};
+window.gShowAll=function(){var g=document.querySelector('.g10');if(!g)return;if(!g.classList.contains('open')){g.classList.add('open')}var got=window._g10||[];g.querySelectorAll('.g1').forEach(function(c,i){clearTimeout(c._t);if(!c.classList.contains('on')){c.classList.add('on')}});clearTimeout(g._end);var mx=got.reduce(function(a,x){return Math.max(a,x.it.r)},0);if(mx===4)gMysteryBanner();else if(mx===3)gLegendBanner();if(mx>=1)impactFlash(RC[mx],Math.min(3,mx));gDone()};
 window.gPeek=function(i){var x=(window._g10||[])[i];if(!x)return;var c=document.querySelectorAll('.g10 .g1')[i];if(c&&!c.classList.contains('on'))return;toast(x.it.ic+' '+RN[x.it.r]+' '+x.it.n+' · '+btxt(x.it.b)+(x.res.dup?' (이미 있어서 💰'+x.res.g+')':''),2800)};
 
 /* ---------- 지도 위 도감 버튼 ---------- */
