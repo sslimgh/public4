@@ -27,7 +27,6 @@
 if('serviceWorker' in navigator&&location.protocol==='https:')window.addEventListener('load',function(){navigator.serviceWorker.register('sw.js').catch(function(){})});
 </script>
 
-
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>수학 대륙 RPG</title>
@@ -2835,7 +2834,7 @@ window.save=function(){S.ts=Date.now();_save();try{if(S.name)localStorage.setIte
 function mStateStr(){var c=JSON.parse(JSON.stringify(S));c.log=(c.log||[]).slice(0,25);var s=JSON.stringify(c);if(s.length>150000){(c.wrong||[]).forEach(function(w){delete w.svg});s=JSON.stringify(c)}return s}
 function mSummary(){var r=0,w=0;Object.keys(S.stat||{}).forEach(function(k){r+=S.stat[k].r||0;w+=S.stat[k].w||0});var stars=0,cl=0;Object.keys(S.clear||{}).forEach(function(k){if(S.clear[k]){cl++;stars+=S.clear[k]}});
   var c=(typeof CLASSES!=='undefined'&&CLASSES[S.cls])?CLASSES[S.cls].n:'';return{name:S.name,cls:c,lv:S.lv,stars:stars,clears:cl,right:r,wrong:w,gold:S.gold,best:S.best||0,days:S.days,week:S.W.right,weekClears:S.W.clears,today:S.T.right,pw:MPW,tm:Math.floor(((S.dl||{})[ymd()]||{m:0}).m/5)}}
-function mSync(force){if(!GAS||!S.name||isT())return;var p=mSummary();var k=JSON.stringify(p);if(!force&&k===lastSyncKey)return;lastSyncKey=k;lastSyncAt=Date.now();p.state=mStateStr();mRun('saveProgress',p).then(function(r){if(r==='pw'&&S.name){var n=S.name;MPW='';toast('🔒 비밀번호가 바뀌었어요. 비밀번호를 다시 넣어 주세요',3500);mLogin(n);return}if(r==='reset'&&S.name){toast('선생님이 기록을 새로 시작하게 했어요. 처음부터 시작해요!',3500);selCls='';mLogin(S.name)}})}
+function mSync(force){if(!GAS||!S.name||isT())return;var p=mSummary();var k=JSON.stringify(p);if(!force&&k===lastSyncKey)return;lastSyncKey=k;lastSyncAt=Date.now();p.state=mStateStr();mRun('saveProgress',p).then(function(r){if(r!==true&&r!=='pw'&&r!=='reset'){lastSyncKey='';lastSyncAt=0}if(r==='pw'&&S.name){var n=S.name;MPW='';toast('🔒 비밀번호가 바뀌었어요. 비밀번호를 다시 넣어 주세요',3500);mLogin(n);return}if(r==='reset'&&S.name){toast('선생님이 기록을 새로 시작하게 했어요. 처음부터 시작해요!',3500);selCls='';mLogin(S.name)}})}
 setInterval(function(){mSync()},90000);
 document.addEventListener('visibilitychange',function(){if(document.visibilityState==='hidden'){try{_save()}catch(e){}mSync(true)}});
 
@@ -2848,7 +2847,14 @@ window.clearStage=function(){mNorm();var first=!S.clear[F.i];_clearStage();if(fi
 
 /* ---------- 선생님이 연 스테이지만 ---------- */
 function mOpenOK(i){if(isT())return true;var s=STAGES[i];if(s&&s.w==='t')return s.lv<=(CFGM.openT==null?6:CFGM.openT);if(s&&s.w==='f')return s.lv<=(CFGM.openF==null?7:CFGM.openF);if(s&&s.w==='d')return s.lv<=(CFGM.openD==null?0:CFGM.openD);return i<CFGM.open}
-function mLoadCfg(){return mRun('getConfig').then(function(c){if(c&&c.open)CFGM=Object.assign({openT:6,openF:7,openD:0},c)})}
+var APPV='2.7';
+function mLoadCfg(){return mRun('getConfig').then(function(c){if(c&&c.open)CFGM=Object.assign({openT:6,openF:7,openD:0},c);if(c&&c.appv&&c.appv!==APPV)appStale(c.appv)})}
+/* 앱(GitHub)에 예전 화면이 남아 있으면 새 버전을 다시 받아요 */
+function appStale(v){var k='appv_try_'+v;try{if(sessionStorage.getItem(k))return toast('🔄 게임이 새 버전('+v+')으로 바뀌었어요. 앱을 완전히 껐다가 다시 열어 주세요',6000);sessionStorage.setItem(k,'1')}catch(e){}
+ if(!window.IS_APP)return toast('🔄 게임이 새로 바뀌었어요. 새로고침해 주세요',6000);
+ toast('🔄 새 버전으로 바꾸는 중이에요…',3000);
+ var go=function(){location.replace(location.pathname+'?v='+encodeURIComponent(v)+(location.search?'&'+location.search.slice(1).replace(/(^|&)v=[^&]*/g,''):''))};
+ try{Promise.all([navigator.serviceWorker?navigator.serviceWorker.getRegistrations().then(function(R){return Promise.all(R.map(function(r){return r.unregister()}))}):0,window.caches?caches.keys().then(function(K){return Promise.all(K.map(function(x){return caches.delete(x)}))}):0]).then(go,go)}catch(e){go()}}
 setInterval(function(){mLoadCfg()},120000);
 
 /* ---------- 시작 화면 (번호 + 이름, 자동 로그인) ---------- */
@@ -3355,13 +3361,18 @@ window.giftDraw=function(){giftDraw()};window.giftCheck=function(f){giftCheck(f)
 window.giftCancel=function(id){mRun('giftCancel',S.name,MPW,id).then(function(r){if(r&&r.ok){var m=gGive(r.item);mSync(true);toast('선물을 취소했어요. '+(r.label||'')+' 돌려받았어요. '+m,2800);mRun('giftBox',S.name,MPW).then(function(b){if(b&&b.ok){GB=b;giftDraw()}})}else toast('이미 친구가 받았거나 처리된 선물이에요')})};
 function gBack(L){(L||[]).forEach(function(g){var m=gGive(g.item);toast('↩️ '+esc(g.to)+'에게 보낸 '+(g.label||'선물')+'이(가) '+(g.st==='거절'?'거절돼서':'취소돼서')+' 돌아왔어요. '+m,3200)});if(L&&L.length)mSync(true)}
 /* 받은 선물 확인: 들어올 때와 지도 화면에서 (1분에 한 번) */
-function giftCheck(force){if(!GAS||!S.name||isT()||$('#mbg'))return;if(!force&&Date.now()-GCHK<60000)return;GCHK=Date.now();
- mRun('giftBox',S.name,MPW).then(function(b){if(!b||!b.ok)return;GB=b;gBack(b.back);GQ=(b.inbox||[]).slice();giftNext()})}
+function giftCheck(force){if(!GAS||!S.name||isT())return;if(!force&&Date.now()-GCHK<60000)return;GCHK=Date.now();
+ mRun('giftBox',S.name,MPW).then(function(b){if(!b||!b.ok)return;GB=b;gBack(b.back);gFix(b.got);GQ=(b.inbox||[]).slice();giftNext()})}
+/* 받은 선물 다시 채우기: 받기를 눌렀는데 저장이 안 됐거나, 다른 기기의 예전 기록으로 덮였을 때 */
+function gFix(L){if(!L||!L.length)return;if(!S.gotG||typeof S.gotG!=='object')S.gotG={};var first=!Object.keys(S.gotG).length,add=[];
+ L.forEach(function(g){if(S.gotG[g.id])return;S.gotG[g.id]=1;if((g.t||0)<(S.rs||0))return;/* 선생님이 기록을 지우기 전 선물은 다시 넣지 않아요 */if(String(g.item).indexOf('eq:')===0){var id=String(g.item).slice(3);if(!EQM[id]||S.inv[id])return;S.inv[id]=1;add.push(g.label||EQM[id].n)}else if(!first){gGive(g.item);add.push(g.label||g.item)}});
+ save();mSync(true);if(add.length)toast('🎁 받은 선물을 가방에 다시 넣었어요: '+add.slice(0,3).join(', ')+(add.length>3?' 외 '+(add.length-3)+'개':''),3500)}
+setInterval(function(){try{if(GQ.length&&!$('#mbg')&&S&&S.name)giftNext()}catch(e){}},15000);
 function giftNext(){if(!GQ.length||$('#mbg'))return;var g=GQ[0],I=gItemInfo(g.item);SFX.lvup&&SFX.lvup();
  modal('<div class="gin"><div class="ginbox">🎁</div><h3>선물이 왔어요!</h3><p><b>'+esc(g.from)+'</b>이(가)<br><span style="font-size:34px">'+I.ic+'</span><br><b style="font-size:20px;color:#ffe06a">'+esc(g.label?g.label.replace(/^\S+\s/,''):I.n)+'</b>을(를) 보냈어요.</p><p class="sub">'+esc(g.at)+(GQ.length>1?' · 선물이 '+GQ.length+'개 와 있어요':'')+'</p><div class="btns"><button class="btn gray" onclick="giftAns('+g.id+',0)">거절하기</button><button class="btn" onclick="giftAns('+g.id+',1)">받기!</button></div></div>')}
 window.giftAns=function(id,ok){var bs=document.querySelectorAll('#mbg .btn');bs.forEach(function(b){b.disabled=true});
  mRun('giftAnswer',S.name,MPW,id,!!ok).then(function(r){closeModal();GQ.shift();if(!r||!r.ok){toast('이미 처리된 선물이에요');return setTimeout(giftNext,300)}
-  if(ok){var m=gGive(r.item);mSync(true);SFX.coin&&SFX.coin();toast('🎁 '+(r.label||'선물')+'을(를) 받았어요! '+m,2800);try{if(typeof showForge==='function'&&document.querySelector('.anvil'))showForge()}catch(e){}}
+  if(ok){if(!S.gotG||typeof S.gotG!=='object')S.gotG={};S.gotG[id]=1;var m=gGive(r.item);mSync(true);SFX.coin&&SFX.coin();toast('🎁 '+(r.label||'선물')+'을(를) 받았어요! '+m,2800);try{if(typeof showForge==='function'&&document.querySelector('.anvil'))showForge()}catch(e){}}
   else toast('선물을 거절했어요. '+esc(r.from)+'에게 돌아가요',2500);setTimeout(giftNext,500)})};
 /* ===== ✨ 선생님 계정: 아이템 무한 만들기 ===== */
 window.tMake=function(k){fN();if(!isT())return;
