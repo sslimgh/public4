@@ -696,7 +696,7 @@ body.ishake2 #app,body.ishake2 .modal{animation:ishake .6s linear}
 /* 장비 강화 */
 .fsel{display:flex;gap:6px;justify-content:center;margin:2px 0 8px;flex-wrap:wrap}.fsel button{display:flex;flex-direction:column;align-items:center;min-width:64px;padding:6px 8px;border-radius:12px;border:2px solid #34408f;background:#151b4f;color:#cfe0ff;font-family:inherit;font-size:14px;cursor:pointer}.fsel button.on{border-color:#ffe06a;background:#2b3590;box-shadow:0 0 10px rgba(255,224,106,.5)}.fsel .fsi{font-size:24px}.fsel small{color:#ffe06a}
 .mpick{background:#151b4f;border:2px solid #34408f;border-radius:14px;padding:8px;margin:8px 0}.mph{font-size:16px;color:#fff;margin-bottom:6px}.mph small{color:#aab6ee}
-.mplist{display:flex;gap:6px;overflow-x:auto;padding-bottom:2px}.mplist button{flex:none;display:flex;flex-direction:column;align-items:center;min-width:62px;padding:5px 4px;border-radius:12px;border:2px solid var(--rc,#34408f);background:#1b2163;color:#fff;font-family:inherit;cursor:pointer}.mplist button.on{background:#2f9e44;box-shadow:0 0 10px #8ce99a}.mplist .mpi{font-size:24px}.mplist small{font-size:11px;color:#cfe0ff}.mplist b{font-size:13px;color:#8ce99a;font-weight:normal}
+.mplist{display:flex;gap:6px;overflow-x:auto;padding-bottom:2px}.mplist button{flex:none;display:flex;flex-direction:column;align-items:center;min-width:62px;padding:5px 4px;border-radius:12px;border:2px solid var(--rc,#34408f);background:#1b2163;color:#fff;font-family:inherit;cursor:pointer}.mplist button.on{background:#2f9e44;box-shadow:0 0 10px #8ce99a}.mpw{position:relative;flex:none}.mpw button{position:relative}.mpn{position:absolute;top:-6px;right:-6px;background:#ffe06a;color:#3a2a00;font-style:normal;font-size:13px;border-radius:10px;min-width:20px;padding:1px 5px}.mpm{display:block;text-align:center;font-size:16px;color:#ffa8a8;cursor:pointer;line-height:1.2}.mpclr{font-size:13px;color:#ffa8a8;text-decoration:underline;cursor:pointer;margin-left:4px}.mplist .mpi{font-size:24px}.mplist small{font-size:11px;color:#cfe0ff}.mplist b{font-size:13px;color:#8ce99a;font-weight:normal}
 .tfbox{margin-top:12px;padding-top:8px;border-top:1px dashed #34408f}.tfd summary{cursor:pointer;color:#ffe06a;margin:6px 0}.tfg{background:#151b4f;border-radius:12px;padding:8px 10px;margin:6px 0;display:flex;flex-wrap:wrap;gap:6px 14px;align-items:center}.tfg b{width:100%;font-weight:normal;color:#ffe06a}.tfg label{font-size:15px}.fnum{width:64px;font-family:inherit;font-size:16px;padding:3px 4px;border-radius:8px;text-align:center}
 #fbtn:disabled{filter:grayscale(1);opacity:.6}.anvil.fitem{height:auto;font-size:inherit;padding:4px 0}
 .iic{position:relative}.eqlv{position:absolute;right:-14px;top:-6px;font-size:13px;background:#ffe06a;color:#3a2a00;border-radius:8px;padding:0 5px;font-family:inherit}
@@ -1302,7 +1302,7 @@ const petImg=p=>svgW(monSVG(p.k,p.c,false).replace(/^<svg[^>]*>|<\/svg>$/g,''));
 function bonusText(p,lv=1){return Object.entries(p.b).map(([k,v])=>`${BN[k]} +${k==='time'?Math.round(v*pMul(lv))+'초':Math.round(v*pMul(lv)*100)+'%'}`).join(', ')}
 const EGGS=[{id:'e1',n:'모험가의 알',cost:150,odds:[62,28,8.5,1.4,0.1],col:'#f1e3c8',sp:'#c9a36b'},{id:'e2',n:'반짝이는 알',cost:400,odds:[30,40,24,5.5,0.5],col:'#d0bfff',sp:'#fab005'}];
 const eggSVG=(e,crack)=>`<svg viewBox="0 0 100 120" xmlns="http://www.w3.org/2000/svg"><ellipse cx="50" cy="112" rx="28" ry="6" fill="rgba(0,0,0,.25)"/><path d="M50,8 C78,8 90,58 90,76 C90,98 72,112 50,112 C28,112 10,98 10,76 C10,58 22,8 50,8Z" fill="${e.col}" stroke="${OUT}" stroke-width="3"/><circle cx="34" cy="50" r="6" fill="${e.sp}"/><circle cx="62" cy="36" r="5" fill="${e.sp}"/><circle cx="66" cy="74" r="7" fill="${e.sp}"/><circle cx="38" cy="88" r="5" fill="${e.sp}"/><path d="M30,28 Q36,18 44,16" stroke="#fff" stroke-width="5" fill="none" stroke-linecap="round" opacity=".7"/>${crack?`<path d="M14,66 L28,58 36,70 48,56 58,70 70,58 86,66" fill="none" stroke="${OUT}" stroke-width="3"/>`:''}</svg>`;
-function showPets(){
+function showPets(){if(window.syncOdds)syncOdds();
  const cur=PETS.find(p=>p.id===S.pet&&S.pets[p.id]);
  app.innerHTML=hud()+`<div class="panel"><h2>🐾 내 펫</h2>${cur?`<div class="petcur"><div class="petbig r${cur.r}">${petImg(cur)}</div><div><div class="rtag" style="background:${RAR[cur.r].c}">${RAR[cur.r].n}</div><div style="font-size:22px;color:#ffe06a">${cur.n} <span style="font-size:16px">Lv.${S.pets[cur.id]}</span></div><div class="sub">${bonusText(cur,S.pets[cur.id])}</div><div class="sub">맵에서 나를 따라다니고, 전투에서 도와줘요</div></div></div>`:'<div class="empty">아직 함께하는 펫이 없어요. 알을 부화시켜 봐요!</div>'}</div>
  <div class="panel"><h2>🥚 알 부화소</h2><div class="eggs">${EGGS.map(e=>`<div class="egg"><div class="eggpic">${eggSVG(e)}</div><b>${e.n}</b><span class="odds">${RAR.map((r,i)=>`<i style="color:${r.c}">${r.n} ${e.odds[i]}%</i>`).join(' ')}</span><div class="gbtns" style="margin-top:8px"><button class="btn" onclick="hatch('${e.id}')">1번<br><small>💰 ${e.cost}</small></button><button class="btn g10b" onclick="hatch10('${e.id}')">10번<br><small>💰 ${(e.cost*10).toLocaleString()}</small></button></div></div>`).join('')}</div><p class="sub" style="text-align:center">같은 펫이 또 나오면 레벨이 올라 능력이 세져요. 레벨 제한은 없어요! (Lv.5까지는 레벨마다 +20%, 그 뒤로는 +10%씩)</p></div>
@@ -1313,7 +1313,7 @@ function equipPet(id){S.pet=S.pet===id?'':id;save();SFX.click();showPets();toast
 const PDUP=[30,80,200,500,1200];
 /* 알 10개 한꺼번에 부화 */
 function hatch10(id){
- window._gKind='pet';const e=EGGS.find(x=>x.id===id);if(S.gold<e.cost*10){SFX.fail();return toast('골드가 부족해요! 10번 부화는 💰'+(e.cost*10).toLocaleString()+'이 필요해요')}
+ window._gKind='pet';if(window.syncOdds)syncOdds();const e=EGGS.find(x=>x.id===id);if(S.gold<e.cost*10){SFX.fail();return toast('골드가 부족해요! 10번 부화는 💰'+(e.cost*10).toLocaleString()+'이 필요해요')}
  S.gold-=e.cost*10;const got=[];let mx=0,nw=0,up=0,gs=0;
  for(let n=0;n<10;n++){let roll=Math.random()*100,r=0;for(let i=0;i<e.odds.length;i++){if(roll<e.odds[i]){r=i;break}roll-=e.odds[i];r=i}
   const p=pick(PETS.filter(x=>x.r===r)),had=S.pets[p.id]||0;let tag;
@@ -1330,7 +1330,7 @@ function hatch10(id){
 }
 function pPeek(i){const x=(window._g10||[])[i];if(!x||!x.p)return;const c=document.querySelectorAll('.g10 .g1')[i];if(c&&!c.classList.contains('on'))return;const lv=S.pets[x.p.id]||1;toast(RAR[x.it.r].n+' '+x.p.n+' · '+bonusText(x.p,lv),2800)}
 function hatch(id){
- window._gKind='pet';const e=EGGS.find(x=>x.id===id);if(S.gold<e.cost){SFX.fail();return toast('골드가 부족해요! 몬스터를 물리치고 동전을 모아 봐요')}
+ window._gKind='pet';if(window.syncOdds)syncOdds();const e=EGGS.find(x=>x.id===id);if(S.gold<e.cost){SFX.fail();return toast('골드가 부족해요! 몬스터를 물리치고 동전을 모아 봐요')}
  S.gold-=e.cost;let roll=Math.random()*100,r=0;for(let i=0;i<e.odds.length;i++){if(roll<e.odds[i]){r=i;break}roll-=e.odds[i];r=i}
  const p=pick(PETS.filter(x=>x.r===r)),dup=!!S.pets[p.id],mxd=false;S.pets[p.id]=(S.pets[p.id]||0)+1;if(!S.pet)S.pet=p.id;save();
  if(r>=3)ach('legend');
@@ -2011,21 +2011,41 @@ function battleCoach(){
 
 /* 대장간 */
 /* 🔨 강화 설정 (선생님이 바꿀 수 있어요) */
-const FDEF={wd:12,wm:30,ib:[90,80,70,60,50],id:5,im:10,mb:[5,10,20,35,50],gm:1,all:0};
+const FDEF={wd:12,wm:30,ib:[90,80,70,60,50],id:5,im:10,mb:[5,10,20,35,50],gm:1,all:0,mx:5,req:1,el:10,bw:[60,30,9,0.9,0.1],gw:[20,45,28,6.5,0.5],e1:[62,28,8.5,1.4,0.1],e2:[30,40,24,5.5,0.5],gq:5,gn:4,tm:[100,90,75,60,45],ld:4,wld:1,lm:30};
 function fc(){const c=(typeof CFGM!=='undefined'&&CFGM&&CFGM.forge)||{};return Object.assign({},FDEF,c)}
 function forgeRate(){const f=fc();if(f.all)return 100;const k=S.wlv%50,mn=Math.max(5,f.wm-[0,5,10,15,18,20][wdim()]);return k<3?100:Math.max(mn,100-(k-2)*f.wd)}
-function forgeCost(){return Math.max(1,Math.round((50+S.wlv*40)*fc().gm))}
+function forgeCost(){return Math.max(0,Math.round((50+S.wlv*40)*fc().gm))}
 /* 장비 강화 확률: 장비 등급이 높을수록, 강화가 높을수록 낮아지고, 재료 등급만큼 올라가요 */
 function eqBase(e){const f=fc();if(f.all)return 100;const L=(S.eql&&S.eql[e.id])||0;return Math.max(f.im,(f.ib[e.r]||50)-f.id*L)}
-function matBonus(mid){const m=mid&&EQM[mid];return m?(fc().mb[m.r]||0):0}
+/* 재료: 'd:아이디' = 남는 같은 장비(🔧), 'b:아이디' = 가방에 있는 다른 장비(끼지 않은 것). 어떤 장비든 재료가 돼요 */
+function matId(k){return String(k||'').replace(/^[db]:/,'')}
+function matOk(k){if(!k)return false;const id=matId(k);if(!EQM[id])return false;if(/^b:/.test(k))return !!(S.inv&&S.inv[id])&&Object.values(S.eq||{}).indexOf(id)<0&&id!==FTG;return !!(S.eqd&&S.eqd[id]>0)}
+function matBonus(k){if(!matOk(k))return 0;const m=EQM[matId(k)];return fc().mb[m.r]||0}
+/* 재료 여러 개: FM = {'d:아이디':개수, 'b:아이디':1} */
+var FM={};
+function fmList(){const L=[];Object.keys(FM).forEach(k=>{for(let i=0;i<FM[k];i++)L.push(k)});return L}
+function fmCount(){return fmList().length}
+function fmAvail(k){const id=matId(k);return /^b:/.test(k)?((S.inv&&S.inv[id]&&Object.values(S.eq||{}).indexOf(id)<0&&id!==FTG)?1:0):((S.eqd&&S.eqd[id])||0)}
+function fmClean(){Object.keys(FM).forEach(k=>{const a=fmAvail(k);if(FM[k]>a)FM[k]=a;if(!(FM[k]>0))delete FM[k]})}
+function fmMul(){const f=fc();let t=100,L=0,d=0;if(FTG==='w'||!EQM[FTG]){L=S.wlv||0;d=f.wld}else{t=(f.tm&&f.tm[EQM[FTG].r]!=null)?f.tm[EQM[FTG].r]:100;L=eqLv(FTG);d=f.ld}return Math.max(0,t*Math.max(f.lm,100-d*L)/10000)}
+function fmOne(r){return Math.round((fc().mb[r]||0)*fmMul()*10)/10}
+function fmBonus(){fmClean();let b=0;const m=fmMul();fmList().forEach(k=>{const e=EQM[matId(k)];if(e)b+=(fc().mb[e.r]||0)*m});return Math.round(b)}
+window.fmMul=fmMul;window.fmOne=fmOne
+function fmUseAll(){fmList().forEach(k=>matUse(k));FM={}}
+function fmHasBag(){return Object.keys(FM).some(k=>/^b:/.test(k))}
+window.fmAdd=function(k){const f=fc();if(fmCount()>=f.mx){toast('재료는 한 번에 '+f.mx+'개까지 넣을 수 있어요');return}if((FM[k]||0)>=fmAvail(k)){toast('그 재료는 더 없어요');return}FM[k]=(FM[k]||0)+1;showForge()};
+window.fmSub=function(k){if(FM[k]>0){FM[k]--;if(!FM[k])delete FM[k]}showForge()};
+window.fmClear=function(){FM={};showForge()};
+function matUse(k){const id=matId(k);if(/^b:/.test(k)){delete S.inv[id];if(S.eql)delete S.eql[id];if(S.eqd&&S.eqd[id]>0){S.eqd[id]--;S.inv[id]=1}}else{S.eqd[id]--}}
+function matName(k){const e=EQM[matId(k)];return e?e.ic+' '+e.n:''}
 var FTG='w',FMAT='';
 function isGate(){return S.wlv%50===49}
-function showForge(){if(FTG!=='w'&&window.forgeItemView&&S.inv&&S.inv[FTG])return forgeItemView(FTG);FTG='w';const d=wdim(),D=WDIM[d],k=S.wlv%50,nx=WDIM[Math.min(WDIM.length-1,d+1)],gate=isGate(),mb=gate?0:matBonus(FMAT),rt=Math.min(100,forgeRate()+mb);
+function showForge(){if(FTG!=='w'&&window.forgeItemView&&S.inv&&S.inv[FTG])return forgeItemView(FTG);FTG='w';const d=wdim(),D=WDIM[d],k=S.wlv%50,nx=WDIM[Math.min(WDIM.length-1,d+1)],gate=isGate(),mb=gate?0:fmBonus(),rt=Math.min(100,forgeRate()+mb);
  app.innerHTML=hud()+`<div class="panel"><h2>🔨 대장간</h2>${window.forgeSel?forgeSel():''}
  <div class="dimtag d${d}">${d?D.e+' '+D.n+' 차원 · '+D.d:'일반 무기'}</div>
  <div class="anvil wdim d${d}" id="anv"><span>${C().we}</span></div><div class="wname" style="${d?'color:'+D.c:''}">${wname()}</div>
  <div class="dimbar"><div class="dimfill d${d+1}" style="width:${(k+1)/50*100}%"></div><span>${d+1<WDIM.length?'다음 차원 '+nx.e+' '+nx.n+'까지 '+(49-k)+'강':'끝없는 무한 차원'}</span></div>
- <div class="wstat">무기 공격력 +${S.wlv*6}${d?' · 차원 보너스 +'+d*10+'%':''} → <b style="color:#5dff8f">+${(S.wlv+1)*6}</b><br>${gate?'<b style="color:#ffe06a">🌀 차원 돌파 시련!</b> 문제 5개 중 4개를 맞히면 돌파해요':'강화 성공 확률 <b style="color:#ffe06a">'+rt+'%</b>'+(mb?' <small style="color:#8ce99a">(재료 +'+mb+'%)</small>':'')} · 비용 💰 ${forgeCost().toLocaleString()}</div>${!gate&&window.matPicker?matPicker(false):''}
+ <div class="wstat">무기 공격력 +${S.wlv*6}${d?' · 차원 보너스 +'+d*10+'%':''} → <b style="color:#5dff8f">+${(S.wlv+1)*6}</b><br>${gate?'<b style="color:#ffe06a">🌀 차원 돌파 시련!</b> 문제 '+fc().gq+'개 중 '+fc().gn+'개를 맞히면 돌파해요':'강화 성공 확률 <b style="color:#ffe06a">'+rt+'%</b>'+(mb?' <small style="color:#8ce99a">(재료 '+fmCount()+'개 +'+mb+'%)</small>':'')} · 비용 💰 ${forgeCost().toLocaleString()}</div>${!gate&&window.matPicker?matPicker(false):''}
  <div class="wpow"><div class="wpowh">✨ 차원 특수 능력</div>${WPOW.slice(1).map((p,i)=>`<div class="wp ${d>=i+1?'on':''}"><span class="wpi">${d>=i+1?p.ic:'🔒'}</span><div><b>${WDIM[i+1].e} ${WDIM[i+1].n} · ${p.n}</b><small>${d>=i+1?p.d:(i+1)*50+'강에 열려요'}</small></div></div>`).join('')}</div>
  <button class="btn${gate?' gatebtn':''}" style="width:100%;font-size:22px" id="fbtn" onclick="doForge()">${gate?'🌀 '+nx.e+' '+nx.n+' 돌파 도전!':'강화하기!'}</button>
  <p style="color:#aab6ee;font-size:15px;text-align:center;margin:12px 0 0">${gate?'돌파하면 무기가 '+nx.e+' '+nx.n+' 무기로 바뀌고 공격력이 10% 더 세져요!':'실패해도 무기는 부서지지 않아요. 골드만 사라져요! 50강마다 새로운 차원의 무기로 돌파해요.'}</p></div>`+menu('forge');
@@ -2033,25 +2053,26 @@ function showForge(){if(FTG!=='w'&&window.forgeItemView&&S.inv&&S.inv[FTG])retur
 function doForge(){
  const cost=forgeCost();if(S.gold<cost){SFX.fail();return toast('골드가 부족해요! 몬스터를 물리쳐서 모아 봐요')}
  if(isGate())return gateStart();
- const mb=matBonus(FMAT),mid=FMAT;if(mid&&(!S.eqd||!(S.eqd[mid]>0))){FMAT='';return showForge()}
- S.gold-=cost;if(mid){S.eqd[mid]--;FMAT=S.eqd[mid]>0?mid:''}save();$('#fbtn').disabled=true;const a=$('#anv');a.innerHTML='<span>🔨</span>';a.classList.add('swing');
+ const mb=fmBonus(),mid=fmCount();
+ if(fmHasBag()&&!window._mconf){return modal('<h3>🔧 재료로 쓸까요?</h3><p>'+Object.keys(FM).filter(k=>/^b:/.test(k)).map(matName).join(', ')+'<br>가방에 있는 장비가 재료로 쓰여서 사라져요.<br>성공률 +'+mb+'%</p><div class="btns"><button class="btn gray" onclick="closeModal()">취소</button><button class="btn" onclick="closeModal();window._mconf=1;doForge();window._mconf=0">쓸게요</button></div>')}
+ S.gold-=cost;if(mid)fmUseAll();save();$('#fbtn').disabled=true;const a=$('#anv');a.innerHTML='<span>🔨</span>';a.classList.add('swing');
  [0,250,500,750].forEach(t=>setTimeout(SFX.clang,t));
  setTimeout(()=>{const ok=Math.random()*100<Math.min(100,forgeRate()+mb);if(ok){S.wlv++;if(S.wlv>=10)ach('forge10');save();SFX.lvup();sparks(18)}else SFX.fail();
-  showForge();modal(ok?`<h3>✨ 강화 성공!</h3><div class="wdim d${wdim()}" style="font-size:70px;margin:10px auto;width:110px"><span>${C().we}</span></div><p><b style="color:#ffe06a;font-size:24px">${wname()}</b><br>공격력이 올랐어요! (현재 ${atk()})${isGate()?'<br><b style="color:#ffe06a">🌀 다음은 차원 돌파 시련이에요!</b>':''}</p><div class="btns"><button class="btn" onclick="closeModal()">좋아요!</button></div>`:`<h3>💥 강화 실패…</h3><div style="font-size:70px">😭</div><p>다음엔 꼭 성공할 거예요!${mid?'<br><small>재료 1개를 썼어요</small>':''}</p><div class="btns"><button class="btn gray" onclick="closeModal()">다시 도전</button></div>`)},1000);
+  showForge();modal(ok?`<h3>✨ 강화 성공!</h3><div class="wdim d${wdim()}" style="font-size:70px;margin:10px auto;width:110px"><span>${C().we}</span></div><p><b style="color:#ffe06a;font-size:24px">${wname()}</b><br>공격력이 올랐어요! (현재 ${atk()})${isGate()?'<br><b style="color:#ffe06a">🌀 다음은 차원 돌파 시련이에요!</b>':''}</p><div class="btns"><button class="btn" onclick="closeModal()">좋아요!</button></div>`:`<h3>💥 강화 실패…</h3><div style="font-size:70px">😭</div><p>다음엔 꼭 성공할 거예요!${mid?'<br><small>재료 '+mid+'개를 썼어요</small>':''}</p><div class="btns"><button class="btn gray" onclick="closeModal()">다시 도전</button></div>`)},1000);
 }
 /* 🌀 차원 돌파 시련: 쉬운 문제 5개 중 4개 맞히기 */
 let GATE=null;
 function gateStart(){const cost=forgeCost();if(S.gold<cost){SFX.fail();return toast('골드가 부족해요!')}
  const nx=WDIM[Math.min(WDIM.length-1,wdim()+1)];
- modal(`<h3>🌀 ${nx.e} ${nx.n} 차원 돌파 시련</h3><p>문제 <b>5개</b> 중 <b>4개</b>를 맞히면 무기가<br><b style="color:${nx.c}">${nx.e} ${nx.n} 무기</b>로 다시 태어나요!</p><p class="sub">비용 💰 ${cost} (도전할 때 내요) · 시간 제한 없어요. 천천히 풀어요!</p><div class="btns"><button class="btn gray" onclick="closeModal()">다음에</button><button class="btn" onclick="gateGo()">시작!</button></div>`)}
+ modal(`<h3>🌀 ${nx.e} ${nx.n} 차원 돌파 시련</h3><p>문제 <b>${fc().gq}개</b> 중 <b>${fc().gn}개</b>를 맞히면 무기가<br><b style="color:${nx.c}">${nx.e} ${nx.n} 무기</b>로 다시 태어나요!</p><p class="sub">비용 💰 ${cost} (도전할 때 내요) · 시간 제한 없어요. 천천히 풀어요!</p><div class="btns"><button class="btn gray" onclick="closeModal()">다음에</button><button class="btn" onclick="gateGo()">시작!</button></div>`)}
 window.gateGo=function(){const cost=forgeCost();if(S.gold<cost)return;S.gold-=cost;save();GATE={n:0,ok:0,q:null};gateNext()};
-function gateNext(){if(!GATE)return;if(GATE.n>=5)return gateEnd();let q=null;for(let t=0;t<5&&!q;t++){try{q=genQ('mix',GATE.q,0)}catch(e){q=null}}if(!q){GATE.n=5;GATE.ok=5;return gateEnd()}GATE.q=q;GATE.n++;
- modal(`<div class="gateq"><div class="gatehd">🌀 시련 ${GATE.n} / 5 · 맞힌 개수 <b>${GATE.ok}</b> ${'⭐'.repeat(GATE.ok)}</div><div class="qtext" style="font-size:20px;margin:8px 0">${q.q}</div>${q.svg?'<div class="fig">'+q.svg+'</div>':''}<div class="gch2">${q.choices.map((c,i)=>`<button class="choice" onclick="gateAns(${i})">${c}</button>`).join('')}</div></div>`)}
+function gateNext(){if(!GATE)return;if(GATE.n>=fc().gq)return gateEnd();let q=null;for(let t=0;t<5&&!q;t++){try{q=genQ('mix',GATE.q,0)}catch(e){q=null}}if(!q){GATE.n=5;GATE.ok=5;return gateEnd()}GATE.q=q;GATE.n++;
+ modal(`<div class="gateq"><div class="gatehd">🌀 시련 ${GATE.n} / ${fc().gq} · 맞힌 개수 <b>${GATE.ok}</b> ${'⭐'.repeat(GATE.ok)}</div><div class="qtext" style="font-size:20px;margin:8px 0">${q.q}</div>${q.svg?'<div class="fig">'+q.svg+'</div>':''}<div class="gch2">${q.choices.map((c,i)=>`<button class="choice" onclick="gateAns(${i})">${c}</button>`).join('')}</div></div>`)}
 window.gateAns=function(i){if(!GATE||!GATE.q||GATE.busy)return;GATE.busy=1;const q=GATE.q,ok=q.choices[i]===q.ans;const B=document.querySelectorAll('.gch2 .choice');B.forEach((b,k)=>{if(q.choices[k]===q.ans)b.classList.add('right');else if(k===i)b.classList.add('wrong')});
  if(ok){GATE.ok++;SFX.ok&&SFX.ok()}else SFX.fail();try{record(q,ok)}catch(e){}
- setTimeout(()=>{GATE.busy=0;if(GATE.ok>=4||GATE.n-GATE.ok>1){GATE.n=5}gateNext()},ok?700:1600)};
-function gateEnd(){const win=GATE&&GATE.ok>=4;GATE=null;closeModal();
- if(!win){SFX.fail();showForge();return modal('<h3>💫 돌파 실패…</h3><div style="font-size:64px">🌀</div><p>아깝다! 문제 5개 중 4개를 맞혀야 해요.<br>기록 → 틀린 문제를 다시 보고 도전해 봐요!</p><div class="btns"><button class="btn gray" onclick="closeModal()">다음에</button><button class="btn" onclick="closeModal();gateStart()">다시 도전</button></div>')}
+ setTimeout(()=>{GATE.busy=0;{const f=fc();if(GATE.ok>=f.gn||GATE.n-GATE.ok>f.gq-f.gn){GATE.n=f.gq}}gateNext()},ok?700:1600)};
+function gateEnd(){const win=GATE&&GATE.ok>=fc().gn;GATE=null;closeModal();
+ if(!win){SFX.fail();showForge();return modal('<h3>💫 돌파 실패…</h3><div style="font-size:64px">🌀</div><p>아깝다! 문제 '+fc().gq+'개 중 '+fc().gn+'개를 맞혀야 해요.<br>기록 → 틀린 문제를 다시 보고 도전해 봐요!</p><div class="btns"><button class="btn gray" onclick="closeModal()">다음에</button><button class="btn" onclick="closeModal();gateStart()">다시 도전</button></div>')}
  S.wlv++;save();const d=wdim(),D=WDIM[d];showForge();
  const ov=document.createElement('div');ov.className='dimcut d'+d;ov.innerHTML=`<div class="dimring"></div><div class="dimw wdim d${d}"><span>${C().we}</span></div><div class="dimtx">${D.e} ${D.n} 돌파!</div><div class="dimsub">${D.d}</div>`;document.body.appendChild(ov);
  [0,150,300,450,700].forEach((t,i)=>setTimeout(()=>tone([392,523,659,784,1047][i],.3,'triangle',.07),t));setTimeout(()=>{impactFlash(D.c,3);confetti(60)},500);
@@ -2904,7 +2925,7 @@ window.clearStage=function(){mNorm();var first=!S.clear[F.i];_clearStage();if(fi
 
 /* ---------- 선생님이 연 스테이지만 ---------- */
 function mOpenOK(i){if(isT())return true;var s=STAGES[i];if(s&&s.w==='t')return s.lv<=(CFGM.openT==null?6:CFGM.openT);if(s&&s.w==='f')return s.lv<=(CFGM.openF==null?7:CFGM.openF);if(s&&s.w==='d')return s.lv<=(CFGM.openD==null?0:CFGM.openD);return i<CFGM.open}
-var APPV='3.0',APPD='2026-11-18';
+var APPV='3.3',APPD='2026-11-18';
 /* 오른쪽 위 버전 표시: 화면 버전 · 업데이트 날짜 (서버 버전이 다르면 빨갛게) */
 function verBadge(srv){var b=document.getElementById('verb');if(!b){b=document.createElement('div');b.id='verb';b.onclick=function(){var sv=b.dataset.srv||'-';modal('<h3>🔖 게임 버전</h3><p style="font-size:18px;line-height:1.8">화면 버전: <b>v'+APPV+'</b><br>업데이트한 날: <b>'+APPD.replace(/-/g,'. ')+'.</b><br>서버(Code.gs) 버전: <b>'+(sv==='-'?'확인 중':'v'+sv)+'</b>'+(window.IS_APP?'<br>들어온 곳: <b>앱(GitHub)</b>':(GAS?'<br>들어온 곳: <b>웹(구글)</b>':''))+'</p>'+(sv!=='-'&&sv!==APPV?'<p style="color:#ff8787">⚠️ 화면과 서버 버전이 달라요. 앱을 완전히 껐다가 다시 열거나, 선생님이 파일을 모두 바꿨는지 확인해 주세요.</p>':'<p class="sub">화면과 서버 버전이 같아요. 최신이에요!</p>')+'<div class="btns"><button class="btn" onclick="closeModal()">확인</button></div>')};document.body.appendChild(b)}
  if(srv)b.dataset.srv=srv;var bad=b.dataset.srv&&b.dataset.srv!==APPV;b.className=bad?'bad':'';var d=APPD.slice(5).replace('-','/').replace(/^0/,'').replace('/0','/');b.textContent=(bad?'⚠️ ':'')+'v'+APPV+' · '+d+' 업데이트'}
@@ -3078,23 +3099,31 @@ function tOpenRows(c){var R=[['t','openT',c.openT==null?6:c.openT],['f','openF',
  return R.map(function(r){var L=[];STAGES.forEach(function(s,i){if(s.w===r[0])L.push(s)});var n=r[0]==='q'?L.length+1:L.length;var bt='';if(r[0]==='d')bt+='<button class="btn '+(r[2]===0?'':'gray')+'" style="padding:6px 10px;font-size:15px" onclick="tSave({openD:0})">🔒 모두 닫기</button>';for(var k=1;k<=n;k++){var s2=k<=L.length?L[k-1]:STAGES[7];bt+='<button class="btn '+(r[2]===k?'':'gray')+'" style="padding:6px 10px;font-size:15px" onclick="tSave({'+r[1]+':'+k+'})">'+s2.ic+' ~'+k+'</button>'}return '<div class="row" style="flex-wrap:wrap;gap:6px"><span style="width:170px">'+WNAME[r[0]]+' ('+WUNIT[r[0]]+')</span>'+bt+'</div><p class="sub">'+L.map(function(s,j){return (j<r[2]?'🔓':'🔒')+s.name}).join('  ')+(r[0]==='q'?'  '+(r[2]>=8?'🔓':'🔒')+'무한의 탑':'')+'</p>'}).join('')+bh}
 /* 🔨 강화 설정 (선생님) */
 function tFc(c){var f=c&&c.forge;if(typeof f==='string'){try{f=JSON.parse(f)}catch(e){f=null}}return Object.assign({},FDEF,f||{})}
-var FPRE={easy:{wd:8,wm:45,ib:[95,90,80,70,60],id:3,im:20,mb:[10,15,25,40,60],gm:.8,all:0},normal:FDEF,hard:{wd:15,wm:20,ib:[80,70,55,45,35],id:7,im:5,mb:[5,8,15,25,40],gm:1.3,all:0}};
-function tForgeHTML(c){var f=tFc(c),RNn=['일반','희귀','영웅','전설','미스터리'],ni=function(id,v,mn,mx,st){return '<input id="'+id+'" type="number" value="'+v+'" min="'+mn+'" max="'+mx+'" step="'+(st||1)+'" class="fnum">'};
- return '<div class="tfbox"><div class="row" style="flex-wrap:wrap;gap:6px;align-items:center"><span style="width:170px">🔨 강화 성공률</span>'+
+var FPRE={easy:{wd:8,wm:45,ib:[95,90,80,70,60],id:3,im:20,mb:[10,15,25,40,60],gm:.8,mx:10,gq:5,gn:3,tm:[100,100,90,80,70],ld:2,wld:.5,lm:50},normal:{wd:12,wm:30,ib:[90,80,70,60,50],id:5,im:10,mb:[5,10,20,35,50],gm:1,mx:5,gq:5,gn:4,tm:[100,90,75,60,45],ld:4,wld:1,lm:30},hard:{wd:15,wm:20,ib:[80,70,55,45,35],id:7,im:5,mb:[5,8,15,25,40],gm:1.3,mx:3,gq:5,gn:5,tm:[90,75,60,45,30],ld:6,wld:1.5,lm:20}};
+function tForgeHTML(c){var f=tFc(c),RNn=['일반','희귀','영웅','전설','미스터리'],ni=function(id,v,mn,mx,st){return '<input id="'+id+'" type="number" value="'+v+'" min="'+mn+'" max="'+mx+'" step="'+(st||1)+'" class="fnum">'},five=function(p,arr,st){return [0,1,2,3,4].map(function(r){return '<label>'+RNn[r]+' '+ni(p+r,arr[r],0,100,st)+'%</label>'}).join('')},sum=function(a){return Math.round(a.reduce(function(x,y){return x+y},0)*10)/10};
+ return '<div class="tfbox"><div class="row" style="flex-wrap:wrap;gap:6px;align-items:center"><span style="width:170px">🔨 강화·뽑기 설정</span>'+
   '<button class="btn gray" style="padding:6px 10px;font-size:15px" onclick="tForgePre(\'easy\')">😊 쉽게</button><button class="btn gray" style="padding:6px 10px;font-size:15px" onclick="tForgePre(\'normal\')">🙂 보통(처음 값)</button><button class="btn gray" style="padding:6px 10px;font-size:15px" onclick="tForgePre(\'hard\')">😠 어렵게</button>'+
-  '<button class="btn '+(f.all?'':'gray')+'" style="padding:6px 10px;font-size:15px" onclick="tForgeAll('+(f.all?0:1)+')">'+(f.all?'🎉 100% 이벤트 끄기':'🎉 모두 100% 이벤트')+'</button></div>'+
+  '<button class="btn '+(f.all?'':'gray')+'" style="padding:6px 10px;font-size:15px" onclick="tForgeAll('+(f.all?0:1)+')">'+(f.all?'🎉 100% 이벤트 끄기':'🎉 강화 모두 100% 이벤트')+'</button></div>'+
   (f.all?'<p style="color:#ffd43b;margin:4px 0">🎉 지금은 무기·장비 강화가 모두 100% 성공해요!</p>':'')+
-  '<details class="tfd"><summary>숫자로 자세히 바꾸기</summary>'+
-  '<div class="tfg"><b>🗡️ 무기</b><label>3강부터 강화할 때마다 성공률이 '+ni('f_wd',f.wd,1,40)+'%씩 낮아져요</label><label>가장 낮은 성공률 '+ni('f_wm',f.wm,5,100)+'% <small>(차원이 오를수록 조금씩 더 낮아져요)</small></label></div>'+
-  '<div class="tfg"><b>🛡️ 장비 처음 성공률 (+0일 때)</b>'+[0,1,2,3,4].map(function(r){return '<label>'+RNn[r]+' '+ni('f_ib'+r,f.ib[r],1,100)+'%</label>'}).join('')+'<label>강화할 때마다 '+ni('f_id',f.id,0,30)+'%씩 낮아져요</label><label>가장 낮은 성공률 '+ni('f_im',f.im,1,100)+'%</label></div>'+
-  '<div class="tfg"><b>🔧 재료 등급별 성공률 보너스</b>'+[0,1,2,3,4].map(function(r){return '<label>'+RNn[r]+' 재료 +'+ni('f_mb'+r,f.mb[r],0,100)+'%</label>'}).join('')+'</div>'+
-  '<div class="tfg"><b>💰 강화 비용</b><label>골드 비용 '+ni('f_gm',f.gm,.1,5,.1)+'배</label></div>'+
-  '<div class="btns" style="justify-content:flex-start"><button class="btn" style="padding:6px 16px;font-size:16px" onclick="tForgeSave()">💾 강화 설정 저장</button></div></details>'+
-  '<p class="sub">지금: 무기 최저 '+f.wm+'% · 장비 처음 '+f.ib.join('/')+'% (일반~미스터리) · 재료 보너스 +'+f.mb.join('/')+'% · 비용 ×'+f.gm+'</p></div>'}
-window.tForgePre=function(k){var p=FPRE[k];tSave({forge:JSON.stringify(Object.assign({},p,{all:0}))})};
+  '<details class="tfd"'+(window._tfOpen?' open':'')+' ontoggle="window._tfOpen=this.open"><summary>숫자로 자세히 바꾸기 (모든 확률·재료·비용·시련·뽑기)</summary>'+
+  '<div class="tfg"><b>🗡️ 무기 강화</b><label>3강부터 강화할 때마다 성공률 '+ni('f_wd',f.wd,0,50)+'%씩 낮아짐</label><label>가장 낮은 성공률 '+ni('f_wm',f.wm,1,100)+'% <small>(차원이 오를수록 조금씩 더 낮아져요)</small></label></div>'+
+  '<div class="tfg"><b>🛡️ 장비 강화 · 처음(+0) 성공률</b>'+five('f_ib',f.ib)+'<label>강화할 때마다 '+ni('f_id',f.id,0,50)+'%씩 낮아짐</label><label>가장 낮은 성공률 '+ni('f_im',f.im,1,100)+'%</label><label>강화 1번마다 장비 능력 +'+ni('f_el',f.el,1,100)+'%</label></div>'+
+  '<div class="tfg"><b>🔧 재료</b>'+[0,1,2,3,4].map(function(r){return '<label>'+RNn[r]+' 재료 1개 +'+ni('f_mb'+r,f.mb[r],0,100)+'%</label>'}).join('')+'</div><div class="tfg"><b>⚖️ 강화할 장비가 높을수록 재료 효과 줄이기</b><small style="display:block;margin-bottom:4px">재료 보너스에 아래 비율을 곱해요. 100%면 그대로, 50%면 절반만 들어가요.</small>'+[0,1,2,3,4].map(function(r){return '<label>'+RNn[r]+' 장비에 넣으면 '+ni('f_tm'+r,f.tm[r],0,200)+'%</label>'}).join('')+'<label>장비 강화 수치 1마다 재료 효과 '+ni('f_ld',f.ld,0,50)+'%씩 줄어듦</label><label>무기 강화 수치 1마다 재료 효과 '+ni('f_wld',f.wld,0,20,.1)+'%씩 줄어듦</label><label>그래도 재료 효과는 최소 '+ni('f_lm',f.lm,0,100)+'%는 남김</label></div><div class="tfg"><b>🔧 재료 개수</b><label>한 번에 넣을 수 있는 재료 '+ni('f_mx',f.mx,1,50)+'개</label><label><input type="checkbox" id="f_req" '+(f.req?'checked':'')+'> 장비 강화에는 재료가 꼭 필요</label></div>'+
+  '<div class="tfg"><b>💰 비용</b><label>강화 골드 비용 '+ni('f_gm',f.gm,0,10,.1)+'배 <small>(0이면 공짜)</small></label></div>'+
+  '<div class="tfg"><b>🌀 차원 돌파 시련</b><label>문제 '+ni('f_gq',f.gq,1,20)+'개 중</label><label>'+ni('f_gn',f.gn,1,20)+'개 맞히면 돌파</label></div>'+
+  '<div class="tfg"><b>🧰 보물상자 확률 <small>(합 '+sum(f.bw)+'%)</small></b>'+five('f_bw',f.bw,.1)+'</div>'+
+  '<div class="tfg"><b>💛 황금 상자 확률 <small>(합 '+sum(f.gw)+'%)</small></b>'+five('f_gw',f.gw,.1)+'</div>'+
+  '<div class="tfg"><b>🥚 모험가의 알 확률 <small>(합 '+sum(f.e1)+'%)</small></b>'+five('f_e1',f.e1,.1)+'</div>'+
+  '<div class="tfg"><b>🥚 반짝이는 알 확률 <small>(합 '+sum(f.e2)+'%)</small></b>'+five('f_e2',f.e2,.1)+'</div>'+
+  '<p class="sub">확률은 합이 100이 아니어도 괜찮아요. 저장할 때 비율에 맞춰 100%로 맞춰요.</p>'+
+  '<div class="btns" style="justify-content:flex-start"><button class="btn" style="padding:6px 16px;font-size:16px" onclick="tForgeSave()">💾 설정 저장</button></div></details>'+
+  '<p class="sub">지금: 무기 최저 '+f.wm+'% · 장비 처음 '+f.ib.join('/')+'% · 재료 1개 +'+f.mb.join('/')+'% (최대 '+f.mx+'개) · 높은 장비 재료 효과 '+f.tm.join('/')+'%, 강화 1당 −'+f.ld+'% · 비용 ×'+f.gm+' · 시련 '+f.gq+'문제 중 '+f.gn+'개 · 황금 상자 미스터리 '+f.gw[4]+'%</p></div>'}
+window.tForgePre=function(k){var f=tFc(TDATA.cfg);tSave({forge:JSON.stringify(Object.assign(f,FPRE[k],{all:0}))})};
 window.tForgeAll=function(v){var f=tFc(TDATA.cfg);f.all=v?1:0;tSave({forge:JSON.stringify(f)})};
-window.tForgeSave=function(){var g=function(id,mn,mx){var v=parseFloat(($('#'+id)||{}).value);if(isNaN(v))v=mn;return Math.max(mn,Math.min(mx,v))},f=tFc(TDATA.cfg);
- var o={wd:g('f_wd',1,40),wm:g('f_wm',5,100),ib:[0,1,2,3,4].map(function(r){return g('f_ib'+r,1,100)}),id:g('f_id',0,30),im:g('f_im',1,100),mb:[0,1,2,3,4].map(function(r){return g('f_mb'+r,0,100)}),gm:Math.round(g('f_gm',.1,5)*10)/10,all:f.all||0};tSave({forge:JSON.stringify(o)})};
+window.tForgeSave=function(){var g=function(id,mn,mx){var v=parseFloat(($('#'+id)||{}).value);if(isNaN(v))v=mn;return Math.max(mn,Math.min(mx,v))},f=tFc(TDATA.cfg),
+  norm=function(p){var a=[0,1,2,3,4].map(function(r){return g(p+r,0,100)}),t=a.reduce(function(x,y){return x+y},0);if(t<=0)return null;return a.map(function(x){return Math.round(x/t*1000)/10})};
+ var o={wd:g('f_wd',0,50),wm:g('f_wm',1,100),ib:[0,1,2,3,4].map(function(r){return g('f_ib'+r,1,100)}),id:g('f_id',0,50),im:g('f_im',1,100),el:g('f_el',1,100),mb:[0,1,2,3,4].map(function(r){return g('f_mb'+r,0,100)}),mx:Math.round(g('f_mx',1,50)),req:($('#f_req')&&$('#f_req').checked)?1:0,gm:Math.round(g('f_gm',0,10)*10)/10,gq:Math.round(g('f_gq',1,20)),gn:0,all:f.all||0,tm:[0,1,2,3,4].map(function(r){return g('f_tm'+r,0,200)}),ld:g('f_ld',0,50),wld:Math.round(g('f_wld',0,20)*10)/10,lm:g('f_lm',0,100)};
+ o.gn=Math.min(o.gq,Math.round(g('f_gn',1,20)));['bw','gw','e1','e2'].forEach(function(k){o[k]=norm('f_'+k)||f[k]});tSave({forge:JSON.stringify(o)})};
 function tSave(x){mRun('adminSet',TPIN,x).then(function(r){if(r&&r.ok){TDATA.cfg=r.cfg;CFGM=r.cfg;SFX.ok();toast('저장했어요. 학생 화면에는 2분 안에 바뀌어요');drawT()}else toast('저장하지 못했어요')})}
 /* ===== 📚 출처 ===== */
 function srcHTML(forT,only){
@@ -3339,8 +3368,8 @@ function fN(){if(!S.eq)S.eq={helm:'',armor:'',acc:''};if(!S.inv)S.inv={};if(!S.e
 function btxt(b){var o=[];if(b.atk)o.push('공격력 +'+Math.round(b.atk*100)+'%');if(b.hp)o.push('체력 +'+Math.round(b.hp*100)+'%');if(b.gold)o.push('골드 +'+Math.round(b.gold*100)+'%');if(b.time)o.push('제한시간 +'+b.time+'초');return o.join(' · ')}
 /* 장비 강화: 강화 1번마다 그 장비 능력이 10%씩 세져요 */
 function eqLv(id){return (S&&S.eql&&S.eql[id])||0}
-function eqMul(id){return 1+.1*eqLv(id)}
-function eqCost(e){return Math.max(1,Math.round((e.r+1)*100*(eqLv(e.id)+1)*fc().gm))}
+function eqMul(id){return 1+(fc().el/100)*eqLv(id)}
+function eqCost(e){return Math.max(0,Math.round((e.r+1)*100*(eqLv(e.id)+1)*fc().gm))}
 function btxtE(e){var m=eqMul(e.id),b={};Object.keys(e.b).forEach(function(k){b[k]=k==='time'?Math.round(e.b[k]*m):e.b[k]*m});return btxt(b)}
 window.eqB=function(t){if(!S||!S.eq)return 0;var v=0;SLOTS.forEach(function(s){var e=EQM[S.eq[s]];if(e&&e.b[t])v+=t==='time'?Math.round(e.b[t]*eqMul(e.id)):e.b[t]*eqMul(e.id)});return v};
 var _pb=pb;window.pb=function(t){var v=_pb(t)+eqB(t);return t==='time'?Math.round(v):v};
@@ -3417,31 +3446,37 @@ var _forge=showForge;window.showForge=function(){_forge.apply(this,arguments);fN
    '</div>'+(GAS?'<div class="btns" style="margin-top:10px"><button class="btn giftbtn" onclick="tGiftOpen()">🎁 학생에게 선물 보내기</button></div>':'')+'</div>':'');
  m.parentNode.insertBefore(d,m)};
 window.giveItem=giveItem;window.eqLv=eqLv;
-window.eqUp=function(id){if(!S.inv[id])return;FTG=id;FMAT='';showForge();try{window.scrollTo({top:0,behavior:'smooth'})}catch(e){}};
+window.eqUp=function(id){if(!S.inv[id])return;FTG=id;FM={};showForge();try{window.scrollTo({top:0,behavior:'smooth'})}catch(e){}};
 window.btxtE=btxtE;window.RC=RC;window.RN=RN;
 /* 대장간 위쪽: 무엇을 강화할지 고르기 */
 window.forgeSel=function(){fN();var L=[['w',C().we,'무기','+'+S.wlv]];SLOTS.forEach(function(sl){var e=EQM[S.eq[sl]];if(e)L.push([e.id,e.ic,SLOT[sl],'+'+eqLv(e.id)])});
  if(FTG!=='w'&&S.inv[FTG]&&!L.some(function(x){return x[0]===FTG})){var e2=EQM[FTG];L.push([e2.id,e2.ic,'가방','+'+eqLv(e2.id)])}
- return '<div class="fsel">'+L.map(function(x){return '<button class="'+(FTG===x[0]?'on':'')+'" onclick="FTG=\''+x[0]+'\';FMAT=\'\';showForge()"><span class="fsi">'+x[1]+'</span><span>'+x[2]+'</span><small>'+x[3]+'</small></button>'}).join('')+'</div><p class="sub" style="text-align:center;margin:-2px 0 8px">가방의 다른 장비는 아래 「내 장비」에서 「강화」를 누르면 골라져요</p>'};
+ return '<div class="fsel">'+L.map(function(x){return '<button class="'+(FTG===x[0]?'on':'')+'" onclick="FTG=\''+x[0]+'\';FM={};showForge()"><span class="fsi">'+x[1]+'</span><span>'+x[2]+'</span><small>'+x[3]+'</small></button>'}).join('')+'</div><p class="sub" style="text-align:center;margin:-2px 0 8px">가방의 다른 장비는 아래 「내 장비」에서 「강화」를 누르면 골라져요</p>'};
 /* 재료 고르기: 남는 장비(🔧) 아무거나. 재료 등급이 높을수록 성공률이 많이 올라가요 */
-window.matPicker=function(need){fN();var ids=Object.keys(S.eqd).filter(function(k){return S.eqd[k]>0&&EQM[k]}).sort(function(a,b){return EQM[b].r-EQM[a].r});var f=fc();
- var h='<div class="mpick"><div class="mph">🔧 재료 '+(need?'<b style="color:#ffe06a">1개 필요</b>':'<small>(넣으면 성공률이 올라가요 · 넣지 않아도 돼요)</small>')+'</div>';
- if(!ids.length)return h+'<p class="sub" style="margin:4px 0">재료가 없어요. 이미 가진 장비를 뽑기나 몬스터에게서 또 얻으면 🔧 재료가 돼요.</p></div>';
- h+='<div class="mplist">'+(need?'':'<button class="'+(FMAT===''?'on':'')+'" onclick="FMAT=\'\';showForge()"><span class="mpi">✖️</span><small>안 넣기</small></button>')+ids.map(function(k){var e=EQM[k];return '<button class="'+(FMAT===k?'on':'')+'" style="--rc:'+RC[e.r]+'" onclick="FMAT=\''+k+'\';showForge()"><span class="mpi">'+e.ic+'</span><small>'+RN[e.r]+' ×'+S.eqd[k]+'</small><b>+'+f.mb[e.r]+'%</b></button>'}).join('')+'</div></div>';return h};
-window.forgeItemView=function(id){fN();var e=EQM[id],L=eqLv(id),base=eqBase(e),mb=matBonus(FMAT),rt=FMAT?Math.min(100,base+mb):0,c=eqCost(e),on=Object.values(S.eq).indexOf(id)>=0;
- var nx={};Object.keys(e.b).forEach(function(k){nx[k]=k==='time'?Math.round(e.b[k]*(1+.1*(L+1))):e.b[k]*(1+.1*(L+1))});
+window.matPicker=function(need){fN();fmClean();var f=fc(),eqd=Object.values(S.eq),cnt=fmCount(),bon=fmBonus();
+ var dup=Object.keys(S.eqd).filter(function(k){return S.eqd[k]>0&&EQM[k]}).sort(function(a,b){return EQM[b].r-EQM[a].r});
+ var bag=EQ.filter(function(e){return S.inv[e.id]&&eqd.indexOf(e.id)<0&&e.id!==FTG}).sort(function(a,b){return b.r-a.r});
+ var btn=function(k,e,lab,av){var n=FM[k]||0;return '<div class="mpw"><button class="'+(n?'on':'')+'" style="--rc:'+RC[e.r]+'" onclick="fmAdd(\''+k+'\')"><span class="mpi">'+e.ic+'</span><small>'+lab+'</small><b>+'+fmOne(e.r)+'%</b>'+(n?'<i class="mpn">'+n+'</i>':'')+'</button>'+(n?'<span class="mpm" onclick="fmSub(\''+k+'\')">－</span>':'')+'</div>'};
+ var h='<div class="mpick"><div class="mph">🔧 재료 <b style="color:#ffe06a">'+cnt+' / '+f.mx+'개</b> '+(need?'<small>· 1개 이상 필요 · 여러 개 넣을수록 성공률이 올라가요</small>':'<small>· 무기는 재료 없이도 돼요 · 넣을수록 성공률이 올라가요</small>')+(cnt?' <span class="mpclr" onclick="fmClear()">비우기</span>':'')+'</div>'+(Math.round(fmMul()*100)<100?'<p class="sub" style="margin:2px 0 4px;color:#ffd8a8">⚖️ 이 '+(FTG==='w'?'무기':'장비')+'는 '+(FTG==='w'?'강화 수치가':'등급·강화 수치가')+' 높아서 재료 효과가 <b>'+Math.round(fmMul()*100)+'%</b>만 들어가요</p>':'');
+ if(!dup.length&&!bag.length)return h+'<p class="sub" style="margin:4px 0">재료로 쓸 장비가 없어요. 끼지 않은 장비가 가방에 있거나, 같은 장비가 또 나오면 재료가 돼요.</p></div>';
+ h+='<div class="mplist">'+dup.map(function(k){return btn('d:'+k,EQM[k],'남는 것 ×'+S.eqd[k])}).join('')+bag.map(function(e){return btn('b:'+e.id,e,'가방 '+RN[e.r])}).join('')+'</div>'+
+  (cnt?'<p style="margin:6px 0 0;font-size:15px;color:#8ce99a">재료 '+cnt+'개 → 성공률 +'+bon+'%</p>':'<p class="sub" style="margin:4px 0 0">재료를 누를 때마다 1개씩 들어가요. 「－」로 뺄 수 있어요.</p>')+
+  (fmHasBag()?'<p class="sub" style="margin:4px 0;color:#ffa8a8">⚠️ 「가방」 표시 장비는 재료로 쓰면 가방에서 사라져요</p>':'')+'</div>';return h};
+window.forgeItemView=function(id){fN();var e=EQM[id],L=eqLv(id),base=eqBase(e),mb=fmBonus(),f=fc(),can=fmCount()>0||!f.req,rt=Math.min(100,base+mb),c=eqCost(e),on=Object.values(S.eq).indexOf(id)>=0;
+ var nx={};Object.keys(e.b).forEach(function(k){nx[k]=k==='time'?Math.round(e.b[k]*(1+(fc().el/100)*(L+1))):e.b[k]*(1+(fc().el/100)*(L+1))});
  app.innerHTML=hud()+'<div class="panel"><h2>🔨 대장간</h2>'+forgeSel()+
   '<div class="anvil fitem" id="anv" style="text-align:center"><div style="display:inline-block;width:120px">'+itemCard(e,false,true)+'</div></div>'+
   '<div class="wname" style="color:'+RC[e.r]+'">'+e.ic+' '+e.n+' +'+L+'</div>'+
-  '<div class="wstat">'+btxtE(e)+'<br>→ <b style="color:#5dff8f">'+btxt(nx)+'</b><br>'+(FMAT?'강화 성공 확률 <b style="color:#ffe06a">'+rt+'%</b> <small style="color:#8ce99a">(기본 '+base+'% + 재료 '+mb+'%)</small>':'기본 성공 확률 <b style="color:#ffe06a">'+base+'%</b> · 재료를 넣어야 강화할 수 있어요')+' · 비용 💰 '+c.toLocaleString()+(on?'':'<br><small class="dim">지금 끼고 있지 않은 장비예요</small>')+'</div>'+
-  matPicker(true)+
-  '<button class="btn" style="width:100%;font-size:22px" id="fbtn" onclick="doForgeItem()"'+(FMAT?'':' disabled')+'>강화하기!</button>'+
-  '<p style="color:#aab6ee;font-size:15px;text-align:center;margin:12px 0 0">실패해도 장비는 부서지지 않아요. 골드와 재료만 사라져요! 등급이 높은 장비일수록 강화가 어려워요.</p></div>'+menu('forge')};
-window.doForgeItem=function(){var id=FTG,e=EQM[id];if(!e||!S.inv[id])return;var mid=FMAT,c=eqCost(e);if(!mid||!(S.eqd[mid]>0))return toast('재료를 먼저 골라 주세요');if(S.gold<c){SFX.fail();return toast('골드가 부족해요! 💰'+c.toLocaleString()+' 필요해요')}
- var rt=Math.min(100,eqBase(e)+matBonus(mid));S.gold-=c;S.eqd[mid]--;if(!(S.eqd[mid]>0))FMAT='';save();var b=$('#fbtn');if(b)b.disabled=true;var a=$('#anv');if(a){a.innerHTML='<span style="font-size:80px">🔨</span>';a.classList.add('swing')}
+  '<div class="wstat">'+btxtE(e)+'<br>→ <b style="color:#5dff8f">'+btxt(nx)+'</b><br>'+(can?'강화 성공 확률 <b style="color:#ffe06a">'+rt+'%</b> <small style="color:#8ce99a">(기본 '+base+'%'+(mb?' + 재료 '+mb+'%':'')+')</small>':'기본 성공 확률 <b style="color:#ffe06a">'+base+'%</b> · 재료를 넣어야 강화할 수 있어요')+' · 비용 💰 '+c.toLocaleString()+(on?'':'<br><small class="dim">지금 끼고 있지 않은 장비예요</small>')+'</div>'+
+  matPicker(!!f.req)+
+  '<button class="btn" style="width:100%;font-size:22px" id="fbtn" onclick="doForgeItem()"'+(can?'':' disabled')+'>강화하기!</button>'+
+  '<p style="color:#aab6ee;font-size:15px;text-align:center;margin:12px 0 0">실패해도 장비는 부서지지 않아요. 골드와 재료만 사라져요! 등급이 높은 장비일수록 강화가 어려워요. 강화 1번마다 능력이 '+f.el+'%씩 세져요.</p></div>'+menu('forge')};
+window.doForgeItem=function(){var id=FTG,e=EQM[id];if(!e||!S.inv[id])return;var f=fc(),mid=fmCount(),c=eqCost(e);if(!mid&&f.req)return toast('재료를 먼저 골라 주세요');if(S.gold<c){SFX.fail();return toast('골드가 부족해요! 💰'+c.toLocaleString()+' 필요해요')}
+ if(fmHasBag()&&!window._mconf){return modal('<h3>🔧 재료로 쓸까요?</h3><p>'+Object.keys(FM).filter(function(k){return /^b:/.test(k)}).map(matName).join(', ')+'<br>가방에 있는 장비가 재료로 쓰여서 사라져요.<br>성공률 +'+fmBonus()+'%</p><div class="btns"><button class="btn gray" onclick="closeModal()">취소</button><button class="btn" onclick="closeModal();window._mconf=1;doForgeItem();window._mconf=0">쓸게요</button></div>')}
+ var rt=Math.min(100,eqBase(e)+fmBonus());S.gold-=c;fmUseAll();save();var b=$('#fbtn');if(b)b.disabled=true;var a=$('#anv');if(a){a.innerHTML='<span style="font-size:80px">🔨</span>';a.classList.add('swing')}
  [0,250,500,750].forEach(function(t){setTimeout(SFX.clang,t)});
  setTimeout(function(){var ok=Math.random()*100<rt;if(ok){S.eql[id]=eqLv(id)+1;save();SFX.lvup();sparks(18)}else SFX.fail();showForge();
-  modal(ok?'<h3>✨ 강화 성공!</h3><div style="width:160px;margin:6px auto">'+itemCard(e,true,true)+'</div><p><b style="color:#ffe06a;font-size:22px">'+e.ic+' '+e.n+' +'+eqLv(id)+'</b><br>'+btxtE(e)+'</p><div class="btns"><button class="btn" onclick="closeModal()">좋아요!</button></div>':'<h3>💥 강화 실패…</h3><div style="font-size:70px">😭</div><p>재료 1개와 골드를 썼어요.<br>다음엔 꼭 성공할 거예요!</p><div class="btns"><button class="btn gray" onclick="closeModal()">다시 도전</button></div>')},1000)};
+  modal(ok?'<h3>✨ 강화 성공!</h3><div style="width:160px;margin:6px auto">'+itemCard(e,true,true)+'</div><p><b style="color:#ffe06a;font-size:22px">'+e.ic+' '+e.n+' +'+eqLv(id)+'</b><br>'+btxtE(e)+'</p><div class="btns"><button class="btn" onclick="closeModal()">좋아요!</button></div>':'<h3>💥 강화 실패…</h3><div style="font-size:70px">😭</div><p>재료 '+mid+'개와 골드를 썼어요.<br>다음엔 꼭 성공할 거예요!</p><div class="btns"><button class="btn gray" onclick="closeModal()">다시 도전</button></div>')},1000)};
 window.eqToggle=function(id){fN();var e=EQM[id];if(!e||!S.inv[id])return;S.eq[e.s]=S.eq[e.s]===id?'':id;clearHeroCache();SFX.ok();save();showForge();setTimeout(function(){var p=document.querySelectorAll('#app .panel');if(p[1])p[1].scrollIntoView({block:'start'})},30)};
 /* ===== 🎁 친구에게 선물 ===== */
 var GB=null,GSEL='',GTO='',GQ=[],GCHK=0;
@@ -3522,7 +3557,8 @@ var _gMap=window.showMap;window.showMap=function(){_gMap.apply(this,arguments);s
 
 /* ---------- 상점: 뽑기 상자 ---------- */
 var BOX={box:{n:'보물상자',p:300,w:[60,30,9,0.9,0.1],ic:'🧰'},gold:{n:'황금 상자',p:900,w:[20,45,28,6.5,0.5],ic:'💛'}};
-var _shop=showShop;window.showShop=function(){_shop.apply(this,arguments);fN();var m=document.querySelector('#app .menu');if(!m)return;var d=document.createElement('div');d.className='panel';
+window.syncOdds=function(){try{var f=fc(),ok=function(a){return Array.isArray(a)&&a.length===5&&a.every(function(x){return typeof x==='number'&&x>=0})};if(ok(f.bw))BOX.box.w=f.bw.slice();if(ok(f.gw))BOX.gold.w=f.gw.slice();if(ok(f.e1))EGGS[0].odds=f.e1.slice();if(ok(f.e2))EGGS[1].odds=f.e2.slice()}catch(e){}};
+var _shop=showShop;window.showShop=function(){syncOdds();_shop.apply(this,arguments);fN();var m=document.querySelector('#app .menu');if(!m)return;var d=document.createElement('div');d.className='panel';
  d.innerHTML='<h2>🎁 장비 뽑기</h2>'+(S.freeBox?'<div class="freebox">🌈 무지개 상자가 <b>'+S.freeBox+'개</b> 있어요! <button class="btn" onclick="gacha(\'free\')">1개 열기</button>'+(S.freeBox>1?'<button class="btn" onclick="gacha10(\'free\')">'+Math.min(10,S.freeBox)+'개 한꺼번에</button>':'')+'</div>':'')+'<div class="gboxes">'+Object.keys(BOX).map(function(k){var b=BOX[k];return '<div class="gbx '+k+'"><div class="gch">'+chestSVG(k==='gold')+'</div><b>'+b.n+'</b><div class="godds">'+b.w.map(function(x,i){return '<span style="color:'+RC[i]+'">'+(i===4?'❓':'')+RN[i]+' '+x+'%</span>'}).join(' ')+'</div><div class="gbtns"><button class="btn" onclick="gacha(\''+k+'\')">1번<br><small>💰 '+b.p+'</small></button><button class="btn g10b" onclick="gacha10(\''+k+'\')">10번<br><small>💰 '+(b.p*10).toLocaleString()+'</small></button></div></div>'}).join('')+'</div><p class="sub" style="text-align:center">이미 가진 장비가 나오면 🔧 강화 재료가 돼요. 대장간 「내 장비」에서 재료로 장비를 강화할 수 있어요.</p>'+myShelf();
  m.parentNode.insertBefore(d,m)};
 /* ❓ 미스터리 진열장: 가진 것만 정체가 보여요 */
@@ -3531,14 +3567,14 @@ function myShelf(){var L=EQ.filter(function(e){return e.r===4});var got=L.filter
 window.gMysteryBanner=function(){var d=document.createElement('div');d.className='glegend gmyst';d.innerHTML=window._gKind==='pet'?'❓ 미스터리 펫…?!':'❓ 미스터리 장비…?!';document.body.appendChild(d);var dk=document.createElement('div');dk.className='mydark';document.body.appendChild(dk);setTimeout(function(){d.remove()},2300);setTimeout(function(){dk.remove()},900);
  [0,180,360,540,800,1000].forEach(function(t,i){setTimeout(function(){tone([220,207,196,185,880,1320][i],i<4?.22:.35,i<4?'sawtooth':'triangle',.06)},t)})};
 function chestSVG(gold){var c1=gold?'#ffe066':'#e0a96d',c2=gold?'#f59f00':'#a0602d',c3=gold?'#b8860b':'#6b3a15';return '<svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="cb'+(gold?1:0)+'" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="'+c1+'"/><stop offset=".5" stop-color="'+c2+'"/><stop offset="1" stop-color="'+c3+'"/></linearGradient></defs><ellipse cx="50" cy="90" rx="34" ry="5" fill="rgba(0,0,0,.25)"/><path d="M14,52 L86,52 L84,86 Q50,90 16,86Z" fill="url(#cb'+(gold?1:0)+')" '+ST+'/><path d="M12,50 Q12,18 50,16 Q88,18 88,50Z" fill="url(#cb'+(gold?1:0)+')" '+ST+'/><path d="M12,50 L88,50" stroke="'+(gold?'#fff3bf':'#ffd43b')+'" stroke-width="5"/><path d="M26,50 Q26,24 34,20 M74,50 Q74,24 66,20 M26,54 L26,86 M74,54 L74,86" stroke="'+(gold?'#fff3bf':'#ffd43b')+'" stroke-width="4" fill="none"/><rect x="43" y="44" width="14" height="16" rx="3" fill="#ffd43b" '+ST+'/><circle cx="50" cy="51" r="2.4" fill="'+O+'"/><path d="M22,30 Q30,22 40,20" stroke="#fff" stroke-width="2.4" opacity=".55" fill="none" stroke-linecap="round"/></svg>'}
-window.gacha=function(k){fN();window._gKind='eq';var b=k==='free'?BOX.gold:BOX[k];if(k==='free'){if(S.freeBox<1)return;S.freeBox--}else{if(S.gold<b.p){SFX.fail();return toast('골드가 부족해요!')}S.gold-=b.p}
+window.gacha=function(k){fN();syncOdds();window._gKind='eq';var b=k==='free'?BOX.gold:BOX[k];if(k==='free'){if(S.freeBox<1)return;S.freeBox--}else{if(S.gold<b.p){SFX.fail();return toast('골드가 부족해요!')}S.gold-=b.p}
  var r=rollR(b.w),it=randItem(r),res=giveItem(it);save();try{showShop()}catch(e){}
  modal('<div class="gopen r'+r+'"><div class="grays"></div><div class="gch shake">'+chestSVG(k!=='box')+'</div><div class="greveal">'+itemCard(it,true)+'<p>'+(res.dup?'이미 가진 장비라서 <b>🔧 강화 재료</b>가 됐어요 (모두 '+res.mat+'개)<br><small>대장간 「내 장비」에서 강화할 수 있어요</small>':(S.eq[it.s]===it.id?'바로 장착했어요!':'대장간 「내 장비」에서 낄 수 있어요'))+'</p><div class="btns"><button class="btn" onclick="closeModal();showShop()">확인</button></div></div></div>');
  [0,150,300,450,600].forEach(function(t){setTimeout(function(){tone(300+t,.08,'square',.04)},t)});
  setTimeout(function(){var g=document.querySelector('.gopen');if(!g)return;g.classList.add('open');tone(r>=2?880:660,.35,'sine',.07);if(r>=1)impactFlash(RC[r],Math.min(3,r));if(r===3)gLegendBanner();if(r===4)gMysteryBanner();if(r>=2)confetti(r===3?50:25)},900)};
 /* 10번 뽑기: 10개가 한꺼번에 나와요 */
 function gLegendBanner(){const d=document.createElement('div');d.className='glegend';d.innerHTML=window._gKind==='pet'?'🌟 전설 펫 등장! 🌟':'🌟 전설 장비 등장! 🌟';document.body.appendChild(d);setTimeout(()=>d.remove(),1900);[0,120,240,360,520].forEach((t,i)=>setTimeout(()=>tone([523,659,784,1047,1319][i],.25,'triangle',.07),t))}
-window.gacha10=function(k){fN();window._gKind='eq';var free=k==='free',b=free?BOX.gold:BOX[k],n=free?Math.min(10,S.freeBox):10;if(n<1)return;
+window.gacha10=function(k){fN();syncOdds();window._gKind='eq';var free=k==='free',b=free?BOX.gold:BOX[k],n=free?Math.min(10,S.freeBox):10;if(n<1)return;
  if(free)S.freeBox-=n;else{if(S.gold<b.p*10){SFX.fail();return toast('골드가 부족해요! 10번 뽑기는 💰'+(b.p*10).toLocaleString()+'이 필요해요')}S.gold-=b.p*10}
  var got=[],gs=0,nw=0,mx=0;for(var i=0;i<n;i++){var r=rollR(b.w),it=randItem(r),res=giveItem(it);got.push({it:it,res:res});if(res.dup)gs+=res.g;else nw++;if(r>mx)mx=r}save();try{showShop()}catch(e){}
  var cards=got.map(function(x,i){var e=x.it;return '<div class="g1 r'+e.r+'" style="--rc:'+RC[e.r]+'" onclick="gPeek('+i+')"><div class="gic">'+e.ic+'</div><div class="gnm">'+e.n+'</div><div class="gtg">'+(x.res.dup?'🔧재료':'<b>NEW</b>')+'</div></div>'}).join('');
