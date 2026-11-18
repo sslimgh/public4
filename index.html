@@ -2031,12 +2031,12 @@ function fmMul(){const f=fc();let t=100,L=0,d=0;if(FTG==='w'||!EQM[FTG]){L=S.wlv
 function fmOne(r){return Math.round((fc().mb[r]||0)*fmMul()*10)/10}
 function fmBonus(){fmClean();let b=0;const m=fmMul();fmList().forEach(k=>{const e=EQM[matId(k)];if(e)b+=(fc().mb[e.r]||0)*m});return Math.round(b)}
 window.fmMul=fmMul;window.fmOne=fmOne
-function fmUseAll(){fmList().forEach(k=>matUse(k));FM={}}
+function fmUseAll(){const L=fmList();L.filter(k=>/^d:/.test(k)).concat(L.filter(k=>/^b:/.test(k))).forEach(k=>matUse(k));FM={}}
 function fmHasBag(){return Object.keys(FM).some(k=>/^b:/.test(k))}
 window.fmAdd=function(k){const f=fc();if(fmCount()>=f.mx){toast('재료는 한 번에 '+f.mx+'개까지 넣을 수 있어요');return}if((FM[k]||0)>=fmAvail(k)){toast('그 재료는 더 없어요');return}FM[k]=(FM[k]||0)+1;showForge()};
 window.fmSub=function(k){if(FM[k]>0){FM[k]--;if(!FM[k])delete FM[k]}showForge()};
 window.fmClear=function(){FM={};showForge()};
-function matUse(k){const id=matId(k);if(/^b:/.test(k)){delete S.inv[id];if(S.eql)delete S.eql[id];if(S.eqd&&S.eqd[id]>0){S.eqd[id]--;S.inv[id]=1}}else{S.eqd[id]--}}
+function matUse(k){const id=matId(k);if(/^b:/.test(k)){delete S.inv[id];if(S.eql)delete S.eql[id];if(S.eqd&&S.eqd[id]>0){S.eqd[id]--;S.inv[id]=1}}else if(S.eqd&&S.eqd[id]>0){S.eqd[id]--}}
 function matName(k){const e=EQM[matId(k)];return e?e.ic+' '+e.n:''}
 var FTG='w',FMAT='';
 function isGate(){return S.wlv%50===49}
@@ -2925,7 +2925,7 @@ window.clearStage=function(){mNorm();var first=!S.clear[F.i];_clearStage();if(fi
 
 /* ---------- 선생님이 연 스테이지만 ---------- */
 function mOpenOK(i){if(isT())return true;var s=STAGES[i];if(s&&s.w==='t')return s.lv<=(CFGM.openT==null?6:CFGM.openT);if(s&&s.w==='f')return s.lv<=(CFGM.openF==null?7:CFGM.openF);if(s&&s.w==='d')return s.lv<=(CFGM.openD==null?0:CFGM.openD);return i<CFGM.open}
-var APPV='3.3',APPD='2026-11-18';
+var APPV='3.4',APPD='2026-11-18';
 /* 오른쪽 위 버전 표시: 화면 버전 · 업데이트 날짜 (서버 버전이 다르면 빨갛게) */
 function verBadge(srv){var b=document.getElementById('verb');if(!b){b=document.createElement('div');b.id='verb';b.onclick=function(){var sv=b.dataset.srv||'-';modal('<h3>🔖 게임 버전</h3><p style="font-size:18px;line-height:1.8">화면 버전: <b>v'+APPV+'</b><br>업데이트한 날: <b>'+APPD.replace(/-/g,'. ')+'.</b><br>서버(Code.gs) 버전: <b>'+(sv==='-'?'확인 중':'v'+sv)+'</b>'+(window.IS_APP?'<br>들어온 곳: <b>앱(GitHub)</b>':(GAS?'<br>들어온 곳: <b>웹(구글)</b>':''))+'</p>'+(sv!=='-'&&sv!==APPV?'<p style="color:#ff8787">⚠️ 화면과 서버 버전이 달라요. 앱을 완전히 껐다가 다시 열거나, 선생님이 파일을 모두 바꿨는지 확인해 주세요.</p>':'<p class="sub">화면과 서버 버전이 같아요. 최신이에요!</p>')+'<div class="btns"><button class="btn" onclick="closeModal()">확인</button></div>')};document.body.appendChild(b)}
  if(srv)b.dataset.srv=srv;var bad=b.dataset.srv&&b.dataset.srv!==APPV;b.className=bad?'bad':'';var d=APPD.slice(5).replace('-','/').replace(/^0/,'').replace('/0','/');b.textContent=(bad?'⚠️ ':'')+'v'+APPV+' · '+d+' 업데이트'}
@@ -3459,7 +3459,7 @@ window.matPicker=function(need){fN();fmClean();var f=fc(),eqd=Object.values(S.eq
  var btn=function(k,e,lab,av){var n=FM[k]||0;return '<div class="mpw"><button class="'+(n?'on':'')+'" style="--rc:'+RC[e.r]+'" onclick="fmAdd(\''+k+'\')"><span class="mpi">'+e.ic+'</span><small>'+lab+'</small><b>+'+fmOne(e.r)+'%</b>'+(n?'<i class="mpn">'+n+'</i>':'')+'</button>'+(n?'<span class="mpm" onclick="fmSub(\''+k+'\')">－</span>':'')+'</div>'};
  var h='<div class="mpick"><div class="mph">🔧 재료 <b style="color:#ffe06a">'+cnt+' / '+f.mx+'개</b> '+(need?'<small>· 1개 이상 필요 · 여러 개 넣을수록 성공률이 올라가요</small>':'<small>· 무기는 재료 없이도 돼요 · 넣을수록 성공률이 올라가요</small>')+(cnt?' <span class="mpclr" onclick="fmClear()">비우기</span>':'')+'</div>'+(Math.round(fmMul()*100)<100?'<p class="sub" style="margin:2px 0 4px;color:#ffd8a8">⚖️ 이 '+(FTG==='w'?'무기':'장비')+'는 '+(FTG==='w'?'강화 수치가':'등급·강화 수치가')+' 높아서 재료 효과가 <b>'+Math.round(fmMul()*100)+'%</b>만 들어가요</p>':'');
  if(!dup.length&&!bag.length)return h+'<p class="sub" style="margin:4px 0">재료로 쓸 장비가 없어요. 끼지 않은 장비가 가방에 있거나, 같은 장비가 또 나오면 재료가 돼요.</p></div>';
- h+='<div class="mplist">'+dup.map(function(k){return btn('d:'+k,EQM[k],'남는 것 ×'+S.eqd[k])}).join('')+bag.map(function(e){return btn('b:'+e.id,e,'가방 '+RN[e.r])}).join('')+'</div>'+
+ h+='<div class="mplist">'+dup.map(function(k){return btn('d:'+k,EQM[k],'남는 것 ×'+S.eqd[k])}).join('')+bag.map(function(e){return btn('b:'+e.id,e,'가방 '+RN[e.r]+(eqLv(e.id)?' +'+eqLv(e.id):''))}).join('')+'</div>'+
   (cnt?'<p style="margin:6px 0 0;font-size:15px;color:#8ce99a">재료 '+cnt+'개 → 성공률 +'+bon+'%</p>':'<p class="sub" style="margin:4px 0 0">재료를 누를 때마다 1개씩 들어가요. 「－」로 뺄 수 있어요.</p>')+
   (fmHasBag()?'<p class="sub" style="margin:4px 0;color:#ffa8a8">⚠️ 「가방」 표시 장비는 재료로 쓰면 가방에서 사라져요</p>':'')+'</div>';return h};
 window.forgeItemView=function(id){fN();var e=EQM[id],L=eqLv(id),base=eqBase(e),mb=fmBonus(),f=fc(),can=fmCount()>0||!f.req,rt=Math.min(100,base+mb),c=eqCost(e),on=Object.values(S.eq).indexOf(id)>=0;
