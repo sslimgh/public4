@@ -680,6 +680,9 @@ body.ishake2 #app,body.ishake2 .modal{animation:ishake .6s linear}
 .crstd{margin-top:6px;font-size:15px;line-height:1.55}.crstd code{color:#74c0fc;font-family:inherit;white-space:nowrap}.crnote{font-size:15px;color:#aab6ee;line-height:1.6;margin:8px 2px;word-break:keep-all}
 @media(min-width:760px){.crtabs button{flex:1 1 0}}
 @media(max-width:560px){.srct,.srct tbody,.srct tr,.srct td{display:block;width:auto!important}.srct tr:first-child{display:none}.srct td:first-child{background:rgba(255,255,255,.06);border-radius:8px;padding:4px 8px;margin-top:6px}.srct td{border:0!important}}
+/* 버전 표시 */
+#verb{position:fixed;top:2px;right:4px;z-index:9500;font-size:10px;line-height:1;padding:3px 6px;border-radius:8px;background:rgba(10,14,50,.7);color:#aab6ee;border:1px solid rgba(170,182,238,.35);cursor:pointer;font-family:inherit;pointer-events:auto;letter-spacing:-.2px}
+#verb.bad{background:#c92a2a;color:#fff;border-color:#ffc9c9;animation:gatepulse 1.4s ease-in-out infinite}
 /* 그래픽 보강 */
 .arena .amb{position:absolute;inset:0;z-index:1;pointer-events:none;overflow:hidden}.arena .amb i{position:absolute;border-radius:50%;opacity:0;filter:blur(.5px);box-shadow:0 0 8px currentColor;animation:ambf linear infinite}
 @keyframes ambf{0%{transform:translateY(0) translateX(0);opacity:0}15%{opacity:.8}50%{transform:translateY(-70px) translateX(12px)}85%{opacity:.6}100%{transform:translateY(-150px) translateX(-8px);opacity:0}}
@@ -2888,8 +2891,12 @@ window.clearStage=function(){mNorm();var first=!S.clear[F.i];_clearStage();if(fi
 
 /* ---------- 선생님이 연 스테이지만 ---------- */
 function mOpenOK(i){if(isT())return true;var s=STAGES[i];if(s&&s.w==='t')return s.lv<=(CFGM.openT==null?6:CFGM.openT);if(s&&s.w==='f')return s.lv<=(CFGM.openF==null?7:CFGM.openF);if(s&&s.w==='d')return s.lv<=(CFGM.openD==null?0:CFGM.openD);return i<CFGM.open}
-var APPV='2.8';
-function mLoadCfg(){return mRun('getConfig').then(function(c){if(c&&c.open)CFGM=Object.assign({openT:6,openF:7,openD:0,bossD:1},c);if(c&&c.appv&&c.appv!==APPV)appStale(c.appv)})}
+var APPV='2.9',APPD='2026-11-18';
+/* 오른쪽 위 버전 표시: 화면 버전 · 업데이트 날짜 (서버 버전이 다르면 빨갛게) */
+function verBadge(srv){var b=document.getElementById('verb');if(!b){b=document.createElement('div');b.id='verb';b.onclick=function(){var sv=b.dataset.srv||'-';modal('<h3>🔖 게임 버전</h3><p style="font-size:18px;line-height:1.8">화면 버전: <b>v'+APPV+'</b><br>업데이트한 날: <b>'+APPD.replace(/-/g,'. ')+'.</b><br>서버(Code.gs) 버전: <b>'+(sv==='-'?'확인 중':'v'+sv)+'</b>'+(window.IS_APP?'<br>들어온 곳: <b>앱(GitHub)</b>':(GAS?'<br>들어온 곳: <b>웹(구글)</b>':''))+'</p>'+(sv!=='-'&&sv!==APPV?'<p style="color:#ff8787">⚠️ 화면과 서버 버전이 달라요. 앱을 완전히 껐다가 다시 열거나, 선생님이 파일을 모두 바꿨는지 확인해 주세요.</p>':'<p class="sub">화면과 서버 버전이 같아요. 최신이에요!</p>')+'<div class="btns"><button class="btn" onclick="closeModal()">확인</button></div>')};document.body.appendChild(b)}
+ if(srv)b.dataset.srv=srv;var bad=b.dataset.srv&&b.dataset.srv!==APPV;b.className=bad?'bad':'';var d=APPD.slice(5).replace('-','/').replace(/^0/,'').replace('/0','/');b.textContent=(bad?'⚠️ ':'')+'v'+APPV+' · '+d+' 업데이트'}
+document.addEventListener('DOMContentLoaded',function(){verBadge()});setTimeout(function(){verBadge()},0);
+function mLoadCfg(){return mRun('getConfig').then(function(c){if(c&&c.open)CFGM=Object.assign({openT:6,openF:7,openD:0,bossD:1},c);if(c&&c.appv){verBadge(c.appv);if(c.appv!==APPV)appStale(c.appv)}})}
 /* 앱(GitHub)에 예전 화면이 남아 있으면 새 버전을 다시 받아요 */
 function appStale(v){var k='appv_try_'+v;try{if(sessionStorage.getItem(k))return toast('🔄 게임이 새 버전('+v+')으로 바뀌었어요. 앱을 완전히 껐다가 다시 열어 주세요',6000);sessionStorage.setItem(k,'1')}catch(e){}
  if(!window.IS_APP)return toast('🔄 게임이 새로 바뀌었어요. 새로고침해 주세요',6000);
