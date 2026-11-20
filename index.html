@@ -2943,7 +2943,7 @@ window.clearStage=function(){mNorm();var first=!S.clear[F.i];_clearStage();if(fi
 
 /* ---------- 선생님이 연 스테이지만 ---------- */
 function mOpenOK(i){if(isT())return true;var s=STAGES[i];if(s&&s.w==='t')return s.lv<=(CFGM.openT==null?6:CFGM.openT);if(s&&s.w==='f')return s.lv<=(CFGM.openF==null?7:CFGM.openF);if(s&&s.w==='d')return s.lv<=(CFGM.openD==null?0:CFGM.openD);return i<CFGM.open}
-var APPV='3.8',APPD='2026-11-20';
+var APPV='3.9',APPD='2026-11-20';
 /* 오른쪽 위 버전 표시: 화면 버전 · 업데이트 날짜 (서버 버전이 다르면 빨갛게) */
 function verBadge(srv){var b=document.getElementById('verb');if(!b){b=document.createElement('div');b.id='verb';b.onclick=function(){var sv=b.dataset.srv||'-';modal('<h3>🔖 게임 버전</h3><p style="font-size:18px;line-height:1.8">화면 버전: <b>v'+APPV+'</b><br>업데이트한 날: <b>'+APPD.replace(/-/g,'. ')+'.</b><br>서버(Code.gs) 버전: <b>'+(sv==='-'?'확인 중':'v'+sv)+'</b>'+(window.IS_APP?'<br>들어온 곳: <b>앱(GitHub)</b>':(GAS?'<br>들어온 곳: <b>웹(구글)</b>':''))+'</p>'+(sv!=='-'&&sv!==APPV?'<p style="color:#ff8787">⚠️ 화면과 서버 버전이 달라요. 앱을 완전히 껐다가 다시 열거나, 선생님이 파일을 모두 바꿨는지 확인해 주세요.</p>':'<p class="sub">화면과 서버 버전이 같아요. 최신이에요!</p>')+'<div class="btns"><button class="btn" onclick="closeModal()">확인</button></div>')};document.body.appendChild(b)}
  if(srv)b.dataset.srv=srv;var bad=b.dataset.srv&&b.dataset.srv!==APPV;b.className=bad?'bad':'';var d=APPD.slice(5).replace('-','/').replace(/^0/,'').replace('/0','/');b.textContent=(bad?'⚠️ ':'')+'v'+APPV+' · '+d+' 업데이트'}
@@ -3274,7 +3274,7 @@ window.tDetSheet=function(){if(!TDET)return;var ws=tWs(),today=TDET.today||ymd()
   var r=[s.name,s.lv||1,I.att,a14,Math.round(I.mins),Math.round(I.bmin),t,I.R,t?Math.round(I.R/t*100):''];ws.forEach(function(w){var x=I.W[w],n=x.r+x.w;r.push(n);r.push(n?Math.round(x.r/n*100):'')});r.push(bc,bp,s.last||'');return r});
  toast('시트에 정리하고 있어요…');mRun('adminDetailSheet',TPIN,head,rows).then(function(r){if(r&&r.ok){SFX.ok();modal('<h3>📄 시트에 정리했어요</h3><p>구글 시트의 「학생 상세 기록」 탭에 학생 '+rows.length+'명의 기록을 정리했어요.<br>엑셀로 내려받거나 한글 문서에 붙여 넣어 쓸 수 있어요.</p><div class="btns">'+(r.url?'<a class="btn" href="'+r.url+'" target="_blank">시트 열기</a>':'')+'<button class="btn gray" onclick="closeModal()">닫기</button></div>')}else toast('시트에 정리하지 못했어요')})};
 function drawT(){var d=TDATA,P=$('#tp');if(!P)return;var joined={};d.students.forEach(function(s){joined[s.name]=1});var notYet=(d.roster||[]).filter(function(n){return !joined[n]});
-  var tabs=[['prog','📊 학생 진도'],['det','📈 상세 기록'],['pw','🔒 비밀번호'],['gift','🎁 선물'],['src','📚 출처'],['prob','📒 많이 틀린 개념'],['guild','🛡️ 길드 관리'],['set','⚙️ 설정'],['exam','📝 평가'],['del','🗑 기록 지우기']];
+  var tabs=[['prog','📊 학생 진도'],['det','📈 상세 기록'],['pw','🔒 비밀번호'],['gift','🎁 선물'],['src','📚 출처'],['prob','📒 많이 틀린 개념'],['guild','🛡️ 길드 관리'],['set','⚙️ 설정'],['exam','📝 평가'],['edit','✏️ 기록 고치기'],['del','🗑 기록 지우기']];
   var h='<h2>👩‍🏫 선생님 화면'+(window.MCLS?' · '+esc(window.MCLS):'')+'</h2><p class="sub">학생 '+d.students.length+'명 · 길드 방식: '+(d.cfg.gmode==='free'?'학생이 만들기':'선생님이 정하기')+(notYet.length?' · 아직 안 들어온 학생 '+notYet.length+'명':'')+'</p><div class="ttabs">'+tabs.map(function(t){return '<button class="'+(TTAB===t[0]?'on':'')+'" onclick="TTAB=\''+t[0]+'\';drawT()">'+t[1]+'</button>'}).join('')+'<button onclick="TDET=null;TPW=null;TGF=null;mRun(\'adminData\',TPIN).then(function(x){if(x&&x.ok){TDATA=x;drawT();toast(\'새로 불러왔어요\')}})">🔄 새로고침</button></div>';
   var sorted=d.students.slice().sort(function(a,b){return (parseInt(a.name)||0)-(parseInt(b.name)||0)});
   if(TTAB==='prog'){h+='<div class="tscroll"><table class="ttab"><tr><th>번호·이름</th><th>길드</th><th>마지막 접속</th><th>직업·Lv</th><th>깬 스테이지</th><th>⭐</th><th>정답</th><th>정답률</th><th>이번 주 정답</th><th>출석</th></tr>'+
@@ -3299,6 +3299,7 @@ function drawT(){var d=TDATA,P=$('#tp');if(!P)return;var joined={};d.students.fo
     '<div class="row"><span style="width:150px">영토 전쟁</span><button class="btn red" onclick="if(confirm(\'영토를 모두 비우고 새 시즌을 시작할까요?\'))mRun(\'adminLandReset\',TPIN).then(function(r){toast(r&&r.ok?\'영토를 새로 시작했어요\':\'하지 못했어요\')})">🚩 영토 새로 시작</button><span class="sub" style="margin-left:8px">평소에는 매주 월요일에 저절로 새 시즌이 돼요</span></div>'+
     '<div class="row"><span style="width:150px">레이드 보스 체력</span><input id="trh" type="number" value="'+c.raid+'" style="width:110px;font-size:18px"> <button class="btn" onclick="tSave({raid:+$(\'#trh\').value})">저장</button><span class="sub" style="margin-left:8px">반 전체 정답 수만큼 공격해요</span></div>'}
   if(TTAB==='exam'){h+=tExamHTML()}
+  if(TTAB==='edit'){h+=tEditHTML()}
   if(TTAB==='del'){h+='<div class="gmis" style="border-color:#74c0fc;flex-wrap:wrap"><div style="flex:1;min-width:220px"><b>👩‍🏫 내 기록 초기화 (선생님 계정만)</b><div class="sub">선생님이 시험 삼아 하던 게임 기록만 처음으로 돌려요. 학생 기록은 그대로예요.</div></div><button class="btn blue" onclick="tMyReset()">내 기록 초기화</button></div><h3 style="margin:16px 0 6px;color:#ff8787">🧑‍🎓 학생 기록 초기화 <small style="color:#aab6ee">(세 번 확인해요)</small></h3><div class="gmis" style="border-color:#ff8787;flex-wrap:wrap"><div style="flex:1;min-width:220px"><b>🧹 모든 학생 기록 초기화</b><div class="sub">모든 학생의 레벨·골드·아이템·진도를 지워요. 학생 명단과 설정은 그대로예요.</div>'+'<label class="sub"><input type="checkbox" id="rs1" checked> 순위표 점수도</label> <label class="sub"><input type="checkbox" id="rs3" checked> 영토도</label> <label class="sub"><input type="checkbox" id="rs2"> 길드 구성도</label></div><button class="btn red" onclick="tResetAll()">모든 학생 초기화</button></div>'+'<p class="sub">한 명만 지울 때는 아래에서 골라요. 지운 학생은 레벨·골드·아이템이 모두 없어지고 처음부터 시작해요. 되돌릴 수 없어요.</p>'+sorted.map(function(s){return '<div class="gm"><span class="gn">'+esc(s.name)+'</span><span>Lv.'+s.lv+' · ⭐'+s.stars+'</span><button class="btn red" onclick="tDel(\''+esc(s.name)+'\')">지우기</button></div>'}).join('')}
   if(TTAB==='del'){var known={};(TDATA.students||[]).forEach(function(x){known[x.name]=1});var rn=(TDATA.recNames||[]).filter(function(x){return !known[x.name]});
     h+='<h3 style="margin-top:16px">🏆 순위표에만 남은 이름</h3><p class="sub">진도 기록은 없는데 순위표에 점수가 남아 있는 이름이에요. (예전 기록, 이름을 잘못 쓴 기록, 지운 학생의 기록)</p>'+(rn.length?rn.map(function(x){return '<div class="gm"><span class="gn">'+esc(x.name)+'</span><span>기록 '+x.n+'개</span><button class="btn red" style="padding:4px 12px" onclick="tRecDelName(\''+esc(x.name).replace(/'/g,'')+'\')">🗑 순위표에서 지우기</button></div>'}).join(''):'<p class="sub">없어요 👍</p>')}
@@ -3562,7 +3563,7 @@ function gBack(L,all){var mig=!S.gotB||typeof S.gotB!=='object';if(mig)S.gotB={}
  if(n||mig){save();mSync(true)}}
 /* 받은 선물 확인: 들어올 때와 지도 화면에서 (1분에 한 번) */
 function giftCheck(force){if(!GAS||!S.name||isT())return;if(!force&&Date.now()-GCHK<60000)return;GCHK=Date.now();
- mRun('giftBox',S.name,MPW).then(function(b){if(!b||!b.ok)return;GB=b;gBack(b.back,b.bk);gFix(b.got);try{exFix(b.ex);if(b.exLeft!=null){EXLEFT=b.exLeft;exBadge()}exRetry()}catch(e){}GQ=(b.inbox||[]).slice();giftNext()})}
+ mRun('giftBox',S.name,MPW).then(function(b){if(!b||!b.ok)return;GB=b;gBack(b.back,b.bk);gFix(b.got);try{exFix(b.ex);if(b.exLeft!=null){EXLEFT=b.exLeft;exBadge()}exRetry()}catch(e){}try{edFix(b.ed)}catch(e){}GQ=(b.inbox||[]).slice();giftNext()})}
 /* 받은 선물 다시 채우기: 받기를 눌렀는데 저장이 안 됐거나, 다른 기기의 예전 기록으로 덮였을 때 */
 function gFix(L){var first=!S.gotG||typeof S.gotG!=='object';if(first)S.gotG={};if(!L||!L.length){if(first){save()}return}var add=[],ch=first;
  L.forEach(function(g){if(S.gotG[g.id])return;S.gotG[g.id]=1;ch=true;if((g.t||0)<(S.rs||0))return;/* 선생님이 기록을 지우기 전 선물은 다시 넣지 않아요 */
@@ -3931,6 +3932,40 @@ var _monArt=window.monSVG;window.monSVG=function(k,c,boss){var A=ART;try{
  }catch(e){}return _monArt.apply(this,arguments)};
 var _heroArt=window.heroSVG;window.heroSVG=function(cls,f){var src=cls==='warrior'?ART.hero_warrior:cls==='mage'?ART.hero_mage:null;if(!src)return _heroArt.apply(this,arguments);return artTag(src,{y:1+([0,-2,2][f||0]||0),sh:20})};
 try{if(typeof IMGC==='object')Object.keys(IMGC).forEach(function(k){delete IMGC[k]});if(typeof clearHeroCache==='function')clearHeroCache()}catch(e){}
+</script>
+
+<script>
+/* ================= ✏️ 선생님이 고친 기록 받기 (골드·레벨·무한의 탑) ================= */
+function edFix(L){if(!L||!L.length||!S.name||isT()||window.GUEST)return;if(typeof BT!=='undefined'&&BT)return;/* 싸우는 중이면 끝난 뒤에 */
+ if(!S.edG||typeof S.edG!=='object')S.edG={};var todo=L.filter(function(x){return !S.edG[x.id]}).sort(function(a,b){return (a.t||0)-(b.t||0)});if(!todo.length)return;
+ var msg=[];todo.forEach(function(x){S.edG[x.id]=1;if(x.t&&x.t<(S.rs||0))return;
+  if(x.gold!=null&&!isNaN(x.gold)){S.gold=Math.max(0,x.gold);msg.push('💰 골드 '+S.gold.toLocaleString())}
+  if(x.lv!=null&&!isNaN(x.lv)){S.lv=Math.max(1,x.lv);S.exp=0;msg.push('⭐ 레벨 '+S.lv)}
+  if(x.best!=null&&!isNaN(x.best)){S.best=Math.max(0,x.best);msg.push('🗼 무한의 탑 '+S.best+'층')}
+  mRun('edDone',S.name,MPW,x.id)});
+ if(!msg.length){save();return}
+ try{dNote('✏️ 선생님이 기록을 고쳤어요: '+msg.join(', '))}catch(e){}try{if(typeof clearHeroCache==='function')clearHeroCache()}catch(e){}
+ save();mSync(true);toast('✏️ 선생님이 기록을 고쳤어요: '+msg.join(' · '),4000);
+ try{if(!document.getElementById('mbg')&&document.querySelector('.toprow'))showMap()}catch(e){}}
+/* ================= 선생님 화면: ✏️ 기록 고치기 ================= */
+var TED=null,TEDN='';
+function tEdLoad(){mRunL(30000,'adminEdits',TPIN).then(function(r){TED=r&&r.ok?r.list:[];if(TTAB==='edit')drawT()})}
+window.tEditHTML=function(){if(!TED){tEdLoad();return '<p>불러오고 있어요…</p>'}
+ var st=(TDATA.students||[]),cur=st.find(function(x){return x.name===TEDN})||null;
+ var h='<div class="gmis" style="flex-direction:column;align-items:stretch;gap:8px"><b>✏️ 학생 기록 고치기</b><div class="sub">바꿀 칸에만 숫자를 넣으세요. 빈 칸은 그대로 둬요. 학생이 게임을 하고 있으면 1분 안에, 아니면 다음에 들어올 때 바뀌어요.</div>'+
+  '<label>학생 <select id="ed_n" onchange="TEDN=this.value;drawT()" style="font-family:inherit;font-size:17px;padding:6px;border-radius:10px"><option value="">고르세요</option>'+st.map(function(x){return '<option'+(x.name===TEDN?' selected':'')+'>'+esc(x.name)+'</option>'}).join('')+'</select></label>'+
+  (cur?'<div class="sub">지금 시트 기록 · 💰 골드 <b>'+cur.gold.toLocaleString()+'</b> · ⭐ 레벨 <b>'+cur.lv+'</b> · 🗼 무한의 탑 <b>'+(cur.best||0)+'층</b> <small>(마지막 접속 '+esc(cur.last||'-')+')</small></div>':'')+
+  '<div class="tfg"><label>💰 골드 <input class="fnum" id="ed_g" type="number" min="0" max="9999999" placeholder="그대로" style="width:110px"></label><label>⭐ 레벨 <input class="fnum" id="ed_l" type="number" min="1" max="999" placeholder="그대로" style="width:90px"></label><label>🗼 무한의 탑 <input class="fnum" id="ed_b" type="number" min="0" max="9999" placeholder="그대로" style="width:90px">층</label></div>'+
+  '<div><button class="btn" onclick="tEdSave()">💾 고치기</button></div></div>';
+ h+='<h4>📋 고친 기록 <button class="btn gray" style="padding:4px 10px;font-size:14px" onclick="TED=null;drawT()">🔄</button></h4>'+(TED.length?'<div class="tscroll"><table class="ttab"><tr><th>시각</th><th>학생</th><th>골드</th><th>레벨</th><th>탑</th><th>상태</th></tr>'+TED.map(function(x){var v=function(n,u){return n==null||isNaN(n)?'-':Number(n).toLocaleString()+(u||'')};return '<tr><td>'+esc(x.at)+'</td><td style="text-align:left">'+esc(x.name)+'</td><td>'+v(x.gold)+'</td><td>'+v(x.lv)+'</td><td>'+v(x.best,'층')+'</td><td>'+(x.st==='대기'?'⏳ 학생이 들어오면 바뀌어요 <button class="btn gray" style="padding:2px 8px;font-size:13px" onclick="tEdCancel(\''+x.id+'\')">취소</button>':x.st==='적용됨'?'✅ 바뀌었어요 '+esc(x.done||''):esc(x.st))+'</td></tr>'}).join('')+'</table></div>':'<p class="sub">아직 고친 기록이 없어요</p>')+
+  '<p class="sub">기록은 구글 시트 「선생님 기록 고치기」에도 남아요. 「진도표」 시트의 숫자를 직접 바꾸면 학생이 저장할 때 원래대로 돌아가니, 꼭 여기서 고쳐 주세요.</p>';
+ return h};
+window.tEdSave=function(){var n=TEDN||($('#ed_n')||{}).value;if(!n)return toast('학생을 골라 주세요');var o={gold:$('#ed_g').value,lv:$('#ed_l').value,best:$('#ed_b').value};
+ if(o.gold===''&&o.lv===''&&o.best==='')return toast('바꿀 숫자를 하나 이상 넣어 주세요');
+ var t=[];if(o.gold!=='')t.push('💰 골드 '+Number(o.gold).toLocaleString());if(o.lv!=='')t.push('⭐ 레벨 '+o.lv);if(o.best!=='')t.push('🗼 무한의 탑 '+o.best+'층');window._edo=[n,o];
+ modal('<h3>✏️ 기록을 고칠까요?</h3><p><b>'+esc(n)+'</b><br>'+t.join('<br>')+'</p><p class="sub">학생이 게임 중이면 1분 안에, 아니면 다음에 들어올 때 바뀌어요.</p><div class="btns"><button class="btn gray" onclick="closeModal()">아니요</button><button class="btn" onclick="tEdGo()">고치기</button></div>')};
+window.tEdGo=function(){var a=window._edo;closeModal();mRun('adminEdit',TPIN,a[0],a[1]).then(function(r){if(r&&r.ok){TED=r.list;toast('✏️ 고치기를 보냈어요. 학생이 들어오면 바뀌어요',3000);drawT()}else toast('보내지 못했어요. 다시 해 주세요')})};
+window.tEdCancel=function(id){mRun('adminEditCancel',TPIN,id).then(function(r){if(r&&r.ok){TED=r.list;toast('취소했어요');drawT()}else toast(r&&r.why==='done'?'이미 바뀌어서 취소할 수 없어요':'취소하지 못했어요')})};
 </script>
 </body>
 </html>
