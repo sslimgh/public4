@@ -2930,13 +2930,13 @@ var SYNCF=0,SYNCWAIT=5000,SYNCOK=0;
 function mHash(t){var h=5381;for(var i=0;i<t.length;i++)h=((h<<5)+h+t.charCodeAt(i))|0;return h}
 var MREV=null,SYNCING=0,SYNCAGAIN=0,SENT=[];
 function mRevSet(nm,v){MREV=v;try{localStorage.setItem(PKEY(nm)+'#v',String(v))}catch(e){}}
-function mSync(force){if(!GAS||!S.name||isT()||window.GUEST)return;if(SYNCING){SYNCAGAIN=SYNCAGAIN||(force?2:1);return}var p=mSummary();var st=mStateStr();/* 장비·강화·펫처럼 점수표에 안 보이는 것만 바뀌어도 저장되게 전체 기록으로 비교해요 */var k=JSON.stringify(p)+'|'+mHash(st.replace(/"ts":\d+/,''));if(!force&&k===lastSyncKey)return;lastSyncKey=k;lastSyncAt=Date.now();p.state=st;var sts=S.ts||0,snm=S.name;if(MREV!=null){p.base=MREV;p.sts=sts;SENT.push(sts);if(SENT.length>30)SENT.shift()}SYNCING=1;mRun('saveProgress',p).then(function(r){SYNCING=0;var again=SYNCAGAIN;SYNCAGAIN=0;
+function mSync(force){if(!GAS||!S.name||isT()||window.GUEST)return;if(SYNCING){SYNCAGAIN=SYNCAGAIN||(force?2:1);return}var p=mSummary();var st=mStateStr();/* 장비·강화·펫처럼 점수표에 안 보이는 것만 바뀌어도 저장되게 전체 기록으로 비교해요 */var k=JSON.stringify(p)+'|'+mHash(st.replace(/"ts":\d+/,''));if(!force&&k===lastSyncKey)return;lastSyncKey=k;lastSyncAt=Date.now();p.state=st;var sts=S.ts||0,snm=S.name;if(MREV!=null){p.base=MREV;p.sts=sts;p.edn=Object.keys(S.edG||{}).length;SENT.push(sts);if(SENT.length>30)SENT.shift()}SYNCING=1;mRun('saveProgress',p).then(function(r){SYNCING=0;var again=SYNCAGAIN;SYNCAGAIN=0;
   if(r&&typeof r==='object'&&r.conflict&&snm===S.name){
    /* 서버에 있는 게 이 기기가 조금 전에 보낸 기록이면(응답만 늦게 온 것) 번호만 맞추고 다시 보내요 */
    if(r.ts&&SENT.indexOf(r.ts)>=0){mRevSet(snm,r.v);lastSyncKey='';setTimeout(function(){mSync(true)},300);return}
    /* 다른 기기에서 더 나중에 저장했어요 → 이 창의 오래된 기록으로 덮지 않고 서버 기록을 불러와요 */
    try{localStorage.removeItem(PKEY(snm));localStorage.removeItem(PKEY(snm)+'#s');localStorage.removeItem(PKEY(snm)+'#v')}catch(e){}
-   clearTimeout(syncT);syncT=0;lastSyncKey='';closeModal&&closeModal();toast('📲 다른 기기에서 한 기록이 더 새로워서 그 기록을 불러왔어요',4000);mLogin(snm);return}
+   clearTimeout(syncT);syncT=0;lastSyncKey='';closeModal&&closeModal();toast(r.drop?'🛡️ 점수가 줄어든 기록이라 저장된 기록을 다시 불러왔어요':'📲 다른 기기에서 한 기록이 더 새로워서 그 기록을 불러왔어요',4000);mLogin(snm);return}
   if(r&&typeof r==='object'&&r.ok&&r.v!=null){mRevSet(snm,r.v);r=true}
   if(r==='old'){toast('🔄 게임이 새 버전으로 바뀌었어요. 화면을 새로고침해 주세요',5000);return}
   if(again)setTimeout(function(){mSync(again===2)},200);
@@ -3020,11 +3020,14 @@ function mLogin(nm){
     /* (v4.1) 저장 번호로 고르기: 이 기기 기록이 서버의 마지막 저장 위에서 이어 한 것이고 아직 못 올린 게 있을 때만 이 기기 기록, 아니면 서버 기록 */
     var locv=-1;try{var lv0=localStorage.getItem(PKEY(nm)+'#v');if(lv0!=null&&lv0!=='')locv=+lv0}catch(e){}
     if(RV>0&&!(rem&&rem.reset)){pick=rem&&rem.cls?rem:null;if(loc&&loc.cls&&locv===RV&&(loc.ts||0)>syn)pick=loc}
+    /* (v4.1) 예전 버전이 남긴 이 기기 기록이 서버보다 앞서 있으면(주말 기록이 덮어쓰인 경우) 이 기기 기록을 되살려요 */
+    var REVIVE=0;if(RV>0&&!(rem&&rem.reset)&&rem&&rem.cls&&loc&&loc.cls&&locv<0){var cnt=function(o){return Object.keys(o.clear||{}).filter(function(k){return o.clear[k]}).length};
+      var u=(loc.lv||1)>(rem.lv||1)||(loc.best||0)>(rem.best||0)||cnt(loc)>cnt(rem),d=(loc.lv||1)<(rem.lv||1)||(loc.best||0)<(rem.best||0)||cnt(loc)<cnt(rem);if(u&&!d){pick=loc;REVIVE=1}}
     if(!isTN(nm)&&!(a[0]&&a[0].legacy))mRevSet(nm,RV);
     if(!pick||!pick.cls){var sel=selCls;if(!sel){S=JSON.parse(JSON.stringify(DEF));S.name='';showCreate(nm);toast('처음 왔군요! 직업을 고르고 「모험 시작!」을 눌러 주세요',3500);return}
       window.LTS=0;S=JSON.parse(JSON.stringify(DEF));S.name=nm;S.cls=sel;S.gotG={};S.gotB={};if(rem&&rem.reset)S.rs=rem.ts;if(isTN(nm)){S.gold=99999;S.potion=99;S.hint=99}S.klass=window.MCLS||'';mNorm();mDay();save();SFX.lvup();showMap();setTimeout(function(){showTut(0)},300);mSync(true);return}
     window.LTS=pick.ts||0;S=Object.assign(JSON.parse(JSON.stringify(DEF)),pick);S.name=nm;S.klass=window.MCLS||'';mNorm();mDay();save();SFX.lvup();showMap();if(!S.tut)setTimeout(function(){showTut(0)},400);mSync(true);
-    if(isTN(nm))toast('👩‍🏫 선생님으로 들어왔어요'+(window.MCLS?' ('+window.MCLS+')':'')+'. 모든 스테이지가 열려 있어요.',3000)}}
+    if(REVIVE)toast('📲 이 기기에 남아 있던 더 앞선 기록을 되살렸어요',4000);if(isTN(nm))toast('👩‍🏫 선생님으로 들어왔어요'+(window.MCLS?' ('+window.MCLS+')':'')+'. 모든 스테이지가 열려 있어요.',3000)}}
 function mLoadFail(nm){app.innerHTML='<div class="create"><div class="castle">📡</div><p style="font-size:21px">기록을 불러오지 못했어요.<br>인터넷을 확인하고 다시 해 봐요.</p><button class="btn" onclick="mLogin(\''+esc(nm).replace(/'/g,"\\'")+'\')">다시 불러오기</button> <button class="btn gray" onclick="showCreate()">처음 화면</button></div>'}
 /* ===== 🔒 학생 비밀번호 ===== */
 var MPW='';
@@ -3990,14 +3993,14 @@ window.tEdSave=function(){var n=TEDN||($('#ed_n')||{}).value;if(!n)return toast(
  modal('<h3>✏️ 기록을 고칠까요?</h3><p><b>'+esc(n)+'</b><br>'+t.join('<br>')+'</p><p class="sub">학생이 게임 중이면 1분 안에, 아니면 다음에 들어올 때 바뀌어요.</p><div class="btns"><button class="btn gray" onclick="closeModal()">아니요</button><button class="btn" onclick="tEdGo()">고치기</button></div>')};
 /* ===== 🕘 기록 되돌리기 (v4.1) ===== */
 var TBK=null,TBKN='',TIMP=null,TIMPU='';
-function tSumTxt(x){return x?'⭐'+x.lv+' · 💰'+Number(x.gold||0).toLocaleString()+' · 🗼'+(x.best||0)+'층 · 🏁'+(x.cl||0):'-'}
+function tSumTxt(x){return x?'⭐'+x.lv+' · 💰'+Number(x.gold||0).toLocaleString()+' · 🗼'+(x.best||0)+'층 · 🏁'+(x.cl||0)+(x.it!=null?' · 🎒'+x.it:''):'-'}
 function tSumUp(o,c){return !!(o&&(!c||o.lv>c.lv||o.best>c.best||o.cl>c.cl))}
 window.tRestoreHTML=function(){var h='<div class="gmis" style="flex-direction:column;align-items:stretch;gap:8px;margin-top:12px"><b>🕘 기록 되돌리기</b><div class="sub">학생 기록이 줄어들었을 때 예전 기록으로 되돌려요. 되돌리기 전 기록도 백업에 남아서, 잘못 눌러도 다시 되돌릴 수 있어요.</div>';
  if(!TEDN)h+='<div class="sub">위에서 학생을 고르면 그 학생의 백업이 보여요. (하루에 한 번, 그날 처음 저장할 때 전날 기록을 남겨요. 학생마다 14개까지)</div>';
  else if(TBKN!==TEDN||!TBK){h+='<div><button class="btn gray" onclick="tBkLoad()">📂 '+esc(TEDN)+' 백업 보기</button></div>'}
  else{h+='<div class="sub">지금 기록: <b>'+tSumTxt(TBK.cur)+'</b></div>'+(TBK.list.length?'<div class="tscroll"><table class="ttab"><tr><th>그때 저장</th><th>레벨</th><th>골드</th><th>탑</th><th>스테이지</th><th>남긴 이유</th><th></th></tr>'+TBK.list.map(function(x){return '<tr'+(tSumUp(x,TBK.cur)?' style="background:rgba(120,255,160,.12)"':'')+'><td>'+esc(x.at)+'</td><td>'+x.lv+'</td><td>'+x.gold.toLocaleString()+'</td><td>'+x.best+'층</td><td>'+x.cl+'</td><td style="font-size:13px">'+esc(x.why)+'</td><td><button class="btn" style="padding:3px 10px;font-size:14px" onclick="tBkAsk('+x.row+')">되돌리기</button></td></tr>'}).join('')+'</table></div>':'<p class="sub">아직 백업이 없어요. 오늘부터 하루에 한 번씩 쌓여요.</p>')+'<div><button class="btn gray" style="padding:4px 12px;font-size:14px" onclick="TBK=null;tBkLoad()">🔄</button></div>'}
  h+='<div style="border-top:1px dashed rgba(255,255,255,.25);padding-top:8px"><b>📑 구글 시트 「버전 기록」 사본에서 가져오기</b><div class="sub">시트 메뉴 <b>파일 → 버전 기록 → 버전 기록 보기</b>에서 기록이 괜찮던 때(예: 일요일 밤)를 고르고, 오른쪽 ⋮ → <b>사본 만들기</b>를 해요. 만든 사본의 주소를 아래에 붙여 넣으세요.</div>'+
-  '<div class="tfg"><input id="imp_u" value="'+esc(TIMPU)+'" placeholder="https://docs.google.com/spreadsheets/d/..." style="font-family:inherit;font-size:15px;padding:6px;border-radius:10px;flex:1;min-width:220px"><button class="btn gray" onclick="tImpLoad()">불러오기</button></div>';
+  '<div class="tfg"><input id="imp_u" value="'+esc(TIMPU)+'" placeholder="https://docs.google.com/spreadsheets/d/..." style="font-family:inherit;font-size:15px;padding:6px;border-radius:10px;flex:1;min-width:220px"><button class="btn gray" onclick="tImpLoad()">하나씩 보기</button><button class="btn" onclick="tImpAuto()">✨ 알아서 돌려놓기</button></div><div class="sub">「알아서 돌려놓기」는 사본 기록이 더 앞선 학생(레벨·탑·스테이지가 높고 줄어든 건 없는 학생)만 골라 한꺼번에 되돌려요. 오늘 더 한 학생은 건드리지 않아요.</div>'+(TAUTO?'<div class="gmis" style="flex-direction:column;align-items:stretch">'+TAUTO+'</div>':'');
  if(TIMP){h+=TIMP.length?'<div class="sub">초록 줄은 사본 기록이 지금보다 앞선 학생이에요. 「가져오기」를 누른 학생만 바뀌어요.</div><div class="tscroll"><table class="ttab"><tr><th>학생</th><th>지금 / 사본</th><th></th></tr>'+TIMP.map(function(x,i){return '<tr'+(tSumUp(x.old,x.cur)?' style="background:rgba(120,255,160,.12)"':'')+'><td style="text-align:left">'+esc(x.name)+'</td><td style="font-size:13px;text-align:left">지금 '+tSumTxt(x.cur)+'<br><b>사본 '+tSumTxt(x.old)+'</b></td><td>'+(x.done?'✅':'<button class="btn" style="padding:3px 10px;font-size:14px" onclick="tImpAsk('+i+')">가져오기</button>')+'</td></tr>'}).join('')+'</table></div>':'<p class="sub">사본에 학생 기록이 없어요. 반이 맞는지 확인해 주세요.</p>'}
  return h+'</div>'};
 window.tBkLoad=function(){var n=TEDN;if(!n)return;TBKN=n;TBK=null;toast('백업을 찾고 있어요…',1200);mRun('adminBackups',TPIN,n).then(function(r){if(!r||!r.ok){TBKN='';return toast('불러오지 못했어요. 다시 해 봐요')}if(TEDN===n){TBK=r;drawT()}})};
@@ -4005,6 +4008,14 @@ window.tBkAsk=function(row){var x=(TBK&&TBK.list||[]).find(function(y){return y.
  modal('<h3>🕘 기록 되돌리기</h3><p style="line-height:1.6"><b>'+esc(n)+'</b>의 기록을<br><b>'+esc(x.at)+'</b> 기록('+tSumTxt(x)+')으로 되돌릴까요?<br><span class="sub">지금 기록('+tSumTxt(TBK.cur)+')은 백업에 남아요.</span></p><div class="btns"><button class="btn gray" onclick="closeModal()">취소</button><button class="btn" onclick="tBkGo('+row+')">되돌리기</button></div>')};
 window.tBkGo=function(row){var n=TEDN;closeModal();toast('되돌리고 있어요…',1500);mRun('adminRestore',TPIN,n,row).then(function(r){if(!r||!r.ok)return toast('되돌리지 못했어요. 다시 해 봐요');toast('✅ '+n+' 기록을 되돌렸어요. 학생 화면도 곧 바뀌어요',3500);TBK=null;tBkLoad()})};
 window.tImpLoad=function(){var u=($('#imp_u').value||'').trim();if(!u)return toast('사본 주소를 붙여 넣어 주세요');TIMPU=u;TIMP=null;toast('사본을 열고 있어요…',2000);mRun('adminImportList',TPIN,u).then(function(r){if(!r||!r.ok)return toast(r&&r.why==='open'?'사본을 열 수 없어요. 주소를 확인해 주세요':'불러오지 못했어요. 다시 해 봐요',3000);TIMP=r.list;drawT()})};
+var TAUTO='';
+window.tImpAuto=function(){var u=($('#imp_u').value||'').trim();if(!u)return toast('사본 주소를 붙여 넣어 주세요');TIMPU=u;
+ modal('<h3>✨ 알아서 돌려놓기</h3><p style="line-height:1.6">사본 기록이 지금보다 앞선 학생을 모두 찾아서 되돌릴까요?<br><span class="sub">바뀌기 전 기록은 학생마다 백업에 남아요.</span></p><div class="btns"><button class="btn gray" onclick="closeModal()">취소</button><button class="btn" onclick="tImpAutoGo()">돌려놓기</button></div>')};
+window.tImpAutoGo=function(){closeModal();toast('학생 기록을 비교하고 있어요… (1분쯤 걸릴 수 있어요)',4000);mRunL(90000,'adminImportAuto',TPIN,TIMPU).then(function(r){if(!r||!r.ok)return toast(r&&r.why==='open'?'사본을 열 수 없어요. 주소를 확인해 주세요':'하지 못했어요. 다시 눌러 주세요',3500);
+ var h='<b>✅ 되돌린 학생 '+r.done.length+'명</b>'+(r.done.length?'<div class="sub" style="line-height:1.7">'+r.done.map(function(x){return esc(x.name)+': '+tSumTxt(x.old)+' → <b>'+tSumTxt(x.now)+'</b>'}).join('<br>')+'</div>':'')+
+  (r.mixed.length?'<b style="margin-top:6px">🤔 직접 봐 주세요 '+r.mixed.length+'명</b><div class="sub" style="line-height:1.7">오늘 더 한 것이 있거나 골드·물건만 줄어서(오늘 쓴 것일 수도 있어요) 그대로 뒀어요. 「하나씩 보기」에서 고를 수 있어요.<br>'+r.mixed.map(function(x){return esc(x.name)+(x.gi?' (골드·물건)':'')+': 지금 '+tSumTxt(x.cur)+' / 사본 '+tSumTxt(x.old)}).join('<br>')+'</div>':'')+
+  '<div class="sub">줄어들지 않은 학생 '+r.same+'명은 그대로 뒀어요.</div>';
+ TAUTO=h;TIMP=null;drawT();toast('✅ '+r.done.length+'명을 되돌렸어요',3500)})};
 window.tImpAsk=function(i){var x=TIMP&&TIMP[i];if(!x)return;modal('<h3>📑 사본에서 가져오기</h3><p style="line-height:1.6"><b>'+esc(x.name)+'</b><br>지금: '+tSumTxt(x.cur)+'<br>사본: <b>'+tSumTxt(x.old)+'</b><br><span class="sub">사본 기록으로 바꿀까요? 지금 기록은 백업에 남아요.</span></p><div class="btns"><button class="btn gray" onclick="closeModal()">취소</button><button class="btn" onclick="tImpGo('+i+')">가져오기</button></div>')};
 window.tImpGo=function(i){var x=TIMP&&TIMP[i];if(!x)return;closeModal();toast('가져오고 있어요…',1500);mRun('adminImportGo',TPIN,TIMPU,x.name).then(function(r){if(!r||!r.ok)return toast('가져오지 못했어요. 다시 해 봐요');x.done=1;x.cur=r.sum;toast('✅ '+x.name+' 기록을 가져왔어요',3000);drawT()})};
 window.tEdGo=function(){var a=window._edo;closeModal();mRun('adminEdit',TPIN,a[0],a[1]).then(function(r){if(r&&r.ok){TED=r.list;toast('✏️ 고치기를 보냈어요. 학생이 들어오면 바뀌어요',3000);drawT()}else toast('보내지 못했어요. 다시 해 주세요')})};
