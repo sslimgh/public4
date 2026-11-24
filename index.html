@@ -2100,6 +2100,7 @@ function clearNotes(){modal(`<h3>오답노트를 비울까요?</h3><p>틀린 문
 /* 설정 */
 function showSettings(){app.innerHTML=hud()+`<div class="panel"><h2>⚙️ 설정</h2>
  <div class="row"><div class="big">${S.sound?'🔊':'🔇'}</div><div class="grow">효과음</div><button class="btn blue" onclick="S.sound=!S.sound;save();showSettings()">${S.sound?'끄기':'켜기'}</button></div>
+ ${window.bgmRow?bgmRow():''}
  <div class="row"><div class="big">${C().e}</div><div class="grow">직업 바꾸기<div class="sub">레벨과 아이템은 그대로예요</div></div><button class="btn blue" onclick="changeCls()">바꾸기</button></div>
  ${GAS&&S.name&&!isT()?`<div class="row"><div class="big">🔒</div><div class="grow">내 비밀번호<div class="sub" id="pwst">${MPW?'비밀번호가 있어요. 들어올 때마다 물어봐요':'아직 없어요. 정하면 친구가 내 이름으로 들어올 수 없어요'}</div></div><button class="btn blue" onclick="pwAsk()">${MPW?'바꾸기':'정하기'}</button></div>`:''}
  <div class="row"><div class="big">📚</div><div class="grow">출처<div class="sub">문제를 만든 교과서와 그림·소리·글꼴의 출처</div></div><button class="btn blue" onclick="showSources()">보기</button></div>
@@ -2926,7 +2927,7 @@ var PKEY=function(n){var c=window.MCLS||'',m=mMain();return KEY+'_p_'+(c&&m&&c!=
 var GREAD=['getConfig','getRoster','getClasses','getBoard','getGuilds','getLand','getPosts','getTexts','getTowerBoard','getAppUrl'];
 /* 평가처럼 꼭 결과를 받아야 하는 요청은 더 오래 기다려요 */
 function mRunL(ms,fn){var a=[].slice.call(arguments,2);if(window.GUEST)return Promise.resolve({ok:false,why:'guest'});return new Promise(function(res){if(!GAS)return res(null);var t=setTimeout(function(){res(null)},ms);try{google.script.run.withSuccessHandler(function(v){clearTimeout(t);res(v)}).withFailureHandler(function(){clearTimeout(t);res(null)}).C(window.MCLS||'',fn,a)}catch(e){clearTimeout(t);res(null)}})}
-function mRun(fn){var a=[].slice.call(arguments,1);if(window.GUEST&&GREAD.indexOf(fn)<0)return Promise.resolve(fn==='giftBox'?null:{ok:false,why:'guest'});return new Promise(function(res){if(!GAS)return res(null);var t=setTimeout(function(){res(null)},window.IS_APP?25000:20000);try{google.script.run.withSuccessHandler(function(v){clearTimeout(t);res(v)}).withFailureHandler(function(){clearTimeout(t);res(null)}).C(window.MCLS||'',fn,a)}catch(e){clearTimeout(t);res(null)}})}
+function mRun(fn){var a=[].slice.call(arguments,1);if(window.GUEST&&GREAD.indexOf(fn)<0)return Promise.resolve(fn==='giftBox'?null:{ok:false,why:'guest'});return new Promise(function(res){if(!GAS)return res(null);var t=setTimeout(function(){res(null)},20000);try{google.script.run.withSuccessHandler(function(v){clearTimeout(t);res(v)}).withFailureHandler(function(){clearTimeout(t);res(null)}).C(window.MCLS||'',fn,a)}catch(e){clearTimeout(t);res(null)}})}
 function ymd(d){d=d||new Date();var z=function(n){return String(n).padStart(2,'0')};return d.getFullYear()+'-'+z(d.getMonth()+1)+'-'+z(d.getDate())}
 function wkey(){var d=new Date(),day=(d.getDay()+6)%7;d.setDate(d.getDate()-day);return ymd(d)}
 function mNorm(){['inv','eqd','eql','dex','dexR','pets','gm'].forEach(function(k){if(!S[k]||typeof S[k]!=='object')S[k]={}});if(!S.eq||typeof S.eq!=='object')S.eq={helm:'',armor:'',acc:''};if(!S.W||S.W.k!==wkey())S.W={k:wkey(),right:0,clears:0};if(!S.T||S.T.d!==ymd())S.T={d:ymd(),right:0};if(!S.gm)S.gm={};if(typeof S.raidGot!=='number')S.raidGot=0;if(typeof S.days!=='number')S.days=0;if(!S.lastDay)S.lastDay=''}
@@ -2971,13 +2972,13 @@ window.clearStage=function(){mNorm();var first=!S.clear[F.i];_clearStage();if(fi
 
 /* ---------- 선생님이 연 스테이지만 ---------- */
 function mOpenOK(i){if(isT())return true;var s=STAGES[i];if(s&&s.w==='t')return s.lv<=(CFGM.openT==null?6:CFGM.openT);if(s&&s.w==='f')return s.lv<=(CFGM.openF==null?7:CFGM.openF);if(s&&s.w==='d')return s.lv<=(CFGM.openD==null?0:CFGM.openD);return i<CFGM.open}
-var APPV='5.1',APPD='2026-11-24';
+var APPV='5.2',APPD='2026-11-24';
 /* 오른쪽 위 버전 표시: 화면 버전 · 업데이트 날짜 (서버 버전이 다르면 빨갛게) */
 function verBadge(srv){var b=document.getElementById('verb');if(!b){b=document.createElement('div');b.id='verb';b.onclick=function(){var sv=b.dataset.srv||'-';modal('<h3>🔖 게임 버전</h3><p style="font-size:18px;line-height:1.8">화면 버전: <b>v'+APPV+'</b><br>업데이트한 날: <b>'+APPD.replace(/-/g,'. ')+'.</b><br>서버(Code.gs) 버전: <b>'+(sv==='-'?'확인 중':'v'+sv)+'</b>'+(window.IS_APP?'<br>들어온 곳: <b>앱(GitHub)</b>':(GAS?'<br>들어온 곳: <b>웹(구글)</b>':''))+'</p>'+(sv!=='-'&&sv!==APPV?'<p style="color:#ff8787">⚠️ 화면과 서버 버전이 달라요. 앱을 완전히 껐다가 다시 열거나, 선생님이 파일을 모두 바꿨는지 확인해 주세요.</p>':'<p class="sub">화면과 서버 버전이 같아요. 최신이에요!</p>')+'<div class="btns"><button class="btn" onclick="closeModal()">확인</button></div>')};document.body.appendChild(b)}
  if(srv)b.dataset.srv=srv;var bad=b.dataset.srv&&b.dataset.srv!==APPV;b.className=bad?'bad':'';var d=APPD.slice(5).replace('-','/').replace(/^0/,'').replace('/0','/');b.textContent=(bad?'⚠️ ':'')+'v'+APPV+' · '+d+' 업데이트'}
 document.addEventListener('DOMContentLoaded',function(){verBadge()});setTimeout(function(){verBadge()},0);
 /* 서버 설정 넣기: 강화·뽑기 설정(forge)은 글자로 오니까 꼭 풀어서 넣어요 (어디서 불러와도 똑같이) */
-function setCfg(c){if(!c||!c.open)return;var f=c.forge,ex=c.exam;CFGM=Object.assign({openT:6,openF:7,openD:0,bossD:1},c);if(typeof ex==='string'){try{CFGM.exam=ex?JSON.parse(ex):null}catch(e){CFGM.exam=null}}if(typeof f==='string'){try{CFGM.forge=f?JSON.parse(f):null}catch(e){CFGM.forge=null}}if(typeof c.land==='string'){try{CFGM.land=c.land?JSON.parse(c.land):null}catch(e){CFGM.land=null}}try{if(typeof syncOdds==='function')syncOdds()}catch(e){}}
+function setCfg(c){if(!c||!c.open)return;var f=c.forge,ex=c.exam;CFGM=Object.assign({openT:6,openF:7,openD:0,bossD:1},c);if(typeof ex==='string'){try{CFGM.exam=ex?JSON.parse(ex):null}catch(e){CFGM.exam=null}}if(typeof f==='string'){try{CFGM.forge=f?JSON.parse(f):null}catch(e){CFGM.forge=null}}if(typeof c.land==='string'){try{CFGM.land=c.land?JSON.parse(c.land):null}catch(e){CFGM.land=null}}try{window.bgmSync&&bgmSync()}catch(e){}try{if(typeof syncOdds==='function')syncOdds()}catch(e){}}
 function mLoadCfg(){return mRun('getConfig').then(function(c){setCfg(c);if(c&&c.appv){verBadge(c.appv);if(c.appv!==APPV)appStale(c.appv)}})}
 /* 앱(GitHub)에 예전 화면이 남아 있으면 새 버전을 다시 받아요 */
 function appStale(v){var k='appv_try_'+v;try{if(sessionStorage.getItem(k))return toast('🔄 게임이 새 버전('+v+')으로 바뀌었어요. 앱을 완전히 껐다가 다시 열어 주세요',6000);sessionStorage.setItem(k,'1')}catch(e){}
@@ -3338,7 +3339,7 @@ function drawT(){var d=TDATA,P=$('#tp');if(!P)return;var joined={};d.students.fo
       '<div class="row" style="gap:8px;flex-wrap:wrap"><button class="btn gray" onclick="tAutoG()">🎲 실력이 고르게 자동으로 나누기</button><span class="sub">길드 수: <input id="tgk" type="number" value="5" min="2" max="8" style="width:60px"></span></div>'+(free.length?'<p class="sub">길드 없는 학생: '+esc(free.join(', '))+'</p>':'')}
   if(TTAB==='set'){var c=d.cfg;h+=tClassBox()+tOpenRows(c)+
     '<div class="row"><span style="width:150px">순위표</span><button class="btn '+(c.rank?'':'gray')+'" onclick="tSave({rank:true})">보이기</button> <button class="btn '+(!c.rank?'':'gray')+'" onclick="tSave({rank:false})">숨기기</button></div>'+
-    '<div class="row"><span style="width:150px">👀 손님 입장</span><button class="btn '+(c.guest!==0?'':'gray')+'" onclick="tSave({guest:1})">허용</button> <button class="btn '+(c.guest===0?'':'gray')+'" onclick="tSave({guest:0})">막기</button> <small style="color:#aab6ee">이름 없이 둘러보기 (기록은 저장 안 돼요)</small></div>'+
+    (window.tBgmRow?tBgmRow(c):'')+'<div class="row"><span style="width:150px">👀 손님 입장</span><button class="btn '+(c.guest!==0?'':'gray')+'" onclick="tSave({guest:1})">허용</button> <button class="btn '+(c.guest===0?'':'gray')+'" onclick="tSave({guest:0})">막기</button> <small style="color:#aab6ee">이름 없이 둘러보기 (기록은 저장 안 돼요)</small></div>'+
     '<div class="row"><span style="width:150px">영토 전쟁</span><button class="btn red" onclick="if(confirm(\'영토를 모두 비우고 새 시즌을 시작할까요?\'))mRun(\'adminLandReset\',TPIN).then(function(r){toast(r&&r.ok?\'영토를 새로 시작했어요\':\'하지 못했어요\')})">🚩 영토 새로 시작</button><span class="sub" style="margin-left:8px">평소에는 매주 월요일에 저절로 새 시즌이 돼요</span></div>'+
    (window.tLandHTML?tLandHTML():'')+
     '<div class="row"><span style="width:150px">레이드 보스 체력</span><input id="trh" type="number" value="'+c.raid+'" style="width:110px;font-size:18px"> <button class="btn" onclick="tSave({raid:+$(\'#trh\').value})">저장</button><span class="sub" style="margin-left:8px">반 전체 정답 수만큼 공격해요</span></div>'}
@@ -4165,8 +4166,8 @@ if(document.body)start();else document.addEventListener('DOMContentLoaded',start
  SFX.fire=function(){noise(.25,.15,400,1600,'lowpass')};
  SFX.fall=function(){tone(1600,.38,'sine',.04,400);noise(.38,.08,3000,500)};
  SFX.pluck=function(){tone(1250,.07,'triangle',.06,500);noise(.08,.1,2500,4000)};
- SFX.hit=function(){var c=window.S&&S.cls;if(c==='warrior'){noise(.12,.3,1800,600);tone(160,.14,'square',.06,70)}else if(c==='mage'){noise(.3,.32,900,120,'lowpass');tone(90,.28,'sine',.12,45)}else if(c==='archer'){tone(320,.08,'square',.05,120);noise(.06,.2,1500,700)}else oh()};
- SFX.crit=function(){var c=window.S&&S.cls;SFX.hit();setTimeout(function(){tone(1400,.1,'square',.04);tone(2100,.16,'triangle',.03)},40);if(c==='mage')setTimeout(function(){noise(.45,.3,600,80,'lowpass')},60);if(c==='warrior')setTimeout(function(){tone(1900,.16,'triangle',.05,1500)},20)};
+ SFX.hit=function(){var c=(typeof S!=="undefined"&&S)?S.cls:null;if(c==='warrior'){noise(.12,.3,1800,600);tone(160,.14,'square',.06,70)}else if(c==='mage'){noise(.3,.32,900,120,'lowpass');tone(90,.28,'sine',.12,45)}else if(c==='archer'){tone(320,.08,'square',.05,120);noise(.06,.2,1500,700)}else oh()};
+ SFX.crit=function(){var c=(typeof S!=="undefined"&&S)?S.cls:null;SFX.hit();setTimeout(function(){tone(1400,.1,'square',.04);tone(2100,.16,'triangle',.03)},40);if(c==='mage')setTimeout(function(){noise(.45,.3,600,80,'lowpass')},60);if(c==='warrior')setTimeout(function(){tone(1900,.16,'triangle',.05,1500)},20)};
 })();
 /* 7) 전투 효과 그림 */
 function spfx(src,x,y,sz,rot){var a=document.getElementById('arena');if(!a||!src)return;sz=Math.round((sz||90)*Math.min(1.1,a.clientWidth/520));var d=document.createElement('img');d.className='sfx';d.src=src;d.style.left=x+'px';d.style.top=y+'px';d.style.width=(sz||90)+'px';if(rot)d.style.setProperty('--r',rot+'deg');a.appendChild(d);setTimeout(function(){d.remove()},520)}
@@ -4174,6 +4175,30 @@ window.spfx=spfx;
 var _ha=window.heroAttack;window.heroAttack=function(crit,done){return _ha.call(this,crit,function(x,y){try{if(x!=null){if(crit){spfx(I.fx_crit,x,y,150);setTimeout(function(){spfx(I.fx_star,x+18,y-14,80,25);spfx(I.fx_boom,x-14,y+10,70)},90);var mb=document.getElementById('monB');if(mb){mb.style.filter='brightness(2.2)';setTimeout(function(){mb.style.filter=''},110)}}spfx(S.cls==='warrior'?I.fx_slash:S.cls==='mage'?I.fire:I.fx_star,x,y,S.cls==='warrior'?100:86,S.cls==='warrior'?-20:0)}}catch(e){}return done.apply(this,arguments)})};
 var _fa=window.fxAt;window.fxAt=function(cls,x,y,txt,ms){try{var a=document.getElementById('arena');if(cls==='burst'&&a&&x<a.getBoundingClientRect().width/2)spfx(I.fx_boom,x+20,y-10,46)}catch(e){}return _fa.apply(this,arguments)};
 var _up=window.usePotion;if(_up)window.usePotion=function(){var before=S.potion,r=_up.apply(this,arguments);try{if(S.potion<before&&typeof BT!=='undefined'&&BT){var p=posOf('#heroB');spfx(I.fx_heal,p[0],p[1],100)}}catch(e){}return r};
+})();
+
+/* ===== 🎵 배경음악 (v5.2): 두 곡을 번갈아 계속 반복 =====
+ * 앱(GitHub)은 index.html 옆의 bgm1.mp3, bgm2.mp3를 쓰고, Apps Script 주소는 선생님이 정한 음악 파일 주소(기본: GitHub 앱 주소)에서 불러와요. */
+(function(){
+var BGM_DEF='https://sslimgh.github.io/public4/',AU=null,idx=0,started=false,want=false;
+function base(){if(window.IS_APP)return '';var c=CF(),u=(c&&c.bgmu)||BGM_DEF;return /\/$/.test(u)?u:u+'/'}
+function classOn(){var c=CF();return !(c&&c.bgm===0)}
+function SS(){try{return typeof S!=='undefined'?S:null}catch(e){return null}}
+function CF(){try{return typeof CFGM!=='undefined'?CFGM:null}catch(e){return null}}
+function myOn(){var t=SS();return !(t&&t.bgm===0)}
+function vol(){var t=SS(),v=t&&t.bgv;return v==null?0.35:Math.max(0,Math.min(1,+v))}
+function src(i){return base()+'bgm'+(i+1)+'.mp3'}
+function make(){if(AU)return AU;AU=new Audio();AU.preload='auto';AU.addEventListener('ended',function(){idx=(idx+1)%2;AU.src=src(idx);AU.play().catch(function(){})});AU.addEventListener('error',function(){if(!AU._err){AU._err=1;idx=(idx+1)%2;setTimeout(function(){if(want){AU.src=src(idx);AU.play().catch(function(){})}},1500)}});AU.src=src(0);return AU}
+function sync(){want=classOn()&&myOn()&&!document.hidden;if(!started)return;var a=make();a.volume=vol();if(want){if(a.paused)a.play().catch(function(){})}else if(!a.paused)a.pause()}
+window.bgmSync=sync;
+function first(){if(started)return;started=true;sync()}
+['pointerdown','keydown','touchstart'].forEach(function(e){document.addEventListener(e,first,{capture:true,passive:true})});
+document.addEventListener('visibilitychange',sync);
+setInterval(sync,5000);
+window.bgmRow=function(){if(!classOn())return '<div class="row"><div class="big">🎵</div><div class="grow">배경음악<div class="sub">선생님이 지금은 꺼 두셨어요</div></div></div>';
+ var on=myOn();return '<div class="row"><div class="big">'+(on?'🎵':'🔇')+'</div><div class="grow">배경음악<div class="sub">음량 <input type="range" min="0" max="100" value="'+Math.round(vol()*100)+'" style="width:120px;vertical-align:middle" oninput="S.bgv=this.value/100;bgmSync()" onchange="save()"></div></div><button class="btn blue" onclick="S.bgm='+(on?0:1)+';save();bgmSync();showSettings()">'+(on?'끄기':'켜기')+'</button></div>'};
+window.tBgmRow=function(c){var on=c.bgm!==0,u=c.bgmu||BGM_DEF;return '<div class="row" style="flex-wrap:wrap"><span style="width:150px">🎵 배경음악</span><button class="btn '+(on?'':'gray')+'" onclick="tSave({bgm:1})">켜기</button> <button class="btn '+(!on?'':'gray')+'" onclick="tSave({bgm:0})">끄기</button> <small style="margin-left:6px">반 전체에 적용돼요. 학생도 설정에서 자기만 끌 수 있어요.</small>'+
+ '<div style="width:100%;margin-top:6px"><small>음악 파일 주소(GitHub 앱 주소, bgm1.mp3·bgm2.mp3가 있는 곳)</small><br><input id="bgmu" value="'+esc(u)+'" style="font-family:inherit;font-size:14px;padding:4px 6px;border-radius:8px;width:min(100%,360px)"> <button class="btn gray" onclick="var v=($(\'#bgmu\').value||\'\').trim();if(v&&!/\\/$/.test(v))v+=\'/\';if(v&&!/^https:\\/\\//.test(v)){toast(\'https:// 로 시작하는 주소를 넣어 주세요\');return}tSave({bgmu:v})">저장</button></div></div>'};
 })();
 </script>
 </body>
